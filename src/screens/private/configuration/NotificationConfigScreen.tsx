@@ -1,8 +1,8 @@
 
 import { Box } from "native-base";
 
-export function ConfigurationScreen() {
+export function NotificationConfigScreen() {
   return (
-    <Box safeArea  flex={1} >Hello ConfigurationScreen</Box>
+    <Box safeArea  flex={1} >Hello NotificationConfigScreen</Box>
   );
 }
