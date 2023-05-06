@@ -6,6 +6,6 @@ import PrivateRoutes from './private.routes'
 export default function Routes() {
   /**/
   return (
-    < PrivateRoutes />
+    < PublicRoutes />
   );
 }

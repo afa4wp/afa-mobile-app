@@ -1,6 +1,6 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SignInScreen } from '../screens/public/SignInScreen'; 
+import { SigninStackScreen } from './public/SigninStackScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,8 +14,8 @@ export default function PublicRoutes() {
             }} 
         >
             <Stack.Screen 
-                name="SignIn"
-                component={SignInScreen}
+                name="SignInStack"
+                component={SigninStackScreen}
                 options={{
                     headerShown: false
                 }}
