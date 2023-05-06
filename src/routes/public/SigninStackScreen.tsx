@@ -12,11 +12,11 @@ export function SigninStackScreen() {
             <SigninStack.Screen  
                 name = "SignIn" 
                 component={SignInScreen}
-                options={{ title: 'Sign in' }}
+                options={{ title: 'Sign In' }}
             
             />
             <SigninStack.Screen  
-                name = " SignInQRCode" 
+                name = "SignInQRCode" 
                 component={SignInQRCodeScreen}
                 options={{ title: 'Sign in with QRCode' }}
                 />
