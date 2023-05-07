@@ -8,7 +8,7 @@ export function SignInScreen() {
   const navigation = useNavigation();
 
   return (
-    <Box safeArea flex={1} bg="mark.700">
+    <Box flex={1} bg="mark.700">
       <Box px="5" flex={1} justifyContent="center">
         <VStack mb="5">
           <Center>
