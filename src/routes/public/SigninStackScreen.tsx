@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { SignInScreen } from '../../screens/public/signin/SignInScreen';
 import { SignInQRCodeScreen } from '../../screens/public/signin/SignInQRCodeScreen';
-import { SignInUserInfoScreen } from '../../screens/public/signin/SignInUserInfoScreen';
+import { SignInCredentialsScreen } from '../../screens/public/signin/SignInCredentialsScreen';
 
 const SigninStack = createNativeStackNavigator();
 
@@ -22,7 +22,7 @@ export function SigninStackScreen() {
                 />
             <SigninStack.Screen  
                 name = "SignInUserInfo" 
-                component={SignInUserInfoScreen}
+                component={SignInCredentialsScreen}
                 options={{ title: 'Sign in with Credentials' }}
                 />    
         </SigninStack.Navigator>

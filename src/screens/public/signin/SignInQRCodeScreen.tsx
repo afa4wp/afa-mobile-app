@@ -37,7 +37,7 @@ export function SignInQRCodeScreen() {
 
   if (hasPermission === null) {
     return (
-      <Box flex={1} my="10" px="5">
+      <Box flex={1} my="10" px="5" bg="mark.700">
         <Text 
               color="mark.800"
               fontSize="md"
