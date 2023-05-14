@@ -1,8 +1,6 @@
 interface State {
   isLoggedIn: boolean;
   activeUser: string | null;
-  userToken: string | null;
-  userRefreshToken: string | null;
   isLoading: boolean;
   user: User;
 }
@@ -38,7 +36,7 @@ type Action =
   | { type: 'LOGGED_OUT'; payload: null }
   | {
       type: 'RESTORE_TOKEN';
-      payload: { isLoggedIn: boolean; userToken: string | null };
+      payload: { isLoggedIn: boolean; activeUser: string | null };
     }
   | { type: 'FETCH_USER'; payload: User };
 
@@ -51,5 +49,6 @@ interface LoggedData {
   id: string;
   userToken: string;
   userRefreshToken: string;
+  url: string;
 }
 export type { State, User, Action, AuthContextProps, LoginData, LoggedData };
