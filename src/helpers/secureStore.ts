@@ -9,9 +9,12 @@ export const addItem = async (key: string, item: LoggedData) => {
     // Convert the string back to an array
     const array = JSON.parse(jsonString);
 
-    // Add the new item to the array
-    array.push(item);
+    const index = array.findIndex((obj: LoggedData) => obj.id === item.id);
 
+    if (index === -1) {
+      // Add the new item to the array
+      array.push(item);
+    }
     // Convert the updated array to a string
     const updatedJsonString = JSON.stringify(array);
 
@@ -23,7 +26,6 @@ export const addItem = async (key: string, item: LoggedData) => {
 
     // Convert the new array to a string
     const jsonString = JSON.stringify(newArray);
-
     // Store the new array
     await SecureStore.setItemAsync(key, jsonString);
   }
@@ -73,4 +75,26 @@ export const deleteItemById = async (key: string, id: string) => {
   }
 
   return false; // Item not found or storage value not set
+};
+
+export const getAllItems = async (key: string) => {
+  // Retrieve the stored string representation
+  const jsonString = await SecureStore.getItemAsync(key);
+
+  if (jsonString) {
+    // Convert the string back to an array
+    const array = JSON.parse(jsonString);
+
+    return array;
+  }
+
+  // Return an empty array if the value is not found or has not been set
+  return [];
+};
+
+export const deleteAllItems = async (key: string) => {
+  // Remove the item from the storage by setting an empty string
+  await SecureStore.setItemAsync(key, '');
+
+  return true; // All items deleted successfully
 };
