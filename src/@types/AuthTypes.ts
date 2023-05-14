@@ -1,6 +1,8 @@
 interface State {
   isLoggedIn: boolean;
+  activeUser: string | null;
   userToken: string | null;
+  userRefreshToken: string | null;
   isLoading: boolean;
   user: User;
 }
@@ -8,7 +10,12 @@ interface State {
 interface AuthContextProps {
   // Define the shape of the context value
   state: State;
-  handleLogin: (token: string) => void;
+  handleLogin: (
+    userToken: string,
+    userRefreshToken: string,
+    url: string,
+    email: string
+  ) => void;
   handleToken: () => void;
   handleLogout: () => void;
 }
@@ -35,4 +42,14 @@ type Action =
     }
   | { type: 'FETCH_USER'; payload: User };
 
-export type { State, User, Action, AuthContextProps };
+interface LoginData {
+  username: string;
+  password: string;
+}
+
+interface LoggedData {
+  id: string;
+  userToken: string;
+  userRefreshToken: string;
+}
+export type { State, User, Action, AuthContextProps, LoginData, LoggedData };
