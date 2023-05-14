@@ -98,3 +98,29 @@ export const deleteAllItems = async (key: string) => {
 
   return true; // All items deleted successfully
 };
+
+export const updateItemById = async (
+  key: string,
+  id: string,
+  updatedItem: LoggedData
+) => {
+  const jsonString = await SecureStore.getItemAsync(key);
+
+  if (jsonString) {
+    let array = JSON.parse(jsonString);
+
+    const index = array.findIndex((obj: LoggedData) => obj.id === id);
+
+    if (index !== -1) {
+      array[index] = updatedItem;
+
+      const updatedJsonString = JSON.stringify(array);
+
+      await SecureStore.setItemAsync(key, updatedJsonString);
+
+      return true; // Item updated successfully
+    }
+  }
+
+  return false; // Item not found or storage value not set
+};
