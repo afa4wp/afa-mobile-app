@@ -4,17 +4,14 @@ import AuthContext from '../context/AuthContext';
 import authReducer from '../reducers/authReducer';
 import * as SecureStore from 'expo-secure-store';
 import * as helperSecureStore from '../helpers/secureStore';
-
-const LOGGEDINFO = 'LOGGEDINFO';
+import { LOGGEDINFO, ACTIVEUSER } from '../constants/auth';
 interface AuthProviderProps {
   children: React.ReactNode;
 }
 
 const initialState: State = {
   isLoggedIn: false,
-  userToken: null,
   activeUser: null,
-  userRefreshToken: null,
   isLoading: true,
   user: {} as User,
 };
@@ -29,11 +26,12 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     email: string
   ) => {
     const id = url + '@' + email;
-    await SecureStore.setItemAsync('activeUser', id);
+    await SecureStore.setItemAsync(ACTIVEUSER, id);
     await helperSecureStore.addItem(LOGGEDINFO, {
       id,
       userToken,
       userRefreshToken,
+      url,
     });
     dispatch({
       type: 'LOGGED_IN',
@@ -41,10 +39,42 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     });
   };
 
-  const handleToken = async () => {};
+  const handleToken = async () => {
+    let activeUser;
+    try {
+      activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
+    } catch (error) {
+      activeUser = null;
+    } finally {
+      dispatch({
+        type: 'RESTORE_TOKEN',
+        payload: {
+          isLoggedIn: activeUser ? true : false,
+          activeUser: activeUser ? activeUser : null,
+        },
+      });
+    }
+  };
 
-  const handleLogout = async () => {};
+  const handleLogout = async () => {
+    let activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
+    await SecureStore.deleteItemAsync(ACTIVEUSER);
+    if (activeUser) {
+      await helperSecureStore.deleteItemById(ACTIVEUSER, activeUser);
+    }
+    dispatch({
+      type: 'LOGGED_OUT',
+      payload: null,
+    });
+  };
 
+  useEffect(() => {
+    const bootstrapAsync = async () => {
+      handleToken();
+    };
+
+    bootstrapAsync();
+  }, []);
   return (
     <AuthContext.Provider
       value={{ state, handleLogin, handleToken, handleLogout }}
