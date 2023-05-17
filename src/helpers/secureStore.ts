@@ -14,6 +14,9 @@ export const addItem = async (key: string, item: LoggedData) => {
     if (index === -1) {
       // Add the new item to the array
       array.push(item);
+    } else {
+      // Delete the existing item from the array
+      array.splice(index, 1);
     }
     // Convert the updated array to a string
     const updatedJsonString = JSON.stringify(array);
