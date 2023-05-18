@@ -1,9 +1,14 @@
 import { publicApi } from '../helpers/axiosInstance';
-import axios from 'axios';
 import { LoginData } from '../@types/AuthTypes';
-const api = publicApi('url');
 
 export const signIn = async (url: string, data: LoginData) => {
-  let res = await api.post(url + '/user/login', data);
+  const api = publicApi(url);
+  let res = await api.post('/user/login', data);
+  return res.data;
+};
+
+export const pingRoute = async (url: string) => {
+  const api = publicApi(url);
+  let res = await api.get('/ping');
   return res.data;
 };
