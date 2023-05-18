@@ -4,7 +4,7 @@ import { SignInCredentials } from '../../../components/screens/public/SignInCred
 import { useState } from 'react';
 
 export function SignInCredentialsScreen() {
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
   const [url, setUrl] = useState('');
 
   const hendleData = (data: { url: string; status: boolean }) => {
@@ -20,7 +20,7 @@ export function SignInCredentialsScreen() {
     <Box flex={1} bg="mark.700">
       <KeyboardAvoidingView flex={1}>
         {showLogin ? (
-          <SignInCredentials />
+          <SignInCredentials url={url} />
         ) : (
           <ValidateURL onData={hendleData} />
         )}

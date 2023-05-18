@@ -24,20 +24,18 @@ import AuthContext from '../../../context/AuthContext';
 import * as authService from '../../../services/auth';
 import { LoginData } from '../../../@types/AuthTypes';
 import axios from 'axios';
+import { API_NAMESPACE } from '../../../constants/endpoint';
 
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),
   password: yup.string().required('Password is required'),
 });
 
-export function SignInCredentials() {
+export function SignInCredentials({ url }: { url: string }) {
   const { handleLogin } = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [url, setUrl] = useState(
-    'https://claudionhangapc.com/multsite_claudio/wp-json/wp-forms-rest-api/v1'
-  );
 
   const formik = useFormik({
     initialValues: {
@@ -54,7 +52,7 @@ export function SignInCredentials() {
     try {
       setShowModal(true);
       setShowAlert(false);
-      const result = await authService.signIn(url, values);
+      const result = await authService.signIn(url + API_NAMESPACE, values);
       const { access_token, refresh_token, user_email } = result;
       handleLogin(access_token, refresh_token, url, user_email);
     } catch (error) {

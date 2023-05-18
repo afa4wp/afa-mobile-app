@@ -19,6 +19,8 @@ import { useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { API_NAMESPACE } from '../../../constants/endpoint';
+import * as authService from '../../../services/auth';
 
 const validationSchema = yup.object().shape({
   url: yup
@@ -30,8 +32,12 @@ const validationSchema = yup.object().shape({
     .required('URL is required'),
 });
 
-export function ValidateURL() {
-  const [showModal, setShowModal] = useState(true);
+export function ValidateURL({
+  onData,
+}: {
+  onData: (data: { url: string; status: boolean }) => void;
+}) {
+  const [showModal, setShowModal] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -39,22 +45,28 @@ export function ValidateURL() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      await checkWordPress('https://claudionhangapc.com/multsite_claudio');
-      //console.log(values);
+      setShowModal(true);
+      await checkWordPress(values.url);
+      setShowModal(false);
     },
   });
 
-  async function checkWordPress(url) {
-    const rsdEndpoint = url + '/xmlrpc.php?rsd';
-    console.log('entrou');
+  async function checkWordPress(url: string) {
+    if (!url.startsWith('https://')) {
+      url = 'https://' + url;
+    }
+    await checkPingRoute(url);
+  }
+
+  async function checkPingRoute(url: string) {
+    const pingEndpoint = url + API_NAMESPACE;
     try {
-      const response = await axios.get(rsdEndpoint);
-      console.log(response);
-      // Check if the response contains the expected RSD structure for WordPress
-      if (response.data.includes('WordPress')) {
-        console.log('WordPress site detected!');
-      } else {
-        console.log('Not a WordPress site.');
+      const data = await authService.pingRoute(pingEndpoint);
+      if (data && typeof data === 'object' && data.ping === 'pong') {
+        //console.log('WordPress plugin installed! com sucesso');
+        setShowModal(false);
+        const data = { url, status: true };
+        onData(data);
       }
     } catch (error) {
       console.log('Error occurred:', error.message);
@@ -111,7 +123,7 @@ export function ValidateURL() {
       <Modal isOpen={showModal} size="full" px="5">
         <Modal.Content maxWidth="100%">
           <Modal.Body px="0">
-            <HStack space={2} px="2" py="2" alignItems="center">
+            <HStack space={2} px="2" py="4" alignItems="center">
               <Spinner
                 size="lg"
                 accessibilityLabel="Check plugin"
