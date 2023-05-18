@@ -43,6 +43,15 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     let activeUser;
     try {
       activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
+      if (activeUser) {
+        const loggedInInfo = await helperSecureStore.findItemById(
+          LOGGEDINFO,
+          activeUser
+        );
+        if (!loggedInInfo) {
+          await SecureStore.deleteItemAsync(ACTIVEUSER);
+        }
+      }
     } catch (error) {
       activeUser = null;
     } finally {
@@ -60,7 +69,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     let activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
     await SecureStore.deleteItemAsync(ACTIVEUSER);
     if (activeUser) {
-      await helperSecureStore.deleteItemById(ACTIVEUSER, activeUser);
+      await helperSecureStore.deleteItemById(LOGGEDINFO, activeUser);
     }
     dispatch({
       type: 'LOGGED_OUT',

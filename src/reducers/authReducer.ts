@@ -7,20 +7,20 @@ const authReducer: Reducer<State, Action> = (state, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        userToken: action.payload,
+        id: action.payload,
       };
     }
     case 'LOGGED_OUT': {
       return {
         ...state,
         isLoggedIn: false,
-        userToken: action.payload,
+        activeUser: action.payload,
       };
     }
     case 'RESTORE_TOKEN': {
       return {
         ...state,
-        userToken: action.payload.userToken,
+        activeUser: action.payload.activeUser,
         isLoggedIn: action.payload.isLoggedIn,
         isLoading: false,
       };
