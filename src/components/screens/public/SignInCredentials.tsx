@@ -54,7 +54,7 @@ export function SignInCredentials({ url }: { url: string }) {
       setShowAlert(false);
       const result = await authService.signIn(url + API_NAMESPACE, values);
       const { access_token, refresh_token, user_email } = result;
-      handleLogin(access_token, refresh_token, url, user_email);
+      handleLogin(access_token, refresh_token, url + API_NAMESPACE, user_email);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const response = error.response;

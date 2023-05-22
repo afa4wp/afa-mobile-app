@@ -17,7 +17,7 @@ export function ItemStatisticProfile({
             as={FontAwesome}
             name={iconName}
             size="md"
-            mr="5"
+            mr="3"
             color="mark.800"
           />
         </HStack>
@@ -25,9 +25,7 @@ export function ItemStatisticProfile({
           justifyContent="space-between"
           alignItems="center"
           flex={1}
-          borderBottomWidth={1}
-          borderBottomColor="rgba(124, 131, 219, 0.1)"
-          py="3"
+          py="2"
         >
           <HStack>
             <Text fontSize="md" color="mark.800">

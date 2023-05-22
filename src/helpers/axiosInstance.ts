@@ -114,9 +114,18 @@ const handleRequestWithTokenRefresh = async (
         // Handle successful response
         return response;
       } catch (refreshError) {
-        // Handle refresh token error
-        console.log('Failed to refresh access token:', refreshError);
-        throw new Error('Failed to refresh access token');
+        // Check if the refresh error code is "jwt_auth_invalid_token"
+        if (
+          isAxiosError(refreshError) &&
+          refreshError.response?.data?.code === 'jwt_auth_invalid_token'
+        ) {
+          // Throw the refresh error
+          throw refreshError;
+        } else {
+          // Handle other refresh token errors
+          console.log('Failed to refresh access token:', refreshError);
+          throw new Error('Failed to refresh access token');
+        }
       }
     } else {
       // Handle other API request errors

@@ -63,13 +63,14 @@ export function ValidateURL({
     try {
       const data = await authService.pingRoute(pingEndpoint);
       if (data && typeof data === 'object' && data.ping === 'pong') {
-        //console.log('WordPress plugin installed! com sucesso');
         setShowModal(false);
         const data = { url, status: true };
         onData(data);
       }
     } catch (error) {
-      console.log('Error occurred:', error.message);
+      formik.setErrors({
+        url: 'Parece que voce não tem o plugin instalado no seu site.',
+      });
     }
   }
 

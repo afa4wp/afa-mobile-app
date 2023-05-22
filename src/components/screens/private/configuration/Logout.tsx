@@ -1,7 +1,7 @@
 import { Box, Modal, Text, Button, Spinner } from 'native-base';
 import React, { useContext, useState } from 'react';
 import { ConfigurationItem } from './ConfigurationItem';
-import AuthContext from '../../..//context/AuthContext';
+import AuthContext from '../../../../context/AuthContext';
 
 export function Logout() {
   const [showModal, setShowModal] = useState(false);
@@ -32,7 +32,7 @@ export function Logout() {
         {!load ? (
           <Modal.Content maxWidth="350">
             <Modal.Header color="mark.800">
-              Você realemente deseja sair ?
+              Você realmente deseja sair ?
             </Modal.Header>
             <Modal.Body>
               <Text color="mark.800">

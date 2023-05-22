@@ -1,7 +1,7 @@
 import { Box } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import { ConfigurationItem } from '../../../components/private/configuration/ConfigurationItem';
-import { Logout } from '../../../components/private/configuration/Logout';
+import { ConfigurationItem } from '../../../components/screens/private/configuration/ConfigurationItem';
+import { Logout } from '../../../components/screens/private/configuration/Logout';
 export function ConfigurationScreen() {
   const navigation = useNavigation();
 
