@@ -1,10 +1,20 @@
 import { Box, Modal, Text, Button, Spinner } from 'native-base';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ConfigurationItem } from './ConfigurationItem';
+import AuthContext from '../../..//context/AuthContext';
 
 export function Logout() {
   const [showModal, setShowModal] = useState(false);
   const [load, setLoad] = useState(false);
+
+  const { handleLogout } = useContext(AuthContext);
+
+  const deleteExpoToken = async () => {
+    setLoad(true);
+
+    handleLogout();
+    setLoad(false);
+  };
 
   return (
     <>
@@ -41,7 +51,14 @@ export function Logout() {
                 >
                   Cancelar
                 </Button>
-                <Button bg="mark.900">Logout</Button>
+                <Button
+                  bg="mark.900"
+                  onPress={() => {
+                    deleteExpoToken();
+                  }}
+                >
+                  Logout
+                </Button>
               </Button.Group>
             </Modal.Footer>
           </Modal.Content>
