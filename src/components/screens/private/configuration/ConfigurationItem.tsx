@@ -5,24 +5,44 @@ import { ConfigurationItem as ConfigurationItemType } from '../../../@types/Conf
 export function ConfigurationItem({
   label,
   iconName,
+  hasBorder = true,
   vectorIcon = FontAwesome,
   onPress,
 }: ConfigurationItemType) {
+  const borderBottomColor = hasBorder ? 'rgba(124, 131, 219, 0.1)' : undefined;
+  const borderBottomWidth = hasBorder ? 1 : undefined;
+
   return (
-    <VStack>
+    <VStack
+      borderBottomWidth={borderBottomWidth}
+      borderBottomColor={borderBottomColor}
+    >
       <Pressable onPress={onPress}>
-        <HStack alignItems="center" py="2">
-          <Icon
-            as={vectorIcon}
-            name={iconName}
-            size="md"
-            mr="5"
-            color="mark.800"
-          />
-          <Text fontSize="lg" color="mark.800" flex={1}>
-            {label}
-          </Text>
-        </HStack>
+        <VStack>
+          <HStack alignItems="center">
+            <HStack py="5">
+              <Icon
+                as={FontAwesome}
+                name={iconName}
+                size="md"
+                mr="3"
+                color="mark.800"
+              />
+            </HStack>
+            <HStack
+              justifyContent="space-between"
+              alignItems="center"
+              flex={1}
+              py="5"
+            >
+              <HStack>
+                <Text fontSize="md" color="mark.800">
+                  {label}
+                </Text>
+              </HStack>
+            </HStack>
+          </HStack>
+        </VStack>
       </Pressable>
     </VStack>
   );

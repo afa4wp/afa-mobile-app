@@ -7,7 +7,7 @@ export function ConfigurationScreen() {
 
   return (
     <Box flex={1} bg="mark.700">
-      <Box px="5" flex={1} mt="2">
+      <Box px="5" flex={1}>
         <ConfigurationItem
           label="Notificações"
           iconName="bell"

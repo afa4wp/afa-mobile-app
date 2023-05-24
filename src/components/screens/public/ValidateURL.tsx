@@ -18,7 +18,6 @@ import { Platform } from 'react-native';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import axios from 'axios';
 import { API_NAMESPACE } from '../../../constants/endpoint';
 import * as authService from '../../../services/auth';
 

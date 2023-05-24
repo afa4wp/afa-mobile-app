@@ -22,6 +22,7 @@ export function Logout() {
         label="Sair"
         iconName="power-off"
         onPress={() => setShowModal(true)}
+        hasBorder={false}
       />
       <Modal
         isOpen={showModal}

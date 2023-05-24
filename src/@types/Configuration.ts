@@ -6,6 +6,7 @@ interface ConfigurationItem {
   iconName: string;
   onPress: () => void;
   vectorIcon?: any;
+  hasBorder?: boolean;
 }
 
 export type { ConfigurationItem };
