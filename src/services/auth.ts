@@ -7,6 +7,12 @@ export const signIn = async (url: string, data: LoginData) => {
   return res.data;
 };
 
+export const signInQRCode = async (url: string, secret: string) => {
+  const api = publicApi(url);
+  let res = await api.post('/user/login/qrcode', { secret });
+  return res.data;
+};
+
 export const pingRoute = async (url: string) => {
   const api = publicApi(url);
   let res = await api.get('/ping');
