@@ -2,6 +2,7 @@ import { Box, ScrollView, VStack, Heading } from 'native-base';
 import { CardProfile } from './CardProfile';
 import { ItemStatisticProfile } from './ItemStatisticProfile';
 import { RegistrationDataProfile } from './RegistrationDataProfile';
+import moment from 'moment';
 
 import AuthContext from '../../../../context/AuthContext';
 import { useContext } from 'react';
@@ -10,6 +11,11 @@ export function MainContentProfile() {
   const {
     state: { user },
   } = useContext(AuthContext);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
 
   return (
     <ScrollView flex={1} bg="mark.700" showsVerticalScrollIndicator={false}>
@@ -25,8 +31,8 @@ export function MainContentProfile() {
               </Heading>
             </VStack>
             <ItemStatisticProfile
-              label="Tempo na mark"
-              value={user.user_registered}
+              label="Criado em"
+              value={formatDate(user.user_registered)}
               iconName="calendar"
             />
             <ItemStatisticProfile
