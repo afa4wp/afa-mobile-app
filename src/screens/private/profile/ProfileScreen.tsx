@@ -22,10 +22,12 @@ export function ProfileScreen() {
   };
 
   useEffect(() => {
-    getUserData();
-  }, []);
+    if (!user || Object.keys(user).length === 0) {
+      getUserData();
+    }
+  }, [user]);
 
-  if (showSpinner) {
+  if (showSpinner && (!user || Object.keys(user).length === 0)) {
     return (
       <Box flex={1} justifyContent={'center'} alignItems={'center'}>
         <Spinner size="lg" color="mark.800" />
