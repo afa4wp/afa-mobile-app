@@ -6,22 +6,14 @@ import {
   Avatar,
   IconButton,
   Modal,
-  Button,
+  ScrollView,
 } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
-
-import { useContext, useState } from 'react';
-
-export function CardProfile() {
+import { User } from '../../../../@types/AuthTypes';
+import { useState } from 'react';
+export function CardProfile({ user }: { user: User }) {
   const [showModal, setShowModal] = useState(false);
-  const user = {
-    first_name: 'claudio',
-    last_name: 'nhanga',
-    display_name: 'claudio nhanga',
-    user_roles: ['admin', 'tester', 'home'],
-    avatar_url:
-      'https://gravatar.com/avatar/0ab27a4bb7efde4b83d5967f6886b4bb?s=400&d=robohash&r=x',
-  };
+
   const getFullName = () => {
     if (user.first_name && user.last_name)
       return user.first_name + ' ' + user.last_name;
@@ -31,13 +23,22 @@ export function CardProfile() {
     return user.display_name;
   };
 
-  const allUserRoles = () => {
-    const result = Array.isArray(user.user_roles);
-    if (result) {
-      return user.user_roles;
+  const getFirstCharacter = () => {
+    const displayName = user.display_name;
+    if (displayName && displayName.length > 0) {
+      return displayName[0];
     }
-    return Object.values(user.user_roles);
+    return '';
   };
+
+  function getFirstRole() {
+    const roles = user.roles;
+    const roleKeys = Object.keys(roles);
+    if (roleKeys.length > 0) {
+      return roles[roleKeys[0]];
+    }
+    return null;
+  }
 
   return (
     <Box borderRadius="md">
@@ -66,7 +67,7 @@ export function CardProfile() {
               size="lg"
               mt={-7}
             >
-              {user.display_name[0]}
+              {getFirstCharacter()}
             </Avatar>
           </VStack>
           <VStack flex={1}>
@@ -75,7 +76,7 @@ export function CardProfile() {
             </Text>
             <HStack>
               <Text fontSize="sm" color="mark.800" mr="4">
-                administrator
+                {getFirstRole()}
               </Text>
 
               <IconButton
@@ -101,20 +102,15 @@ export function CardProfile() {
         <Modal.Content>
           <Modal.Header color="mark.800">Todas as permissões</Modal.Header>
           <Modal.Body>
-            <HStack flex={1} flexWrap="wrap">
-              {allUserRoles().map((role, index) => (
-                <Button
-                  size="sm"
-                  _text={{
-                    color: 'mark.800',
-                  }}
-                  key={index}
-                  variant="unstyled"
-                >
-                  {role}
-                </Button>
-              ))}
-            </HStack>
+            <ScrollView flex={1} showsVerticalScrollIndicator={false}>
+              <HStack flex={1} flexWrap="wrap">
+                {Object.keys(user.roles).map((key, index) => (
+                  <Text key={index} fontSize="sm" color="mark.800" m="2">
+                    {user.roles[key]}
+                  </Text>
+                ))}
+              </HStack>
+            </ScrollView>
           </Modal.Body>
         </Modal.Content>
       </Modal>

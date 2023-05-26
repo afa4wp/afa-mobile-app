@@ -12,9 +12,9 @@ export function HomeScreen() {
     }
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     getUserInfo();
-  }, []);
+  }, []);*/
   return (
     <Box safeArea flex={1}>
       Hello Home Screen

@@ -1,54 +1,43 @@
-import { Box, ScrollView, VStack, Heading } from 'native-base';
-import { CardProfile } from '../../../components/screens/private/profile/CardProfile';
-import { ItemStatisticProfile } from '../../../components/screens/private/profile/ItemStatisticProfile';
-import { RegistrationDataProfile } from '../../../components/screens/private/profile/RegistrationDataProfile';
+import { Box, Text, Spinner } from 'native-base';
+import AuthContext from '../../../context/AuthContext';
+import { useContext, useEffect, useState } from 'react';
+import { MainContentProfile } from '../../../components/screens/private/profile/MainContentProfile';
+
 export function ProfileScreen() {
-  return (
-    <ScrollView flex={1} bg="mark.700" showsVerticalScrollIndicator={false}>
-      <Box px="5" flex={1} mb="8">
-        <VStack py="5">
-          <CardProfile />
-        </VStack>
-        <VStack my="2">
-          <Box>
-            <VStack mb="3">
-              <Heading color="mark.800" fontSize="lg">
-                Estatística
-              </Heading>
-            </VStack>
-            <ItemStatisticProfile
-              label="Tempo na mark"
-              value="2"
-              iconName="calendar"
-            />
-            <ItemStatisticProfile
-              label="N.º de formulários"
-              value="2"
-              iconName="edit"
-            />
-          </Box>
-        </VStack>
-        <VStack mt="2">
-          <Box>
-            <VStack mb="4">
-              <Heading color="mark.800" fontSize="lg">
-                Dados de cadastro
-              </Heading>
-            </VStack>
-            <RegistrationDataProfile label="Nome" value="Claudio" />
-            <RegistrationDataProfile label="Sobre Nome" value="Nhanga" />
-            <RegistrationDataProfile
-              label="Email"
-              value="emaildeteste@gmail.com"
-            />
-            <RegistrationDataProfile
-              label="Login"
-              value="teste"
-              hasBorder={false}
-            />
-          </Box>
-        </VStack>
+  const [showSpinner, setShowSpinner] = useState(true);
+  const {
+    state: { user },
+    handleUser,
+  } = useContext(AuthContext);
+
+  const getUserData = async () => {
+    setShowSpinner(true);
+    try {
+      await handleUser();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setShowSpinner(false);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  if (showSpinner) {
+    return (
+      <Box flex={1} justifyContent={'center'} alignItems={'center'}>
+        <Spinner size="lg" color="mark.800" />
       </Box>
-    </ScrollView>
-  );
+    );
+  } else {
+    if (!user) {
+      <Box flex={1} justifyContent={'center'} alignItems={'center'}>
+        <Text>Não foi possivel carregar as informações </Text>
+      </Box>;
+    } else {
+      return <MainContentProfile />;
+    }
+  }
 }

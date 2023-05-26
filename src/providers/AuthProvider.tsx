@@ -5,6 +5,7 @@ import authReducer from '../reducers/authReducer';
 import * as SecureStore from 'expo-secure-store';
 import * as helperSecureStore from '../helpers/secureStore';
 import { LOGGEDINFO, ACTIVEUSER } from '../constants/auth';
+import { form_type_me } from '../services/user';
 interface AuthProviderProps {
   children: React.ReactNode;
 }
@@ -77,6 +78,15 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     });
   };
 
+  const handleUser = async () => {
+    const user = await form_type_me('cf7');
+    console.log(user);
+    dispatch({
+      type: 'FETCH_USER',
+      payload: user,
+    });
+  };
+
   useEffect(() => {
     const bootstrapAsync = async () => {
       handleToken();
@@ -86,7 +96,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
   return (
     <AuthContext.Provider
-      value={{ state, handleLogin, handleToken, handleLogout }}
+      value={{ state, handleLogin, handleToken, handleLogout, handleUser }}
     >
       {children}
     </AuthContext.Provider>

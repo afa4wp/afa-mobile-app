@@ -16,6 +16,7 @@ interface AuthContextProps {
   ) => void;
   handleToken: () => void;
   handleLogout: () => void;
+  handleUser: () => void;
 }
 
 interface User {
@@ -26,8 +27,8 @@ interface User {
   user_login: string;
   user_registered: string;
   last_name: string;
-  user_roles: Array<string>;
-  number_of_posts: number;
+  roles: Record<string, string>;
+  muber_of_forms: number;
   avatar_url: string;
 }
 
