@@ -1,4 +1,10 @@
 {
-  "greeting": "Hello!",
-  "farewell": "Goodbye!"
+  "languages": {
+    "english": "English",
+    "portuguese": "Portuguese",
+    "spanish": "Spanish",
+    "french": "French",
+    "italian": "Italian",
+    "german": "German"
+  }
 }

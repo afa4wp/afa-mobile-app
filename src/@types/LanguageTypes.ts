@@ -6,4 +6,10 @@ interface LanguageContextProps {
   changeLanguage: (newLocale: string) => void;
 }
 
-export type { LanguageContextProps };
+type LanguageItemType = {
+  label: string;
+  originalLabel: string;
+  onPress: () => void;
+};
+
+export type { LanguageContextProps, LanguageItemType };
