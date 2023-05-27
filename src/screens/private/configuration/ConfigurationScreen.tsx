@@ -2,6 +2,7 @@ import { Box } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { ConfigurationItem } from '../../../components/screens/private/configuration/ConfigurationItem';
 import { Logout } from '../../../components/screens/private/configuration/Logout';
+import { Language } from '../../../components/screens/private/configuration/Language';
 export function ConfigurationScreen() {
   const navigation = useNavigation();
 
@@ -18,6 +19,7 @@ export function ConfigurationScreen() {
           iconName="user"
           onPress={() => navigation.navigate('Profile')}
         />
+        <Language />
         <ConfigurationItem
           label="Sobre WP AFA"
           iconName="info-circle"

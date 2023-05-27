@@ -1,20 +1,23 @@
-import {
-  Box,
-  Modal,
-  Text,
-  Pressable,
-  Spinner,
-  VStack,
-  Divider,
-} from 'native-base';
+import { Box, Modal } from 'native-base';
 import React, { useContext, useState } from 'react';
 import { ConfigurationItem } from './ConfigurationItem';
 import { LanguageItem } from './LanguageItem';
+import LanguageContext from '../../../../context/LanguageContext';
 
 export function Language() {
   const [showModal, setShowModal] = useState(false);
+  const { i18n, changeLanguage } = useContext(LanguageContext)!;
+
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handleLanguageChange = async (language: string) => {
+    i18n.locale = language;
+
+    await changeLanguage(language);
+
+    handleCloseModal();
   };
 
   return (
@@ -37,25 +40,47 @@ export function Language() {
           <Modal.Body padding={0}>
             <Box>
               <LanguageItem
-                label="Ingles"
+                label={i18n.t('languages.english')}
                 originalLabel="Inglish"
-                onPress={() => {}}
+                onPress={() => {
+                  handleLanguageChange('en');
+                }}
               />
               <LanguageItem
-                label="Portugus"
-                originalLabel="Portugus"
-                onPress={() => {}}
+                label={i18n.t('languages.portuguese')}
+                originalLabel="Português"
+                onPress={() => {
+                  handleLanguageChange('pt');
+                }}
+              />
+              {/*<LanguageItem
+                label={i18n.t('languages.french')}
+                originalLabel="Français"
+                onPress={() => {
+                  handleLanguageChange('fr');
+                }}
               />
               <LanguageItem
-                label="Frenhch"
-                originalLabel="Franceis"
-                onPress={() => {}}
+                label={i18n.t('languages.spanish')}
+                originalLabel="Español"
+                onPress={() => {
+                  handleLanguageChange('es');
+                }}
               />
               <LanguageItem
-                label="Spaniol"
-                originalLabel="Spanish"
-                onPress={() => {}}
+                label={i18n.t('languages.italian')}
+                originalLabel="Italiano"
+                onPress={() => {
+                  handleLanguageChange('it');
+                }}
               />
+              <LanguageItem
+                label={i18n.t('languages.german')}
+                originalLabel="Deutsch"
+                onPress={() => {
+                  handleLanguageChange('de');
+                }}
+              />*/}
             </Box>
           </Modal.Body>
         </Modal.Content>

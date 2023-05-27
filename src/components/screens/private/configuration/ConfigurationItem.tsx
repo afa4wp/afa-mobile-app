@@ -1,6 +1,6 @@
 import { Pressable, Text, Icon, VStack, HStack } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
-import { ConfigurationItem as ConfigurationItemType } from '../../../@types/Configuration';
+import { ConfigurationItem as ConfigurationItemType } from '../../../../@types/Configuration';
 
 export function ConfigurationItem({
   label,
