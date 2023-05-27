@@ -13,5 +13,22 @@ const TRANSLATIONS = {
   de,
   es,
 };
+
+const TRANSLATIONS_OBJECT: { [key: string]: string } = {
+  en: 'English',
+  pt: 'Português',
+  it: 'Italiano',
+  fr: 'Français',
+  de: 'Deutsch',
+  es: 'Español',
+};
+const PREFERRED_LANGUAGE_CODE = 'en';
+
 const PREFERRED_LANGUAGE = 'PREFERREDLANGUAGE';
-export { TRANSLATIONS, PREFERRED_LANGUAGE };
+
+export {
+  TRANSLATIONS,
+  PREFERRED_LANGUAGE,
+  TRANSLATIONS_OBJECT,
+  PREFERRED_LANGUAGE_CODE,
+};

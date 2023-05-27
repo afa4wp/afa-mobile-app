@@ -2,8 +2,10 @@ import { Box, Modal, Text, Button, Spinner } from 'native-base';
 import React, { useContext, useState } from 'react';
 import { ConfigurationItem } from './ConfigurationItem';
 import AuthContext from '../../../../context/AuthContext';
+import LanguageContext from '../../../../context/LanguageContext';
 
 export function Logout() {
+  const { i18n } = useContext(LanguageContext)!;
   const [showModal, setShowModal] = useState(false);
   const [load, setLoad] = useState(false);
 
@@ -19,7 +21,7 @@ export function Logout() {
   return (
     <>
       <ConfigurationItem
-        label="Sair"
+        label={i18n.t('screen.configuration.logout')}
         iconName="power-off"
         onPress={() => setShowModal(true)}
         hasBorder={false}

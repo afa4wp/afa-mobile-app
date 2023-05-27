@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { ConfigurationItem } from './ConfigurationItem';
 import { LanguageItem } from './LanguageItem';
 import LanguageContext from '../../../../context/LanguageContext';
-
+import { TRANSLATIONS_OBJECT } from '../../../../constants/locales';
 export function Language() {
   const [showModal, setShowModal] = useState(false);
   const { i18n, changeLanguage } = useContext(LanguageContext)!;
@@ -13,17 +13,14 @@ export function Language() {
   };
 
   const handleLanguageChange = async (language: string) => {
-    i18n.locale = language;
-
     await changeLanguage(language);
-
     handleCloseModal();
   };
 
   return (
     <>
       <ConfigurationItem
-        label="Language"
+        label={i18n.t('screen.configuration.language')}
         iconName="language"
         onPress={() => setShowModal(true)}
       />
@@ -36,7 +33,10 @@ export function Language() {
         justifyContent="flex-end"
       >
         <Modal.Content height="100%" borderBottomRadius={0}>
-          <Modal.Header color="mark.800">Idioma atual</Modal.Header>
+          <Modal.Header color="mark.800" style={{ flexDirection: 'row' }}>
+            {i18n.t('screen.configuration.currentLanguage')}:{' '}
+            {TRANSLATIONS_OBJECT[i18n.locale]}
+          </Modal.Header>
           <Modal.Body padding={0}>
             <Box>
               <LanguageItem
@@ -53,7 +53,7 @@ export function Language() {
                   handleLanguageChange('pt');
                 }}
               />
-              {/*<LanguageItem
+              <LanguageItem
                 label={i18n.t('languages.french')}
                 originalLabel="Français"
                 onPress={() => {
@@ -80,7 +80,7 @@ export function Language() {
                 onPress={() => {
                   handleLanguageChange('de');
                 }}
-              />*/}
+              />
             </Box>
           </Modal.Body>
         </Modal.Content>
