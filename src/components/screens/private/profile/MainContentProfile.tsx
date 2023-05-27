@@ -2,12 +2,13 @@ import { Box, ScrollView, VStack, Heading } from 'native-base';
 import { CardProfile } from './CardProfile';
 import { ItemStatisticProfile } from './ItemStatisticProfile';
 import { RegistrationDataProfile } from './RegistrationDataProfile';
-import moment from 'moment';
 
 import AuthContext from '../../../../context/AuthContext';
 import { useContext } from 'react';
+import LanguageContext from '../../../../context/LanguageContext';
 
 export function MainContentProfile() {
+  const { i18n } = useContext(LanguageContext)!;
   const {
     state: { user },
   } = useContext(AuthContext);
@@ -25,35 +26,39 @@ export function MainContentProfile() {
         </VStack>
         <VStack my="2">
           <Box>
-            <VStack mb="3">
+            <VStack mb="4">
               <Heading color="mark.800" fontSize="lg">
-                Estatística
+                {i18n.t('screen.profile.userInformation')}
               </Heading>
             </VStack>
             <ItemStatisticProfile
-              label="Criado em"
+              label={i18n.t('screen.profile.createdAt')}
               value={formatDate(user.user_registered)}
               iconName="calendar"
             />
             <ItemStatisticProfile
-              label="N.º de formulários"
+              label={i18n.t('screen.profile.formCount')}
               value={'' + user.muber_of_forms}
               iconName="edit"
             />
           </Box>
         </VStack>
-        <VStack mt="2">
+        <VStack>
           <Box>
-            <VStack mb="4">
-              <Heading color="mark.800" fontSize="lg">
-                Dados de cadastro
-              </Heading>
-            </VStack>
-            <RegistrationDataProfile label="Email" value={user.email} />
-            <RegistrationDataProfile label="Login" value={user.user_login} />
-            <RegistrationDataProfile label="Nome" value={user.first_name} />
             <RegistrationDataProfile
-              label="Sobre Nome"
+              label={i18n.t('screen.profile.email')}
+              value={user.email}
+            />
+            <RegistrationDataProfile
+              label={i18n.t('screen.profile.login')}
+              value={user.user_login}
+            />
+            <RegistrationDataProfile
+              label={i18n.t('screen.profile.name')}
+              value={user.first_name}
+            />
+            <RegistrationDataProfile
+              label={i18n.t('screen.profile.lastName')}
               value={user.last_name}
               hasBorder={false}
             />

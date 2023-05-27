@@ -5,7 +5,10 @@ import { I18n } from 'i18n-js';
 import { LanguageContextProps } from '../@types/LanguageTypes';
 import { TRANSLATIONS, PREFERRED_LANGUAGE } from '../constants/locales';
 import * as SecureStore from 'expo-secure-store';
-
+import {
+  TRANSLATIONS_OBJECT,
+  PREFERRED_LANGUAGE_CODE,
+} from '../constants/locales';
 interface LanguageProviderProps {
   children: React.ReactNode;
 }
@@ -23,10 +26,10 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
         if (storedLanguage) {
           setLocale(storedLanguage);
         } else {
-          setLocale(getLocales()[0].languageCode);
+          preferredLanguage();
         }
       } catch (error) {
-        setLocale(getLocales()[0].languageCode);
+        preferredLanguage();
       }
     };
 
@@ -47,6 +50,15 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
       setLocale(newLocale);
     } catch (error) {
       console.log('Error saving preferred language:', error);
+    }
+  };
+
+  const preferredLanguage = () => {
+    const defaultLanguage = getLocales()[0].languageCode;
+    if (TRANSLATIONS_OBJECT.hasOwnProperty(defaultLanguage)) {
+      setLocale(defaultLanguage);
+    } else {
+      setLocale(PREFERRED_LANGUAGE_CODE);
     }
   };
 
