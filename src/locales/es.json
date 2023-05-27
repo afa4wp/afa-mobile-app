@@ -6,5 +6,36 @@
     "french": "Francés",
     "italian": "Italiano",
     "german": "Alemán"
+  },
+  "screen": {
+    "configuration": {
+      "profileInformation": "Información del Perfil",
+      "notification": "Notificación",
+      "about": "Acerca de WP AFA",
+      "language": "Idioma",
+      "logout": "Cerrar sesión",
+      "currentLanguage": "Idioma Actual"
+    },
+    "profile": {
+      "userInformation": "Información de usuario",
+      "createdAt": "Creado el",
+      "formCount": "N.º de formularios",
+      "email": "Email",
+      "login": "Inicio de sesión",
+      "name": "Nombre",
+      "lastName": "Apellido"
+    },
+    "headTitle": {
+      "home": "Inicio",
+      "search": "Buscar",
+      "forms": "Formularios",
+      "configurations": "Configuraciones",
+      "notifications": "Notificaciones",
+      "profile": "Perfil",
+      "about": "Acerca de",
+      "notificationConfiguration": "Configuración de notificaciones",
+      "formSubmissions": "Envío de formularios",
+      "formSubmissionsData": "Datos de envío de formularios"
+    }
   }
 }

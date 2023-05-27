@@ -6,5 +6,36 @@
     "french": "Francês",
     "italian": "Italiano",
     "german": "Alemão"
+  },
+  "screen": {
+    "configuration": {
+      "profileInformation": "Informações do Perfil",
+      "notification": "Notificação",
+      "about": "Sobre WPAFA",
+      "language": "Idioma",
+      "logout": "Sair",
+      "currentLanguage": "Idioma Atual"
+    },
+    "profile": {
+      "userInformation": "Informações do usuário",
+      "createdAt": "Criado em",
+      "formCount": "N.º de formulários",
+      "email": "Email",
+      "login": "Login",
+      "name": "Nome",
+      "lastName": "Sobrenome"
+    },
+    "headTitle": {
+      "home": "Início",
+      "search": "Buscar",
+      "forms": "Formulários",
+      "configurations": "Configurações",
+      "notifications": "Notificações",
+      "profile": "Perfil",
+      "about": "Sobre",
+      "notificationConfiguration": "Configuração de notificações",
+      "formSubmissions": "Envio de formulários",
+      "formSubmissionsData": "Dados de envio de formulários"
+    }
   }
 }
