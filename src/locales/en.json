@@ -8,23 +8,6 @@
     "german": "German"
   },
   "screen": {
-    "configuration": {
-      "profileInformation": "Profile Information",
-      "notification": "Notification",
-      "about": "About WP AFA",
-      "language": "Language",
-      "logout": "Logout",
-      "currentLanguage": "Current Language"
-    },
-    "profile": {
-      "userInformation": "User Information",
-      "createdAt": "Created at",
-      "formCount": "N.º de forms",
-      "email": "Email",
-      "login": "Login",
-      "name": "Name",
-      "lastName": "Last Name"
-    },
     "headTitle": {
       "home": "Home",
       "search": "Search",
@@ -36,6 +19,57 @@
       "notificationConfiguration": "Notification Configuration",
       "formSubmissions": "Forms Submissions",
       "formSubmissionsData": "Forms Submissions Data"
+    },
+    "configuration": {
+      "profileInformation": "Profile Information",
+      "notification": "Notification",
+      "about": "About WP AFA",
+      "language": "Language",
+      "logout": "Logout",
+      "currentLanguage": "Current Language",
+      "logoutConfirmation": "By logging out, you will stop receiving notifications and won't be notified when a new form is submitted.",
+      "confirmation": "Are you sure you want to logout?",
+      "cancel": "Cancel"
+    },
+    "profile": {
+      "userInformation": "User Information",
+      "createdAt": "Created at",
+      "formCount": "N.º de forms",
+      "email": "Email",
+      "login": "Login",
+      "name": "Name",
+      "lastName": "Last Name"
+    },
+    "notificationConfiguration": {
+      "formCreationNotifications": "Form Creation Notifications",
+      "formSubmissionNotifications": "Submission Notifications",
+      "byPush": "By Push"
+    },
+    "sigin": {
+      "loginPrompt": "Please log in to continue!",
+      "loginPromptQRCode": "Login with QRCode",
+      "loginPromptCredentials": "Login with credentials",
+      "content": "The easiest way to visualize the information or data submitted by your customers or users."
+    },
+    "siginCredentials": {
+      "validateURL": {
+        "websiteAddressPrompt": "Enter the WordPress website address you want to connect.",
+        "verifyingWebsiteAddress": "Verifying the website address",
+        "pluginNotInstalled": "It seems that you don't have the plugin installed on your site.",
+        "validURLError": "Please enter a valid URL.",
+        "urlIsRequiredError": "URL is required.",
+        "pleaseEnterValidURL": "Please enter a valid URL.",
+        "continue": "Continue"
+      },
+      "credentials": {
+        "accountInfoPrompt": "Enter the account information...",
+        "errorOccurred": "An error occurred. Please try again later.",
+        "password": "Password",
+        "errorText": "Error!",
+        "loggingIn": "Logging in",
+        "userName": "User name",
+        "login": "Login"
+      }
     }
   }
 }

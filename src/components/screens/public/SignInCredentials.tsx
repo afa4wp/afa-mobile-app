@@ -1,3 +1,4 @@
+import React, { useContext, useState } from 'react';
 import {
   Box,
   VStack,
@@ -17,7 +18,6 @@ import {
 } from 'native-base';
 import { Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useState, useContext } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import AuthContext from '../../../context/AuthContext';
@@ -25,7 +25,7 @@ import * as authService from '../../../services/auth';
 import { LoginData } from '../../../@types/AuthTypes';
 import axios from 'axios';
 import { API_NAMESPACE } from '../../../constants/endpoint';
-
+import LanguageContext from '../../../context/LanguageContext';
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),
   password: yup.string().required('Password is required'),
@@ -33,6 +33,7 @@ const validationSchema = yup.object().shape({
 
 export function SignInCredentials({ url }: { url: string }) {
   const { handleLogin } = useContext(AuthContext);
+  const { i18n } = useContext(LanguageContext)!;
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -85,7 +86,10 @@ export function SignInCredentials({ url }: { url: string }) {
     <Box px="5" flex={1}>
       <VStack py="5" flex={1}>
         <VStack mb="5">
-          <Text fontSize="lg">Digite as informações da conta...</Text>
+          <Text fontSize="lg">
+            {' '}
+            {i18n.t('screen.siginCredentials.credentials.accountInfoPrompt')}
+          </Text>
         </VStack>
         <VStack>
           <FormControl
@@ -99,12 +103,14 @@ export function SignInCredentials({ url }: { url: string }) {
                 color: 'mark.800',
               }}
             >
-              Usuario
+              {i18n.t('screen.siginCredentials.credentials.userName')}
             </FormControl.Label>
             <Input
               size="lg"
               style={inputStyle}
-              placeholder="Usuario"
+              placeholder={i18n.t(
+                'screen.siginCredentials.credentials.userName'
+              )}
               onChangeText={formik.handleChange('username')}
               onBlur={formik.handleBlur('username')}
               value={formik.values.username}
@@ -133,7 +139,7 @@ export function SignInCredentials({ url }: { url: string }) {
                 color: 'mark.800',
               }}
             >
-              Senha
+              {i18n.t('screen.siginCredentials.credentials.password')}
             </FormControl.Label>
             <Input
               size="lg"
@@ -187,7 +193,9 @@ export function SignInCredentials({ url }: { url: string }) {
                           color: 'coolGray.800',
                         }}
                       >
-                        Error!
+                        {i18n.t(
+                          'screen.siginCredentials.credentials.errorText'
+                        )}
                       </Text>
                     </HStack>
                     <IconButton
@@ -204,7 +212,9 @@ export function SignInCredentials({ url }: { url: string }) {
                   </HStack>
                   <Box w="100%">
                     <Text color="coolGray.600" fontSize="md">
-                      An error occurred. Please try again later.
+                      {i18n.t(
+                        'screen.siginCredentials.credentials.errorOccurred'
+                      )}
                     </Text>
                   </Box>
                 </VStack>
@@ -220,7 +230,7 @@ export function SignInCredentials({ url }: { url: string }) {
               formik.handleSubmit();
             }}
           >
-            Login
+            {i18n.t('screen.siginCredentials.credentials.login')}
           </Button>
         </VStack>
       </VStack>
@@ -233,7 +243,9 @@ export function SignInCredentials({ url }: { url: string }) {
                 accessibilityLabel="Check plugin"
                 color="mark.800"
               />
-              <Text>Fazendo Login</Text>
+              <Text>
+                {i18n.t('screen.siginCredentials.credentials.loggingIn')}
+              </Text>
             </HStack>
           </Modal.Body>
         </Modal.Content>

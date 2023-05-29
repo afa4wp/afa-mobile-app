@@ -8,23 +8,6 @@
     "german": "Alemão"
   },
   "screen": {
-    "configuration": {
-      "profileInformation": "Informações do Perfil",
-      "notification": "Notificação",
-      "about": "Sobre WPAFA",
-      "language": "Idioma",
-      "logout": "Sair",
-      "currentLanguage": "Idioma Atual"
-    },
-    "profile": {
-      "userInformation": "Informações do usuário",
-      "createdAt": "Criado em",
-      "formCount": "N.º de formulários",
-      "email": "Email",
-      "login": "Login",
-      "name": "Nome",
-      "lastName": "Sobrenome"
-    },
     "headTitle": {
       "home": "Início",
       "search": "Buscar",
@@ -36,6 +19,57 @@
       "notificationConfiguration": "Configuração de notificações",
       "formSubmissions": "Envio de formulários",
       "formSubmissionsData": "Dados de envio de formulários"
+    },
+    "configuration": {
+      "profileInformation": "Informações do Perfil",
+      "notification": "Notificação",
+      "about": "Sobre WPAFA",
+      "language": "Idioma",
+      "logout": "Sair",
+      "currentLanguage": "Idioma Atual",
+      "logoutConfirmation": "Ao sair, deixará de receber as notificações, ficando sem saber quando um novo formulário foi preenchido.",
+      "confirmation": "Você realmente deseja sair?",
+      "cancel": "Cancelar"
+    },
+    "profile": {
+      "userInformation": "Informações do usuário",
+      "createdAt": "Criado em",
+      "formCount": "N.º de formulários",
+      "email": "Email",
+      "login": "Login",
+      "name": "Nome",
+      "lastName": "Sobrenome"
+    },
+    "notificationConfiguration": {
+      "formCreationNotifications": "Notificações de criação de formulários",
+      "formSubmissionNotifications": "Notificações de envio de formulários",
+      "byPush": "Por Push"
+    },
+    "sigin": {
+      "loginPrompt": "Faça login para continuar!",
+      "loginPromptQRCode": "Login com QRCode",
+      "loginPromptCredentials": "Login com credenciais",
+      "content": "A maneira mais fácil de visualizar as informações ou dados enviados pelos seus clientes ou usuários."
+    },
+    "siginCredentials": {
+      "validateURL": {
+        "websiteAddressPrompt": "Digite o endereço do site WordPress que você deseja conectar.",
+        "verifyingWebsiteAddress": "Verificando o endereço do site",
+        "pluginNotInstalled": "Parece que você não tem o plugin instalado no seu site.",
+        "validURLError": "Por favor, insira uma URL válida.",
+        "urlIsRequiredError": "A URL é obrigatória.",
+        "pleaseEnterValidURL": "Por favor, insira uma URL válida.",
+        "continue": "Continuar"
+      },
+      "credentials": {
+        "accountInfoPrompt": "Digite as informações da conta...",
+        "errorOccurred": "Ocorreu um erro. Por favor, tente novamente mais tarde.",
+        "password": "Senha",
+        "errorText": "Erro!",
+        "loggingIn": "Fazendo Login",
+        "userName": "Nome de usuário",
+        "login": "Login"
+      }
     }
   }
 }

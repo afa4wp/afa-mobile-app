@@ -1,43 +1,47 @@
-
-import { Box, Center, VStack,  Heading, Text, Button, Icon } from "native-base";
+import React, { useContext } from 'react';
+import {
+  Box,
+  Center,
+  VStack,
+  Heading,
+  Text,
+  Button,
+  Icon,
+  ScrollView,
+} from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import Welcome from '../../../assets/welcome.svg'
-import { Ionicons } from "@expo/vector-icons";
-
+import Welcome from '../../../assets/welcome.svg';
+import { Ionicons } from '@expo/vector-icons';
+import LanguageContext from '../../../context/LanguageContext';
 export function SignInScreen() {
   const navigation = useNavigation();
+  const { i18n } = useContext(LanguageContext)!;
 
   return (
     <Box flex={1} bg="mark.700">
-      <Box px="5" flex={1} justifyContent="center">
-        <VStack mb="5">
-          <Center>
-            <Welcome  width={273} height={184}/>
-          </Center>
-        </VStack>
-        <VStack py="5">
-          <Center>
-            <Heading 
-              color="mark.800"
-              bold>
-              Faça login para continuar!
-            </Heading>
-          </Center>
-        </VStack>
-        <VStack mb="5">
-          <Center>
-            <Text 
-              color="mark.800"
-              fontSize="lg"
-              bold
-              textAlign="center"
-              >
-              A forma mais facil de visualizar as informações ou dados enviados pelos seus clientes
-            </Text>
-          </Center>
-        </VStack>
-        <VStack mt="5">
-            <Button 
+      <ScrollView flex={1} contentContainerStyle={{ flexGrow: 1 }}>
+        <Box px="5" flex={1} justifyContent="center" py="2">
+          <VStack mb="5">
+            <Center>
+              <Welcome width={273} height={184} />
+            </Center>
+          </VStack>
+          <VStack py="5">
+            <Center>
+              <Heading color="mark.800" textAlign="center">
+                {i18n.t('screen.sigin.loginPrompt')}
+              </Heading>
+            </Center>
+          </VStack>
+          <VStack mb="5">
+            <Center>
+              <Text color="mark.800" fontSize="lg" bold textAlign="center">
+                {i18n.t('screen.sigin.content')}
+              </Text>
+            </Center>
+          </VStack>
+          <VStack mt="5">
+            <Button
               size="lg"
               bg="mark.900"
               onPress={() => {
@@ -45,21 +49,22 @@ export function SignInScreen() {
               }}
               leftIcon={<Icon as={Ionicons} name="qr-code" size="md" />}
             >
-              SignIn with QRCode 
+              {i18n.t('screen.sigin.loginPromptQRCode')}
             </Button>
-        </VStack>
-        <VStack my="5">
-            <Button 
+          </VStack>
+          <VStack mt="5">
+            <Button
               size="lg"
-              variant='outline'
+              variant="outline"
               onPress={() => {
                 navigation.navigate('SignInUserInfo');
               }}
             >
-              SignIn with Credentials
+              {i18n.t('screen.sigin.loginPromptCredentials')}
             </Button>
-        </VStack>
-      </Box>
+          </VStack>
+        </Box>
+      </ScrollView>
     </Box>
-    )
+  );
 }

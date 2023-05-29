@@ -8,23 +8,6 @@
     "german": "Allemand"
   },
   "screen": {
-    "configuration": {
-      "profileInformation": "Informations du Profil",
-      "notification": "Notification",
-      "about": "À propos de WP AFA",
-      "language": "Langue",
-      "logout": "Déconnexion",
-      "currentLanguage": "Langue Actuelle"
-    },
-    "profile": {
-      "userInformation": "Informations utilisateur",
-      "createdAt": "Créé le",
-      "formCount": "N° de formulaires",
-      "email": "Email",
-      "login": "Connexion",
-      "name": "Nom",
-      "lastName": "Nom de famille"
-    },
     "headTitle": {
       "home": "Accueil",
       "search": "Recherche",
@@ -36,6 +19,57 @@
       "notificationConfiguration": "Configuration des notifications",
       "formSubmissions": "Soumissions de formulaires",
       "formSubmissionsData": "Données de soumissions de formulaires"
+    },
+    "configuration": {
+      "profileInformation": "Informations du Profil",
+      "notification": "Notification",
+      "about": "À propos de WP AFA",
+      "language": "Langue",
+      "logout": "Déconnexion",
+      "currentLanguage": "Langue Actuelle",
+      "logoutConfirmation": "En vous déconnectant, vous cesserez de recevoir les notifications et vous ne serez pas informé lorsqu'un nouveau formulaire est soumis.",
+      "confirmation": "Êtes-vous sûr(e) de vouloir vous déconnecter ?",
+      "cancel": "Annuler"
+    },
+    "profile": {
+      "userInformation": "Informations utilisateur",
+      "createdAt": "Créé le",
+      "formCount": "N° de formulaires",
+      "email": "Email",
+      "login": "Connexion",
+      "name": "Nom",
+      "lastName": "Nom de famille"
+    },
+    "notificationConfiguration": {
+      "formCreationNotifications": "Notifications de création de formulaires",
+      "formSubmissionNotifications": "Notifications d'envoi de formulaires",
+      "byPush": "Par Push"
+    },
+    "sigin": {
+      "loginPrompt": "Veuillez vous connecter pour continuer !",
+      "loginPromptQRCode": "Connexion avec QRCode",
+      "loginPromptCredentials": "Connexion avec identifiants",
+      "content": "La manière la plus simple de visualiser les informations ou les données soumises par vos clients ou utilisateurs."
+    },
+    "siginCredentials": {
+      "validateURL": {
+        "websiteAddressPrompt": "Entrez l'adresse du site WordPress que vous souhaitez connecter.",
+        "verifyingWebsiteAddress": "Vérification de l'adresse du site web",
+        "pluginNotInstalled": "Il semble que vous n'ayez pas le plugin installé sur votre site.",
+        "validURLError": "Veuillez entrer une URL valide.",
+        "urlIsRequiredError": "L'URL est obligatoire.",
+        "pleaseEnterValidURL": "Veuillez entrer une URL valide.",
+        "continue": "Continuer"
+      },
+      "credentials": {
+        "accountInfoPrompt": "Entrez les informations du compte...",
+        "errorOccurred": "Une erreur s'est produite. Veuillez réessayer ultérieurement.",
+        "password": "Mot de passe",
+        "errorText": "Erreur !",
+        "loggingIn": "Connexion en cours",
+        "userName": "Nom d'utilisateur",
+        "login": "Se connecter"
+      }
     }
   }
 }

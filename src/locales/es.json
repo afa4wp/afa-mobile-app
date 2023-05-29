@@ -8,23 +8,6 @@
     "german": "Alemán"
   },
   "screen": {
-    "configuration": {
-      "profileInformation": "Información del Perfil",
-      "notification": "Notificación",
-      "about": "Acerca de WP AFA",
-      "language": "Idioma",
-      "logout": "Cerrar sesión",
-      "currentLanguage": "Idioma Actual"
-    },
-    "profile": {
-      "userInformation": "Información de usuario",
-      "createdAt": "Creado el",
-      "formCount": "N.º de formularios",
-      "email": "Email",
-      "login": "Inicio de sesión",
-      "name": "Nombre",
-      "lastName": "Apellido"
-    },
     "headTitle": {
       "home": "Inicio",
       "search": "Buscar",
@@ -36,6 +19,57 @@
       "notificationConfiguration": "Configuración de notificaciones",
       "formSubmissions": "Envío de formularios",
       "formSubmissionsData": "Datos de envío de formularios"
+    },
+    "configuration": {
+      "profileInformation": "Información del Perfil",
+      "notification": "Notificación",
+      "about": "Acerca de WP AFA",
+      "language": "Idioma",
+      "logout": "Cerrar sesión",
+      "currentLanguage": "Idioma Actual",
+      "logoutConfirmation": "Al cerrar sesión, dejarás de recibir las notificaciones y no serás informado cuando se complete un nuevo formulario.",
+      "confirmation": "¿Estás seguro de que quieres cerrar sesión?",
+      "cancel": "Cancelar"
+    },
+    "profile": {
+      "userInformation": "Información de usuario",
+      "createdAt": "Creado el",
+      "formCount": "N.º de formularios",
+      "email": "Email",
+      "login": "Inicio de sesión",
+      "name": "Nombre",
+      "lastName": "Apellido"
+    },
+    "notificationConfiguration": {
+      "formCreationNotifications": "Notificaciones de creación de formularios",
+      "formSubmissionNotifications": "Notificaciones de envío de formularios",
+      "byPush": "Por Push"
+    },
+    "sigin": {
+      "loginPrompt": "Por favor, inicia sesión para continuar!",
+      "loginPromptQRCode": "Iniciar sesión con QRCode",
+      "loginPromptCredentials": "Iniciar sesión con credenciales",
+      "content": "La forma más fácil de visualizar la información o los datos enviados por tus clientes o usuarios."
+    },
+    "siginCredentials": {
+      "validateURL": {
+        "websiteAddressPrompt": "Ingrese la dirección del sitio web de WordPress que desea conectar.",
+        "verifyingWebsiteAddress": "Verificando la dirección del sitio web",
+        "pluginNotInstalled": "Parece que no tienes instalado el complemento en tu sitio.",
+        "validURLError": "Por favor, ingresa una URL válida.",
+        "urlIsRequiredError": "La URL es obligatoria.",
+        "pleaseEnterValidURL": "Por favor, ingresa una URL válida.",
+        "continue": "Continuar"
+      },
+      "credentials": {
+        "accountInfoPrompt": "Ingrese la información de la cuenta...",
+        "errorOccurred": "Se produjo un error. Por favor, inténtelo de nuevo más tarde.",
+        "password": "Contraseña",
+        "errorText": "¡Error!",
+        "loggingIn": "Iniciando sesión",
+        "userName": "Nombre de usuario",
+        "login": "Iniciar sesión"
+      }
     }
   }
 }

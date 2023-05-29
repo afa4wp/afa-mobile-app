@@ -8,23 +8,6 @@
     "german": "Tedesco"
   },
   "screen": {
-    "configuration": {
-      "profileInformation": "Informazioni del Profilo",
-      "notification": "Notifica",
-      "about": "Informazioni su WP AFA",
-      "language": "Lingua",
-      "logout": "Esci",
-      "currentLanguage": "Lingua Corrente"
-    },
-    "profile": {
-      "userInformation": "Informazioni utente",
-      "createdAt": "Creato il",
-      "formCount": "N. formulari",
-      "email": "Email",
-      "login": "Accesso",
-      "name": "Nome",
-      "lastName": "Cognome"
-    },
     "headTitle": {
       "home": "Home",
       "search": "Ricerca",
@@ -36,6 +19,57 @@
       "notificationConfiguration": "Configurazione delle notifiche",
       "formSubmissions": "Invio Form",
       "formSubmissionsData": "Dati Invio Form"
+    },
+    "configuration": {
+      "profileInformation": "Informazioni del Profilo",
+      "notification": "Notifica",
+      "about": "Informazioni su WP AFA",
+      "language": "Lingua",
+      "logout": "Esci",
+      "currentLanguage": "Lingua Corrente",
+      "logoutConfirmation": "Effettuando il logout, smetterai di ricevere le notifiche e non sarai informato quando viene compilato un nuovo modulo.",
+      "confirmation": "Sei sicuro di voler effettuare il logout?",
+      "cancel": "Annulla"
+    },
+    "profile": {
+      "userInformation": "Informazioni utente",
+      "createdAt": "Creato il",
+      "formCount": "N. formulari",
+      "email": "Email",
+      "login": "Accesso",
+      "name": "Nome",
+      "lastName": "Cognome"
+    },
+    "notificationConfiguration": {
+      "formCreationNotifications": "Notifiche di creazione modulo",
+      "formSubmissionNotifications": "Notifiche di invio modulo",
+      "byPush": "Per Push"
+    },
+    "sigin": {
+      "loginPrompt": "Effettua l'accesso per continuare!",
+      "loginPromptQRCode": "Accedi con QRCode",
+      "loginPromptCredentials": "Accedi con le credenziali",
+      "content": "Il modo più semplice per visualizzare le informazioni o i dati inviati dai tuoi clienti o utenti."
+    },
+    "siginCredentials": {
+      "validateURL": {
+        "websiteAddressPrompt": "Inserisci l'indirizzo del sito WordPress a cui desideri connetterti.",
+        "verifyingWebsiteAddress": "Verifica dell'indirizzo del sito",
+        "pluginNotInstalled": "Sembra che il plugin non sia installato sul tuo sito.",
+        "validURLError": "Inserisci un URL valido.",
+        "urlIsRequiredError": "L'URL è obbligatorio.",
+        "pleaseEnterValidURL": "Inserisci un URL valido.",
+        "continue": "Continua"
+      },
+      "credentials": {
+        "accountInfoPrompt": "Inserisci le informazioni dell'account...",
+        "errorOccurred": "Si è verificato un errore. Riprova più tardi.",
+        "password": "Password",
+        "errorText": "Errore!",
+        "loggingIn": "Accesso in corso",
+        "userName": "Nome utente",
+        "login": "Accedi"
+      }
     }
   }
 }

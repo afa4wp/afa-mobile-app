@@ -31,16 +31,16 @@ export function Logout() {
         flex={1}
         closeOnOverlayClick
         animationPreset="slide"
+        onClose={() => setShowModal(false)}
       >
         {!load ? (
           <Modal.Content maxWidth="350">
             <Modal.Header color="mark.800">
-              Você realmente deseja sair ?
+              {i18n.t('screen.configuration.confirmation')}
             </Modal.Header>
             <Modal.Body>
               <Text color="mark.800">
-                Ao fazer logout você deixara de receber as notificações, ficando
-                sem saber quando um novo formulario foi preenchido. foi feito
+                {i18n.t('screen.configuration.logoutConfirmation')}
               </Text>
             </Modal.Body>
             <Modal.Footer>
@@ -52,15 +52,16 @@ export function Logout() {
                     setShowModal(false);
                   }}
                 >
-                  Cancelar
+                  {i18n.t('screen.configuration.cancel')}
                 </Button>
                 <Button
                   bg="mark.900"
                   onPress={() => {
                     deleteExpoToken();
                   }}
+                  minWidth={70}
                 >
-                  Logout
+                  {i18n.t('screen.configuration.logout')}
                 </Button>
               </Button.Group>
             </Modal.Footer>

@@ -8,23 +8,6 @@
     "german": "Deutsch"
   },
   "screen": {
-    "configuration": {
-      "profileInformation": "Profilinformationen",
-      "notification": "Benachrichtigung",
-      "about": "Über WP AFA",
-      "language": "Sprache",
-      "logout": "Abmelden",
-      "currentLanguage": "Aktuelle Sprache"
-    },
-    "profile": {
-      "userInformation": "Benutzerinformationen",
-      "createdAt": "Erstellt am",
-      "formCount": "Anzahl der Formulare",
-      "email": "E-Mail",
-      "login": "Anmeldung",
-      "name": "Name",
-      "lastName": "Nachname"
-    },
     "headTitle": {
       "home": "Startseite",
       "search": "Suche",
@@ -36,6 +19,57 @@
       "notificationConfiguration": "Benachrichtigungskonfiguration",
       "formSubmissions": "Formularübermittlungen",
       "formSubmissionsData": "Formulardatenübermittlungen"
+    },
+    "configuration": {
+      "profileInformation": "Profilinformationen",
+      "notification": "Benachrichtigung",
+      "about": "Über WP AFA",
+      "language": "Sprache",
+      "logout": "Abmelden",
+      "currentLanguage": "Aktuelle Sprache",
+      "logoutConfirmation": "Durch das Abmelden erhalten Sie keine Benachrichtigungen mehr und erfahren nicht, wann ein neues Formular ausgefüllt wurde.",
+      "confirmation": "Möchten Sie sich wirklich abmelden?",
+      "cancel": "Abbrechen"
+    },
+    "profile": {
+      "userInformation": "Benutzerinformationen",
+      "createdAt": "Erstellt am",
+      "formCount": "Anzahl der Formulare",
+      "email": "E-Mail",
+      "login": "Anmeldung",
+      "name": "Name",
+      "lastName": "Nachname"
+    },
+    "notificationConfiguration": {
+      "formCreationNotifications": "Formularerstellungsbenachrichtigungen",
+      "formSubmissionNotifications": "Formularübermittlungsbenachrichtigungen",
+      "byPush": "Per Push"
+    },
+    "sigin": {
+      "loginPrompt": "Bitte melden Sie sich an, um fortzufahren!",
+      "loginPromptQRCode": "Anmelden mit QRCode",
+      "loginPromptCredentials": "Anmelden mit Anmeldedaten",
+      "content": "Der einfachste Weg, um die Informationen oder Daten zu visualisieren, die von Ihren Kunden oder Benutzern übermittelt wurden."
+    },
+    "siginCredentials": {
+      "validateURL": {
+        "websiteAddressPrompt": "Geben Sie die WordPress-Website-Adresse ein, mit der Sie sich verbinden möchten.",
+        "verifyingWebsiteAddress": "Überprüfe die Website-Adresse",
+        "pluginNotInstalled": "Es scheint, dass das Plugin nicht auf Ihrer Website installiert ist.",
+        "validURLError": "Bitte geben Sie eine gültige URL ein.",
+        "urlIsRequiredError": "URL ist erforderlich.",
+        "pleaseEnterValidURL": "Bitte geben Sie eine gültige URL ein.",
+        "continue": "Weiter"
+      },
+      "credentials": {
+        "accountInfoPrompt": "Geben Sie die Kontoinformationen ein...",
+        "errorOccurred": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+        "password": "Passwort",
+        "errorText": "Fehler!",
+        "loggingIn": "Anmeldung läuft",
+        "userName": "Benutzername",
+        "login": "Anmelden"
+      }
     }
   }
 }

@@ -67,6 +67,12 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
     i18n: i18n!,
     changeLanguage,
   };
+
+  if (!i18n) {
+    // Return a fallback component or null if i18n is null
+    return null;
+  }
+
   return (
     <LanguageContext.Provider value={contextValue}>
       {children}

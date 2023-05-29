@@ -1,3 +1,4 @@
+import React, { useContext } from 'react';
 import {
   Box,
   VStack,
@@ -12,7 +13,6 @@ import {
   Modal,
   HStack,
   Spinner,
-  Heading,
 } from 'native-base';
 import { Platform } from 'react-native';
 import { useState } from 'react';
@@ -20,16 +20,7 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { API_NAMESPACE } from '../../../constants/endpoint';
 import * as authService from '../../../services/auth';
-
-const validationSchema = yup.object().shape({
-  url: yup
-    .string()
-    .matches(
-      /^(https?:\/\/)?([\w\d]+\.)?[\w\d]+\.\w+([/?#][^\s]*)?$/,
-      'Please enter a valid URL'
-    )
-    .required('URL is required'),
-});
+import LanguageContext from '../../../context/LanguageContext';
 
 export function ValidateURL({
   onData,
@@ -37,6 +28,19 @@ export function ValidateURL({
   onData: (data: { url: string; status: boolean }) => void;
 }) {
   const [showModal, setShowModal] = useState(false);
+  const { i18n } = useContext(LanguageContext)!;
+
+  const validationSchema = yup.object().shape({
+    url: yup
+      .string()
+      .matches(
+        /^(https?:\/\/)?([\w\d]+\.)?[\w\d]+\.\w+([/?#][^\s]*)?$/,
+        i18n.t('screen.siginCredentials.validateURL.pleaseEnterValidURL')
+      )
+      .required(
+        i18n.t('screen.siginCredentials.validateURL.urlIsRequiredError')
+      ),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -68,7 +72,7 @@ export function ValidateURL({
       }
     } catch (error) {
       formik.setErrors({
-        url: 'Parece que voce não tem o plugin instalado no seu site.',
+        url: i18n.t('screen.siginCredentials.validateURL.pluginNotInstalled'),
       });
     }
   }
@@ -77,7 +81,7 @@ export function ValidateURL({
     <Box px="5" flex={1}>
       <VStack py="5" flex={1}>
         <Text fontSize="md" color="mark.800">
-          Digite o endereço do site Wordpress que você deseja connectar.
+          {i18n.t('screen.siginCredentials.validateURL.websiteAddressPrompt')}
         </Text>
         <Stack mt="2">
           <FormControl
@@ -108,7 +112,7 @@ export function ValidateURL({
               formik.handleSubmit();
             }}
           >
-            Continuar
+            {i18n.t('screen.siginCredentials.validateURL.continue')}
           </Button>
         </VStack>
         <VStack mt="5" flex={1} justifyContent="flex-end">
@@ -129,7 +133,11 @@ export function ValidateURL({
                 accessibilityLabel="Check plugin"
                 color="mark.800"
               />
-              <Text>Verificando o endereço do site</Text>
+              <Text>
+                {i18n.t(
+                  'screen.siginCredentials.validateURL.verifyingWebsiteAddress'
+                )}
+              </Text>
             </HStack>
           </Modal.Body>
         </Modal.Content>
