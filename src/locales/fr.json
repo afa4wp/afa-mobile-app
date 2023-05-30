@@ -70,6 +70,23 @@
         "userName": "Nom d'utilisateur",
         "login": "Se connecter"
       }
+    },
+    "siginQRCode": {
+      "requestAccess": "Demander l'accès",
+      "errors": {
+        "cameraPermission": "Demande d'autorisation pour la caméra",
+        "invalidDataFormat": "Format de données invalide",
+        "errorParsingData": "Erreur lors de l'analyse des données scannées",
+        "unexpectedError": "Une erreur inattendue s'est produite",
+        "noAccessToCamera": "Pas d'accès à la caméra"
+      }
+    },
+    "search": {
+      "users": "utilisateurs",
+      "forms": "formulaires",
+      "answers": "réponses",
+      "search": "Rechercher",
+      "content": "Rechercher des formulaires, réponses ou utilisateurs."
     }
   }
 }

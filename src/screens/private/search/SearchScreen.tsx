@@ -9,10 +9,12 @@ import {
   Center,
 } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Platform } from 'react-native';
+import LanguageContext from '../../../context/LanguageContext';
 
 export function SearchScreen() {
+  const { i18n } = useContext(LanguageContext)!;
   const [activateBriefingSearch, setActivateBriefingSearch] = useState(true);
   const [activateAnswerSearch, setActivateAnswerSearch] = useState(false);
   const [activateCostomerSearch, setActivateCostomerSearch] = useState(false);
@@ -23,7 +25,7 @@ export function SearchScreen() {
         <Box>
           <VStack>
             <Input
-              placeholder="Pesquisar"
+              placeholder={i18n.t('screen.search.search')}
               fontSize="sm"
               style={inputStyle}
               InputLeftElement={
@@ -43,7 +45,7 @@ export function SearchScreen() {
                   color: activateBriefingSearch ? 'mark.700' : 'mark.800',
                 }}
               >
-                Formulario
+                {i18n.t('screen.search.forms')}
               </Button>
               <Button
                 variant={!activateAnswerSearch ? 'outline' : undefined}
@@ -52,7 +54,7 @@ export function SearchScreen() {
                   color: activateAnswerSearch ? 'mark.700' : 'mark.800',
                 }}
               >
-                Resposta
+                {i18n.t('screen.search.answers')}
               </Button>
               <Button
                 variant={!activateCostomerSearch ? 'outline' : undefined}
@@ -61,14 +63,14 @@ export function SearchScreen() {
                   color: activateCostomerSearch ? 'mark.700' : 'mark.800',
                 }}
               >
-                Cliente
+                {i18n.t('screen.search.users')}
               </Button>
             </HStack>
           </VStack>
         </Box>
         <Box>
           <Heading color="mark.800" size="md" mt="4">
-            Pesquise por formulários, cliente ou alguma resposta.
+            {i18n.t('screen.search.content')}
           </Heading>
         </Box>
       </Box>

@@ -17,8 +17,10 @@ import * as authService from '../../../services/auth';
 import { API_NAMESPACE } from '../../../constants/endpoint';
 import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
+import LanguageContext from '../../../context/LanguageContext';
 
 export function SignInQRCodeScreen() {
+  const { i18n } = useContext(LanguageContext)!;
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const { handleLogin } = useContext(AuthContext);
@@ -52,7 +54,7 @@ export function SignInQRCodeScreen() {
           alert(message);
         }
       } else {
-        alert('something unexpected happened');
+        alert(i18n.t('screen.siginQRCode.errors.unexpectedError'));
       }
     }
   };
@@ -73,10 +75,10 @@ export function SignInQRCodeScreen() {
         ) {
           await signIn(result.url, result.secret);
         } else {
-          alert('Invalid data format');
+          alert(i18n.t('screen.siginQRCode.errors.invalidDataFormat'));
         }
       } catch (error) {
-        alert('Error parsing scanned data');
+        alert(i18n.t('screen.siginQRCode.errors.errorParsingData'));
       }
     }
   };
@@ -94,7 +96,7 @@ export function SignInQRCodeScreen() {
     return (
       <Box flex={1} my="10" px="5" bg="mark.700">
         <Text color="mark.800" fontSize="md" bold textAlign="center">
-          Requesting for camera permission
+          {i18n.t('screen.siginQRCode.errors.cameraPermission')}
         </Text>
       </Box>
     );
@@ -107,7 +109,7 @@ export function SignInQRCodeScreen() {
           <VStack my="5">
             <Center>
               <Text color="mark.800" fontSize="md" bold textAlign="center">
-                No access to camera
+                {i18n.t('screen.siginQRCode.errors.noAccessToCamera')}
               </Text>
             </Center>
           </VStack>
@@ -120,7 +122,7 @@ export function SignInQRCodeScreen() {
                 scanner();
               }}
             >
-              Request Acess
+              {i18n.t('screen.siginQRCode.requestAccess')}
             </Button>
           </VStack>
         </Box>
@@ -166,7 +168,9 @@ export function SignInQRCodeScreen() {
                 accessibilityLabel="Check plugin"
                 color="mark.800"
               />
-              <Text>Fazendo Login</Text>
+              <Text>
+                {i18n.t('screen.siginCredentials.credentials.loggingIn')}
+              </Text>
             </HStack>
           </Modal.Body>
         </Modal.Content>

@@ -70,6 +70,23 @@
         "userName": "Nome utente",
         "login": "Accedi"
       }
+    },
+    "siginQRCode": {
+      "requestAccess": "Richiedi Accesso",
+      "errors": {
+        "cameraPermission": "Richiesta di autorizzazione per la fotocamera",
+        "invalidDataFormat": "Formato dati non valido",
+        "errorParsingData": "Errore durante l'analisi dei dati scansionati",
+        "unexpectedError": "Si è verificato un errore imprevisto",
+        "noAccessToCamera": "Nessun accesso alla fotocamera"
+      }
+    },
+    "search": {
+      "users": "utenti",
+      "forms": "moduli",
+      "answers": "risposte",
+      "search": "Ricerca",
+      "content": "Cerca moduli, risposte o utenti."
     }
   }
 }
