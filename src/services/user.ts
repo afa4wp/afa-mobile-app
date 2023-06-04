@@ -5,7 +5,7 @@ export const me = async () => {
   return res.data;
 };
 
-export const form_type_me = async (form_type: string) => {
+export const formTypeMe = async (form_type: string) => {
   let res = await makeApiRequest(`/user/${form_type}/me`);
   return res.data;
 };

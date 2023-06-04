@@ -79,7 +79,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const handleUser = async () => {
-    const user = await form_type_me('cf7');
+    const user = await formTypeMe('cf7');
     console.log(user);
     dispatch({
       type: 'FETCH_USER',
