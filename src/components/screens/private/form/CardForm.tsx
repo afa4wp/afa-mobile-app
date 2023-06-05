@@ -23,7 +23,7 @@ export function CardForm({ form }: { form: FormType }) {
       rounded="lg"
       shadow="1"
       borderRadius="md"
-      borderColor="#fff"
+      borderColor="#E1E1E2"
       borderWidth="1"
       _light={{
         backgroundColor: '#fff',

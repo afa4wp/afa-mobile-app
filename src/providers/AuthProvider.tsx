@@ -5,7 +5,7 @@ import authReducer from '../reducers/authReducer';
 import * as SecureStore from 'expo-secure-store';
 import * as helperSecureStore from '../helpers/secureStore';
 import { LOGGEDINFO, ACTIVEUSER } from '../constants/auth';
-import { form_type_me } from '../services/user';
+import { formTypeMe } from '../services/user';
 interface AuthProviderProps {
   children: React.ReactNode;
 }
