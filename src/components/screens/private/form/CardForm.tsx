@@ -19,7 +19,7 @@ export function CardForm({ form }: { form: FormType }) {
   return (
     <Pressable
       p="2"
-      mb="5"
+      mt="5"
       rounded="lg"
       shadow="1"
       borderRadius="md"

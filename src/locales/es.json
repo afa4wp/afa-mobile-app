@@ -87,6 +87,9 @@
       "answers": "respuestas",
       "search": "Buscar",
       "content": "Buscar formularios, respuestas o usuarios."
+    },
+    "form": {
+      "noFormsMessage": "Parece que aún no hay formularios publicados en tu sitio web."
     }
   }
 }

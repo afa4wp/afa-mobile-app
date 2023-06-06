@@ -87,6 +87,9 @@
       "answers": "Antworten",
       "search": "Suchen",
       "content": "Nach Formularen, Antworten oder Benutzern suchen."
+    },
+    "form": {
+      "noFormsMessage": "Es scheint, dass auf deiner Website noch keine Formulare veröffentlicht wurden."
     }
   }
 }

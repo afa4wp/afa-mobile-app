@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { ShareButtonItem } from './ShareButtonItem';
 
 export function ShareButton() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => {
     setShowModal(false);
   };

@@ -34,7 +34,7 @@ const SkeletonItem = () => {
 
 export function SkeletonForm() {
   return (
-    <ScrollView showsVerticalScrollIndicator={false} flex={1}>
+    <ScrollView showsVerticalScrollIndicator={false} flex={1} mt="5">
       <SkeletonItem />
       <SkeletonItem />
       <SkeletonItem />

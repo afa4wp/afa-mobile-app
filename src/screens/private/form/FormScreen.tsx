@@ -1,14 +1,19 @@
-import { Box, FlatList, Spinner } from 'native-base';
+import { Box, FlatList, Spinner, Heading, useToast, Text } from 'native-base';
 import { CardForm } from '../../../components/screens/private/form/CardForm';
 import { FormType } from '../../../@types/FormType';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import * as formService from '../../../services/form';
+import { SkeletonForm } from '../../../components/skeleton/form/SkeletonForm';
+import LanguageContext from '../../../context/LanguageContext';
 
 export function FormScreen() {
+  const { i18n } = useContext(LanguageContext)!;
   const [hasMoreData, setHasMoreData] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [forms, setForms] = useState([] as FormType[]);
+  const [showSkeleton, setShowSkeleton] = useState(true);
+  const toast = useToast();
 
   async function getForms() {
     if (!hasMoreData) {
@@ -30,9 +35,20 @@ export function FormScreen() {
         setHasMoreData(false);
       }
     } catch (error) {
-      console.log(error);
+      toast.show({
+        render: () => {
+          return (
+            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
+              <Text color="mark.700" fontSize="md">
+                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
+              </Text>
+            </Box>
+          );
+        },
+      });
     } finally {
       setIsLoading(false);
+      setShowSkeleton(false);
     }
   }
 
@@ -52,19 +68,33 @@ export function FormScreen() {
   }
 
   return (
-    <Box safeArea flex={1} bg="mark.700" px="5">
-      <FlatList
-        removeClippedSubviews={true}
-        data={forms}
-        renderItem={({ item }) => <RenderItem item={item} />}
-        keyExtractor={(item, index) => String(index)}
-        showsVerticalScrollIndicator={false}
-        onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.1}
-        ListFooterComponent={
-          isLoading ? <Spinner size="lg" color="mark.900" /> : null
-        }
-      />
+    <Box flex={1} bg="mark.700" px="5">
+      <Box flex={1} pb="5">
+        {!showSkeleton ? (
+          forms.length > 0 ? (
+            <FlatList
+              removeClippedSubviews={true}
+              data={forms}
+              renderItem={({ item }) => <RenderItem item={item} />}
+              keyExtractor={(item, index) => String(index)}
+              showsVerticalScrollIndicator={false}
+              onEndReached={handleLoadMore}
+              onEndReachedThreshold={0.2}
+              ListFooterComponent={
+                isLoading ? <Spinner size="lg" color="mark.900" /> : null
+              }
+            />
+          ) : (
+            <Box mt="5">
+              <Heading color="mark.800">
+                {i18n.t('screen.form.noFormsMessage')}
+              </Heading>
+            </Box>
+          )
+        ) : (
+          <SkeletonForm />
+        )}
+      </Box>
     </Box>
   );
 }

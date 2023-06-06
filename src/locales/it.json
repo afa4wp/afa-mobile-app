@@ -87,6 +87,9 @@
       "answers": "risposte",
       "search": "Ricerca",
       "content": "Cerca moduli, risposte o utenti."
+    },
+    "form": {
+      "noFormsMessage": "Sembra che non ci siano ancora moduli pubblicati sul tuo sito web."
     }
   }
 }
