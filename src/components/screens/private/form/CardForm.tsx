@@ -38,8 +38,7 @@ export function CardForm({ form }: { form: FormType }) {
         <HStack justifyContent="space-between" alignItems="center">
           <HStack>
             <Text fontSize="sm" color="mark.800">
-              {' '}
-              6 meses atras{' '}
+              6 meses atras
             </Text>
           </HStack>
           <HStack>
@@ -53,7 +52,7 @@ export function CardForm({ form }: { form: FormType }) {
               />
             </HStack>
             <HStack>
-              <Text color="mark.800">2</Text>
+              <Text color="mark.800">{form.registers}</Text>
             </HStack>
           </HStack>
         </HStack>
@@ -66,7 +65,7 @@ export function CardForm({ form }: { form: FormType }) {
             </Text>
           </HStack>
           <HStack alignItems="center">
-            <ShareButton />
+            <ShareButton perma_links={form.perma_links} />
           </HStack>
         </HStack>
       </VStack>

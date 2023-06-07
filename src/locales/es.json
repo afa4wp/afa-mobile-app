@@ -89,7 +89,8 @@
       "content": "Buscar formularios, respuestas o usuarios."
     },
     "form": {
-      "noFormsMessage": "Parece que aún no hay formularios publicados en tu sitio web."
+      "noFormsMessage": "Parece que aún no hay formularios publicados en tu sitio web.",
+      "formNotInserted": "Este formulario no está insertado en ninguna página."
     }
   }
 }
