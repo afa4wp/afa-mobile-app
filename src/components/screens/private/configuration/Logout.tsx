@@ -47,7 +47,7 @@ export function Logout() {
               <Button.Group space={2}>
                 <Button
                   variant="ghost"
-                  colorScheme="blueGray"
+                  colorScheme="trueGray"
                   onPress={() => {
                     setShowModal(false);
                   }}

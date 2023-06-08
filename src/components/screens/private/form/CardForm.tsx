@@ -28,6 +28,9 @@ export function CardForm({ form }: { form: FormType }) {
       _light={{
         backgroundColor: '#fff',
       }}
+      _pressed={{
+        backgroundColor: '#E1E1E2',
+      }}
     >
       <VStack mb="4">
         <Heading color="mark.800" size="md">

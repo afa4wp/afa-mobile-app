@@ -17,7 +17,12 @@ export function ConfigurationItem({
       borderBottomWidth={borderBottomWidth}
       borderBottomColor={borderBottomColor}
     >
-      <Pressable onPress={onPress}>
+      <Pressable
+        onPress={onPress}
+        _pressed={{
+          backgroundColor: 'schemaPressed.900',
+        }}
+      >
         <VStack>
           <HStack alignItems="center">
             <HStack py="5">

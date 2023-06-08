@@ -7,7 +7,12 @@ export function LanguageItem({
 }: LanguageItemType) {
   return (
     <VStack>
-      <Pressable onPress={onPress}>
+      <Pressable
+        onPress={onPress}
+        _pressed={{
+          backgroundColor: 'schemaPressed.900',
+        }}
+      >
         <VStack py="4" px="4">
           <VStack>
             <Text fontSize="md" color="mark.800">
