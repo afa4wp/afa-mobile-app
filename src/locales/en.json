@@ -90,7 +90,8 @@
     },
     "form": {
       "noFormsMessage": "It seems that there are no published forms on your website yet.",
-      "formNotInserted": "This form is not inserted on any page."
+      "formNotInserted": "This form is not inserted on any page.",
+      "createdBy": "Created by"
     }
   }
 }

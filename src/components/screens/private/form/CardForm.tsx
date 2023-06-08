@@ -1,21 +1,26 @@
-import {
-  Heading,
-  Center,
-  Box,
-  Text,
-  Link,
-  VStack,
-  HStack,
-  Button,
-  Icon,
-  IconButton,
-  Pressable,
-} from 'native-base';
+import { Heading, Text, VStack, HStack, Icon, Pressable } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons';
 import { FormType } from '../../../../@types/FormType';
 import { ShareButton } from './ShareButton';
+import { useEffect, useContext } from 'react';
+import LanguageContext from '../../../../context/LanguageContext';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 export function CardForm({ form }: { form: FormType }) {
+  const { i18n, locale } = useContext(LanguageContext)!;
+  useEffect(() => {
+    dayjs.locale(locale);
+  }, [locale]);
+
+  const getDate = (date: string) => {
+    const now = dayjs();
+    const postDate = dayjs(date);
+    const relativeTime = postDate.fromNow();
+    return relativeTime;
+  };
+
   return (
     <Pressable
       p="2"
@@ -41,7 +46,7 @@ export function CardForm({ form }: { form: FormType }) {
         <HStack justifyContent="space-between" alignItems="center">
           <HStack>
             <Text fontSize="sm" color="mark.800">
-              6 meses atras
+              {getDate(form.date_created)}
             </Text>
           </HStack>
           <HStack>
@@ -64,7 +69,7 @@ export function CardForm({ form }: { form: FormType }) {
         <HStack justifyContent="space-between" alignItems="center">
           <HStack>
             <Text fontSize="sm" color="mark.800">
-              Criado por
+              {i18n.t('screen.form.createdBy')} {form.user_created}
             </Text>
           </HStack>
           <HStack alignItems="center">

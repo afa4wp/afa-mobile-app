@@ -90,7 +90,8 @@
     },
     "form": {
       "noFormsMessage": "Sembra che non ci siano ancora moduli pubblicati sul tuo sito web.",
-      "formNotInserted": "Questo modulo non è inserito in nessuna pagina."
+      "formNotInserted": "Questo modulo non è inserito in nessuna pagina.",
+      "createdBy": "Creato da"
     }
   }
 }

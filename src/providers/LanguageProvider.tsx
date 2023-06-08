@@ -12,6 +12,7 @@ import {
 interface LanguageProviderProps {
   children: React.ReactNode;
 }
+import dayjs from './../helpers/dayjsConfig';
 
 const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [locale, setLocale] = useState<string | null>(null);
@@ -25,6 +26,7 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
         );
         if (storedLanguage) {
           setLocale(storedLanguage);
+          dayjs.locale(storedLanguage);
         } else {
           preferredLanguage();
         }
@@ -57,8 +59,10 @@ const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
     const defaultLanguage = getLocales()[0].languageCode;
     if (TRANSLATIONS_OBJECT.hasOwnProperty(defaultLanguage)) {
       setLocale(defaultLanguage);
+      dayjs.locale(defaultLanguage);
     } else {
       setLocale(PREFERRED_LANGUAGE_CODE);
+      dayjs.locale(PREFERRED_LANGUAGE_CODE);
     }
   };
 

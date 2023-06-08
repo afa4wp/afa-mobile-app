@@ -90,7 +90,8 @@
     },
     "form": {
       "noFormsMessage": "Parece que ainda não existem formulários publicados no seu site.",
-      "formNotInserted": "Este formulário não está inserido em nenhuma página."
+      "formNotInserted": "Este formulário não está inserido em nenhuma página.",
+      "createdBy": "Criado por"
     }
   }
 }
