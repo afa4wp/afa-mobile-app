@@ -1,4 +1,3 @@
-import { User } from './AuthTypes';
 import { EntryType } from './EntryType';
 
 type PermaLink = {
@@ -6,13 +5,18 @@ type PermaLink = {
   page_link: string;
 };
 
+type UserCreated = {
+  user_id: number;
+  user_name: string;
+  user_email: string;
+  avatar_url: string;
+};
 interface FormType {
   id: string | number;
   title: string;
   date_created: string;
   registers: number;
-  user_created: number | null;
-  user: User | null;
+  user_created: UserCreated;
   perma_links: PermaLink[];
 }
 

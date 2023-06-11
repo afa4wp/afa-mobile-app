@@ -68,9 +68,11 @@ export function CardForm({ form }: { form: FormType }) {
       <VStack>
         <HStack justifyContent="space-between" alignItems="center">
           <HStack>
-            <Text fontSize="sm" color="mark.800">
-              {i18n.t('screen.form.createdBy')} {form.user_created}
-            </Text>
+            {form.user_created?.user_name && (
+              <Text fontSize="sm" color="mark.800">
+                {i18n.t('screen.form.createdBy')} {form.user_created.user_name}
+              </Text>
+            )}
           </HStack>
           <HStack alignItems="center">
             <ShareButton perma_links={form.perma_links} />

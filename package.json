@@ -13,6 +13,7 @@
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "axios": "^1.4.0",
+    "dayjs": "^1.11.8",
     "expo": "~48.0.15",
     "expo-barcode-scanner": "~12.3.2",
     "expo-constants": "^14.2.1",
