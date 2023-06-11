@@ -89,6 +89,7 @@
       "content": "Search for forms, answers, or users."
     },
     "form": {
+      "title": "All Forms",
       "noFormsMessage": "It seems that there are no published forms on your website yet.",
       "formNotInserted": "This form is not inserted on any page.",
       "createdBy": "Created by"

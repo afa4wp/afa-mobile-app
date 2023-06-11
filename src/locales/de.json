@@ -89,6 +89,7 @@
       "content": "Nach Formularen, Antworten oder Benutzern suchen."
     },
     "form": {
+      "title": "Alle Formulare",
       "noFormsMessage": "Es scheint, dass auf deiner Website noch keine Formulare veröffentlicht wurden.",
       "formNotInserted": "Dieses Formular ist auf keiner Seite eingefügt.",
       "createdBy": "Erstellt von"

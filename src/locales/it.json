@@ -89,6 +89,7 @@
       "content": "Cerca moduli, risposte o utenti."
     },
     "form": {
+      "title": "Tutti i Moduli",
       "noFormsMessage": "Sembra che non ci siano ancora moduli pubblicati sul tuo sito web.",
       "formNotInserted": "Questo modulo non è inserito in nessuna pagina.",
       "createdBy": "Creato da"

@@ -2,6 +2,7 @@ import { Box, FlatList, Spinner, Heading, useToast, Text } from 'native-base';
 import { CardForm } from '../../../components/screens/private/form/CardForm';
 import { FormType } from '../../../@types/FormType';
 import { useEffect, useState, useContext } from 'react';
+import { CardFormHeader } from '../../../components/screens/private/form/CardFormHeader';
 import * as formService from '../../../services/form';
 import { SkeletonForm } from '../../../components/skeleton/form/SkeletonForm';
 import LanguageContext from '../../../context/LanguageContext';
@@ -69,10 +70,11 @@ export function FormScreen() {
 
   return (
     <Box flex={1} bg="mark.700" px="5">
-      <Box flex={1} pb="5">
+      <Box flex={1}>
         {!showSkeleton ? (
           forms.length > 0 ? (
             <FlatList
+              ListHeaderComponent={CardFormHeader}
               removeClippedSubviews={true}
               data={forms}
               renderItem={({ item }) => <RenderItem item={item} />}

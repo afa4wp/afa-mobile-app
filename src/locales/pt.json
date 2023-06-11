@@ -89,6 +89,7 @@
       "content": "Buscar por formulários, respostas ou usuários."
     },
     "form": {
+      "title": "Todos os Formulários",
       "noFormsMessage": "Parece que ainda não existem formulários publicados no seu site.",
       "formNotInserted": "Este formulário não está inserido em nenhuma página.",
       "createdBy": "Criado por"
