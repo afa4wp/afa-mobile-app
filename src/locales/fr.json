@@ -7,6 +7,15 @@
     "italian": "Italien",
     "german": "Allemand"
   },
+  "dayJS": {
+    "years": "a",
+    "months": "m",
+    "weeks": "sem",
+    "days": "j",
+    "hours": "h",
+    "minutes": "min",
+    "seconds": "s"
+  },
   "screen": {
     "headTitle": {
       "home": "Accueil",
