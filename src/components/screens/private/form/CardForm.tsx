@@ -4,12 +4,16 @@ import { FormType } from '../../../../@types/FormType';
 import { ShareButton } from './ShareButton';
 import { useEffect, useContext } from 'react';
 import LanguageContext from '../../../../context/LanguageContext';
+import FormContext from '../../../../context/FormContext';
+import { useNavigation } from '@react-navigation/native';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 export function CardForm({ form }: { form: FormType }) {
   const { i18n, locale } = useContext(LanguageContext)!;
+  const { setForm } = useContext(FormContext) || {};
+  const navigation = useNavigation();
   useEffect(() => {
     dayjs.locale(locale);
   }, [locale]);
@@ -21,10 +25,17 @@ export function CardForm({ form }: { form: FormType }) {
     return relativeTime;
   };
 
+  const goToFormEntryScreen = () => {
+    setForm(form);
+    navigation.navigate('Entry', {
+      formId: form.id,
+    });
+  };
+
   return (
     <Pressable
       p="2"
-      mt="5"
+      mb="5"
       rounded="lg"
       shadow="1"
       borderRadius="md"
@@ -36,6 +47,7 @@ export function CardForm({ form }: { form: FormType }) {
       _pressed={{
         backgroundColor: '#E1E1E2',
       }}
+      onPress={() => goToFormEntryScreen()}
     >
       <VStack mb="4">
         <Heading color="mark.800" size="md">
