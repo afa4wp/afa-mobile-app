@@ -1,6 +1,6 @@
 import { Skeleton, VStack, HStack, ScrollView } from 'native-base';
 
-const SkeletonItem = () => {
+export const SkeletonItem = () => {
   return (
     <VStack
       overflow="hidden"
@@ -35,6 +35,7 @@ const SkeletonItem = () => {
 export function SkeletonForm() {
   return (
     <ScrollView showsVerticalScrollIndicator={false} flex={1} mt="5">
+      <Skeleton w="70%" h="5" mb="5" />
       <SkeletonItem />
       <SkeletonItem />
       <SkeletonItem />
