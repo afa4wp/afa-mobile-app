@@ -101,7 +101,8 @@
       "title": "Todos os Formulários",
       "noFormsMessage": "Parece que ainda não existem formulários publicados no seu site.",
       "formNotInserted": "Este formulário não está inserido em nenhuma página.",
-      "createdBy": "Criado por"
+      "createdBy": "Criado por",
+      "noSubmissions": "Nenhuma submissão."
     }
   }
 }
