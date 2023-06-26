@@ -29,6 +29,7 @@ export function HomeTabs() {
             <FontAwesome name={'home'} color={color} size={size} />
           ),
           title: i18n.t('screen.headTitle.home'),
+          headerShown: false
         }}
       />
       <Tab.Screen
