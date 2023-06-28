@@ -7,6 +7,7 @@ import { ConfigurationStackScreen } from './ConfigurationStackScreen';
 import { FormStackScreen } from './FormStackScreen';
 import { HomeScreen } from '../../screens/private/home/HomeScreen';
 import LanguageContext from '../../context/LanguageContext';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,7 @@ export function HomeTabs() {
             <FontAwesome name={'home'} color={color} size={size} />
           ),
           title: i18n.t('screen.headTitle.home'),
-          headerShown: false
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -38,7 +39,11 @@ export function HomeTabs() {
         options={{
           headerShown: false,
           tabBarIcon: ({ size, color }) => (
-            <FontAwesome name={'wpforms'} color={color} size={size} />
+            <MaterialCommunityIcons
+              name="email-receive"
+              size={size}
+              color={color}
+            />
           ),
           tabBarLabel: 'Form',
           title: i18n.t('screen.headTitle.forms'),

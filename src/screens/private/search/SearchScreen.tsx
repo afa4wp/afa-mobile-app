@@ -12,13 +12,33 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useContext, useState } from 'react';
 import { Platform } from 'react-native';
 import LanguageContext from '../../../context/LanguageContext';
+import { SEARCH } from '../../../constants/form';
+import SearchButton from '../../../components/screens/private/search/SearchButton';
+import { FormType } from '../../../@types/FormType';
+import { EntryType } from '../../../@types/EntryType';
+import { EntryMetaType } from '../../../@types/EntryMetaType';
+import * as formService from '../../../services/form';
 
 export function SearchScreen() {
   const { i18n } = useContext(LanguageContext)!;
-  const [activateBriefingSearch, setActivateBriefingSearch] = useState(true);
-  const [activateAnswerSearch, setActivateAnswerSearch] = useState(false);
-  const [activateCostomerSearch, setActivateCostomerSearch] = useState(false);
+  const [search, setSearch] = useState(SEARCH.FORM);
+  const [showLoading, setShowLoading] = useState(false);
 
+  const [forms, setForms] = useState<FormType[]>([]);
+  const [entries, setEntries] = useState<EntryType[]>([]);
+  const [entrieMetas, setEntrieMetas] = useState<EntryMetaType[]>([]);
+
+  async function getForms(myText: string) {
+    setShowLoading(true);
+    try {
+      const data = await formService.forms('cf7', 1);
+      if (data.results && data.results.length > 0) {
+      } else {
+        setForms([]);
+      }
+      setShowLoading(false);
+    } catch (error) {}
+  }
   return (
     <Box safeArea flex={1} bg="mark.700" px="5">
       <Box flex={1}>
@@ -38,33 +58,24 @@ export function SearchScreen() {
               }
             />
             <HStack mt="2" space="2">
-              <Button
-                variant={!activateBriefingSearch ? 'outline' : undefined}
-                bg={activateBriefingSearch ? 'mark.800' : 'mark.700'}
-                _text={{
-                  color: activateBriefingSearch ? 'mark.700' : 'mark.800',
-                }}
-              >
-                {i18n.t('screen.search.forms')}
-              </Button>
-              <Button
-                variant={!activateAnswerSearch ? 'outline' : undefined}
-                bg={activateAnswerSearch ? 'mark.800' : 'mark.700'}
-                _text={{
-                  color: activateAnswerSearch ? 'mark.700' : 'mark.800',
-                }}
-              >
-                {i18n.t('screen.search.answers')}
-              </Button>
-              <Button
-                variant={!activateCostomerSearch ? 'outline' : undefined}
-                bg={activateCostomerSearch ? 'mark.800' : 'mark.700'}
-                _text={{
-                  color: activateCostomerSearch ? 'mark.700' : 'mark.800',
-                }}
-              >
-                {i18n.t('screen.search.users')}
-              </Button>
+              <SearchButton
+                searchType={SEARCH.FORM}
+                setSearch={setSearch}
+                buttonText={i18n.t('screen.search.forms')}
+                search={search}
+              />
+              <SearchButton
+                searchType={SEARCH.ANSWER}
+                setSearch={setSearch}
+                buttonText={i18n.t('screen.search.answers')}
+                search={search}
+              />
+              <SearchButton
+                searchType={SEARCH.USER}
+                setSearch={setSearch}
+                buttonText={i18n.t('screen.search.users')}
+                search={search}
+              />
             </HStack>
           </VStack>
         </Box>
