@@ -1,14 +1,25 @@
-import { Box, Text, VStack, HStack, Divider, Pressable } from 'native-base';
+import {
+  Box,
+  Checkbox,
+  Text,
+  VStack,
+  HStack,
+  Divider,
+  Pressable,
+  Link,
+} from 'native-base';
 import { EntryMetaType } from '../../../../../../@types/EntryMetaType';
 import { useEffect, useState } from 'react';
-export function EntryMetaTypeText({ entryMeta }: { entryMeta: EntryMetaType }) {
+
+export function EntryMetaTypeEmail({
+  entryMeta,
+}: {
+  entryMeta: EntryMetaType;
+}) {
   const [metaValueString, setMetaValueString] = useState<string | null>(null);
 
   useEffect(() => {
-    if (
-      typeof entryMeta.meta_value === 'string' ||
-      typeof entryMeta.meta_value === 'number'
-    ) {
+    if (typeof entryMeta.meta_value === 'string') {
       setMetaValueString(entryMeta.meta_value);
     }
   }, [entryMeta.meta_value]);
@@ -31,9 +42,24 @@ export function EntryMetaTypeText({ entryMeta }: { entryMeta: EntryMetaType }) {
           </Text>
         </VStack>
         <VStack mt="2">
-          <Text fontSize="md" color="mark.800">
-            {metaValueString}
-          </Text>
+          <Link
+            href={`mailto:${metaValueString}`}
+            isExternal
+            _text={{
+              color: 'mark.900',
+            }}
+            mb="1"
+          >
+            <Box
+              py="0.5"
+              _text={{
+                color: 'mark.900',
+                fontWeight: 'normal',
+              }}
+            >
+              {metaValueString}
+            </Box>
+          </Link>
         </VStack>
         <VStack mt="2">
           <Divider bg="mark.800" opacity="5" />
