@@ -8,6 +8,8 @@ import * as helperSecureStore from '../helpers/secureStore';
 import { LOGGEDINFO, ACTIVEUSER } from '../constants/auth';
 import * as SecureStore from 'expo-secure-store';
 import { LoggedData } from '../@types/AuthTypes';
+import React, { useContext, useState } from 'react';
+import AuthContext from '../context/AuthContext';
 
 // Public API instance
 export const publicApi = (baseURL: string): AxiosInstance => {
@@ -42,6 +44,8 @@ const getPrivateApiInstance = async (): Promise<AxiosInstance> => {
 
 // Function to refresh the access token using the refresh token
 const refreshAccessToken = async (): Promise<string> => {
+  // const { handleLogout } = useContext(AuthContext);
+
   try {
     const activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
     let loggedInInfo = {} as LoggedData;
@@ -72,6 +76,7 @@ const refreshAccessToken = async (): Promise<string> => {
 
     return access_token;
   } catch (error) {
+    // handleLogout();
     console.log('Failed to refresh access token:', error.response?.data);
     throw new Error('Failed to refresh access token');
   }
