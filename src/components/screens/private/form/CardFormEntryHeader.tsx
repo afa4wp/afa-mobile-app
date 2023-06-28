@@ -12,7 +12,7 @@ export function CardFormEntryHeader({ hideHeading = false }) {
     <VStack mt="5" key="headerCardFormEntry">
       <CardForm form={state.form} />
       {!hideHeading && (
-        <Heading color="mark.800">{i18n.t('screen.form.title')}</Heading>
+        <Heading color="mark.800">{i18n.t('screen.form.submissions')}</Heading>
       )}
     </VStack>
   );
