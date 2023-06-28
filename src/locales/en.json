@@ -47,7 +47,9 @@
       "email": "Email",
       "login": "Login",
       "name": "Name",
-      "lastName": "Last Name"
+      "lastName": "Last Name",
+      "roles": "Roles",
+      "failedLoadInformation": "Failed to load the information."
     },
     "notificationConfiguration": {
       "formCreationNotifications": "Form Creation Notifications",
@@ -99,9 +101,11 @@
     },
     "form": {
       "title": "All Forms",
+      "allAnswers": "All Answers",
       "noFormsMessage": "It seems that there are no published forms on your website yet.",
       "formNotInserted": "This form is not inserted on any page.",
       "createdBy": "Created by",
+      "submissions": "Submissions",
       "noSubmissions": "No submissions."
     }
   }

@@ -47,7 +47,9 @@
       "email": "E-Mail",
       "login": "Anmeldung",
       "name": "Name",
-      "lastName": "Nachname"
+      "lastName": "Nachname",
+      "roles": "Rollen",
+      "failedLoadInformation": "Die Informationen konnten nicht geladen werden."
     },
     "notificationConfiguration": {
       "formCreationNotifications": "Formularerstellungsbenachrichtigungen",
@@ -99,9 +101,11 @@
     },
     "form": {
       "title": "Alle Formulare",
+      "allAnswers": "Alle Antworten",
       "noFormsMessage": "Es scheint, dass auf deiner Website noch keine Formulare veröffentlicht wurden.",
       "formNotInserted": "Dieses Formular ist auf keiner Seite eingefügt.",
       "createdBy": "Erstellt von",
+      "submissions": "Einsendungen",
       "noSubmissions": "Keine Einreichungen."
     }
   }

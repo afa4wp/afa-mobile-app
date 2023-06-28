@@ -47,7 +47,9 @@
       "email": "Email",
       "login": "Connexion",
       "name": "Nom",
-      "lastName": "Nom de famille"
+      "lastName": "Nom de famille",
+      "roles": "Rôles",
+      "failedLoadInformation": "Échec du chargement des informations."
     },
     "notificationConfiguration": {
       "formCreationNotifications": "Notifications de création de formulaires",
@@ -99,9 +101,11 @@
     },
     "form": {
       "title": "Tous les Formulaires",
+      "allAnswers": "Toutes les réponses",
       "noFormsMessage": "Il semble qu'il n'y ait pas encore de formulaires publiés sur votre site web.",
       "formNotInserted": "Ce formulaire n'est inséré sur aucune page.",
       "createdBy": "Créé par",
+      "submissions": "Soumissions",
       "noSubmissions": "Sin envíos."
     }
   }

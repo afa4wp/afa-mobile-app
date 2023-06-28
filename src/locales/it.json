@@ -47,7 +47,9 @@
       "email": "Email",
       "login": "Accesso",
       "name": "Nome",
-      "lastName": "Cognome"
+      "lastName": "Cognome",
+      "roles": "Ruoli",
+      "failedLoadInformation": "Impossibile caricare le informazioni."
     },
     "notificationConfiguration": {
       "formCreationNotifications": "Notifiche di creazione modulo",
@@ -99,9 +101,11 @@
     },
     "form": {
       "title": "Tutti i Moduli",
+      "allAnswers": "Tutte le Risposte",
       "noFormsMessage": "Sembra che non ci siano ancora moduli pubblicati sul tuo sito web.",
       "formNotInserted": "Questo modulo non è inserito in nessuna pagina.",
       "createdBy": "Creato da",
+      "submissions": "Invii",
       "noSubmissions": "Nessuna invio."
     }
   }

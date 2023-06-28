@@ -10,8 +10,11 @@ import {
 } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import { User } from '../../../../@types/AuthTypes';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import LanguageContext from '../../../../context/LanguageContext';
+
 export function CardProfile({ user }: { user: User }) {
+  const { i18n } = useContext(LanguageContext)!;
   const [showModal, setShowModal] = useState(false);
 
   const getFullName = () => {
@@ -100,7 +103,9 @@ export function CardProfile({ user }: { user: User }) {
         onClose={() => setShowModal(false)}
       >
         <Modal.Content>
-          <Modal.Header color="mark.800">Todas as permissões</Modal.Header>
+          <Modal.Header color="mark.800">
+            {i18n.t('screen.profile.roles')}
+          </Modal.Header>
           <Modal.Body>
             <ScrollView flex={1} showsVerticalScrollIndicator={false}>
               <HStack flex={1} flexWrap="wrap">
