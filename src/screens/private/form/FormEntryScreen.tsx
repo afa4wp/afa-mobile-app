@@ -20,7 +20,7 @@ export function FormEntryScreen({ route }) {
   const [showSkeleton, setShowSkeleton] = useState(true);
   const toast = useToast();
 
-  async function getEntries() {
+  async function getEntries(hasMoreData: boolean) {
     if (!hasMoreData) {
       setIsLoading(false);
       return;
@@ -59,12 +59,20 @@ export function FormEntryScreen({ route }) {
 
   const handleLoadMore = () => {
     if (!isLoading) {
-      getEntries();
+      getEntries(hasMoreData);
     }
   };
 
+  const resetInitialState = () => {
+    setHasMoreData(true);
+    setShowSkeleton(true);
+    setEntries([]);
+    setPage(1);
+  };
+
   useEffect(() => {
-    getEntries();
+    resetInitialState();
+    getEntries(true);
   }, [formId]);
 
   function RenderItem({ item }: { item: EntryType }) {
