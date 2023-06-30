@@ -27,8 +27,11 @@ export function CardForm({ form }: { form: FormType }) {
 
   const goToFormEntryScreen = () => {
     setForm(form);
-    navigation.navigate('Entry', {
-      formId: form.id,
+    navigation.navigate('FormStack', {
+      screen: 'Entry',
+      params: {
+        formId: form.id,
+      },
     });
   };
 

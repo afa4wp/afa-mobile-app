@@ -1,24 +1,16 @@
-import {
-  Heading,
-  Box,
-  HStack,
-  VStack,
-  Input,
-  Icon,
-  Button,
-  Center,
-} from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
-import React, { useContext, useState } from 'react';
-import { Platform } from 'react-native';
+import { Heading, Box } from 'native-base';
+import React, { useContext, useState, useEffect } from 'react';
 import LanguageContext from '../../../context/LanguageContext';
 import { SEARCH } from '../../../constants/form';
-import SearchButton from '../../../components/screens/private/search/SearchButton';
 import { FormType } from '../../../@types/FormType';
 import { EntryType } from '../../../@types/EntryType';
 import { EntryMetaType } from '../../../@types/EntryMetaType';
 import * as formService from '../../../services/form';
-
+import { CardForm } from '../../../components/screens/private/form/CardForm';
+import { CenterSpinner } from '../../../components/skeleton/CenterSpinner';
+import { SearchNotFound } from '../../../components/skeleton/SearchNotFound';
+import { SearchInput } from '../../../components/screens/private/search/SearchInput';
+import { ListResult } from '../../../components/screens/private/search/ListResult';
 export function SearchScreen() {
   const { i18n } = useContext(LanguageContext)!;
   const [search, setSearch] = useState(SEARCH.FORM);
@@ -27,68 +19,91 @@ export function SearchScreen() {
   const [forms, setForms] = useState<FormType[]>([]);
   const [entries, setEntries] = useState<EntryType[]>([]);
   const [entrieMetas, setEntrieMetas] = useState<EntryMetaType[]>([]);
+  const [searchContent, setSearchContent] = useState('');
 
-  async function getForms(myText: string) {
+  async function getForms(searchContent: string) {
     setShowLoading(true);
     try {
-      const data = await formService.forms('cf7', 1);
+      const data = await formService.formsSearch('cf7', searchContent);
       if (data.results && data.results.length > 0) {
+        setForms([...data.results]);
       } else {
         setForms([]);
       }
+    } catch (error) {
+    } finally {
       setShowLoading(false);
-    } catch (error) {}
+    }
   }
+
+  useEffect(() => {
+    if (searchContent.length == 0) {
+      setForms([]);
+      setEntries([]);
+      setEntrieMetas([]);
+    }
+
+    const timer = setTimeout(() => {
+      masterSearch(searchContent);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [searchContent]);
+
+  const masterSearch = (searchContent: string) => {
+    if (!searchContent) {
+      return;
+    }
+    if (search === SEARCH.FORM) {
+      getForms(searchContent);
+    }
+  };
+
+  function RenderCardForm({ item }: { item: FormType }) {
+    return <CardForm form={item} />;
+  }
+
+  function notFound() {
+    if (
+      forms.length == 0 &&
+      entries.length == 0 &&
+      entrieMetas.length == 0 &&
+      searchContent.length > 0 &&
+      !showLoading
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
   return (
     <Box safeArea flex={1} bg="mark.700" px="5">
       <Box flex={1}>
-        <Box>
-          <VStack>
-            <Input
-              placeholder={i18n.t('screen.search.search')}
-              fontSize="sm"
-              style={inputStyle}
-              InputLeftElement={
-                <Icon
-                  ml="2"
-                  size="lg"
-                  color="mark.900"
-                  as={<Ionicons name="ios-search" />}
-                />
-              }
-            />
-            <HStack mt="2" space="2">
-              <SearchButton
-                searchType={SEARCH.FORM}
-                setSearch={setSearch}
-                buttonText={i18n.t('screen.search.forms')}
-                search={search}
-              />
-              <SearchButton
-                searchType={SEARCH.ANSWER}
-                setSearch={setSearch}
-                buttonText={i18n.t('screen.search.answers')}
-                search={search}
-              />
-              <SearchButton
-                searchType={SEARCH.USER}
-                setSearch={setSearch}
-                buttonText={i18n.t('screen.search.users')}
-                search={search}
-              />
-            </HStack>
-          </VStack>
-        </Box>
-        <Box>
-          <Heading color="mark.800" size="md" mt="4">
-            {i18n.t('screen.search.content')}
-          </Heading>
-        </Box>
+        <SearchInput
+          setSearchContent={setSearchContent}
+          setSearch={setSearch}
+          search={search}
+        />
+        {!(searchContent.length > 0) ? (
+          <Box>
+            <Heading color="mark.800" size="md" mt="4">
+              {i18n.t('screen.search.content')}
+            </Heading>
+          </Box>
+        ) : (
+          <Box flex={1}>
+            {!showLoading ? (
+              <Box mt="5" flex={1}>
+                <ListResult forms={forms} />
+                {notFound() && <SearchNotFound searchContent={searchContent} />}
+              </Box>
+            ) : (
+              <CenterSpinner />
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );
 }
-
-const inputStyle = {
-  height: Platform.OS === 'ios' ? 45 : undefined, // Set height to 40 only for iOS
-};
