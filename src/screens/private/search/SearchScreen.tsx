@@ -6,7 +6,7 @@ import { FormType } from '../../../@types/FormType';
 import { EntryType } from '../../../@types/EntryType';
 import { EntryMetaType } from '../../../@types/EntryMetaType';
 import * as formService from '../../../services/form';
-import { CardForm } from '../../../components/screens/private/form/CardForm';
+import * as entryService from '../../../services/formEntry';
 import { CenterSpinner } from '../../../components/skeleton/CenterSpinner';
 import { SearchNotFound } from '../../../components/skeleton/SearchNotFound';
 import { SearchInput } from '../../../components/screens/private/search/SearchInput';
@@ -36,11 +36,30 @@ export function SearchScreen() {
     }
   }
 
+  async function getEntries(searchContent: string) {
+    setShowLoading(true);
+    try {
+      const data = await entryService.entriesSearch('cf7', searchContent);
+      if (data.results && data.results.length > 0) {
+        setEntries([...data.results]);
+      } else {
+        setEntries([]);
+      }
+    } catch (error) {
+    } finally {
+      setShowLoading(false);
+    }
+  }
+
+  function resetForms() {
+    setForms([]);
+    setEntries([]);
+    setEntrieMetas([]);
+  }
+
   useEffect(() => {
     if (searchContent.length == 0) {
-      setForms([]);
-      setEntries([]);
-      setEntrieMetas([]);
+      resetForms();
     }
 
     const timer = setTimeout(() => {
@@ -48,20 +67,23 @@ export function SearchScreen() {
     }, 600);
 
     return () => clearTimeout(timer);
-  }, [searchContent]);
+  }, [searchContent, search]);
 
   const masterSearch = (searchContent: string) => {
     if (!searchContent) {
       return;
     }
+
+    resetForms();
+
     if (search === SEARCH.FORM) {
       getForms(searchContent);
     }
-  };
 
-  function RenderCardForm({ item }: { item: FormType }) {
-    return <CardForm form={item} />;
-  }
+    if (search === SEARCH.USER) {
+      getEntries(searchContent);
+    }
+  };
 
   function notFound() {
     if (
@@ -95,8 +117,8 @@ export function SearchScreen() {
           <Box flex={1}>
             {!showLoading ? (
               <Box mt="5" flex={1}>
-                <ListResult forms={forms} />
                 {notFound() && <SearchNotFound searchContent={searchContent} />}
+                <ListResult forms={forms} entries={entries} />
               </Box>
             ) : (
               <CenterSpinner />

@@ -97,7 +97,8 @@
       "forms": "moduli",
       "answers": "risposte",
       "search": "Ricerca",
-      "content": "Cerca moduli, risposte o utenti."
+      "content": "Cerca moduli, risposte o utenti.",
+      "noResultsFor": "Nessun risultato per:"
     },
     "form": {
       "title": "Tutti i Moduli",

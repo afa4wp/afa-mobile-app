@@ -97,7 +97,8 @@
       "forms": "forms",
       "answers": "answers",
       "search": "Search",
-      "content": "Search for forms, answers, or users."
+      "content": "Search for forms, answers, or users.",
+      "noResultsFor": "No results for:"
     },
     "form": {
       "title": "All Forms",

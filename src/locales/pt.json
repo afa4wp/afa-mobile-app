@@ -97,7 +97,8 @@
       "forms": "formulários",
       "answers": "respostas",
       "search": "Buscar",
-      "content": "Buscar por formulários, respostas ou usuários."
+      "content": "Buscar por formulários, respostas ou usuários.",
+      "noResultsFor": "Nenhum resultado para:"
     },
     "form": {
       "title": "Todos os Formulários",
