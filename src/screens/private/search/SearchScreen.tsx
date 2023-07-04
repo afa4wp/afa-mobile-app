@@ -7,6 +7,7 @@ import { EntryType } from '../../../@types/EntryType';
 import { EntryMetaType } from '../../../@types/EntryMetaType';
 import * as formService from '../../../services/form';
 import * as entryService from '../../../services/formEntry';
+import * as entryMetaService from '../../../services/formEntryMeta';
 import { CenterSpinner } from '../../../components/skeleton/CenterSpinner';
 import { SearchNotFound } from '../../../components/skeleton/SearchNotFound';
 import { SearchInput } from '../../../components/screens/private/search/SearchInput';
@@ -18,7 +19,7 @@ export function SearchScreen() {
 
   const [forms, setForms] = useState<FormType[]>([]);
   const [entries, setEntries] = useState<EntryType[]>([]);
-  const [entrieMetas, setEntrieMetas] = useState<EntryMetaType[]>([]);
+  const [entryMetas, setEntryMetas] = useState<EntryMetaType[]>([]);
   const [searchContent, setSearchContent] = useState('');
 
   async function getForms(searchContent: string) {
@@ -51,10 +52,26 @@ export function SearchScreen() {
     }
   }
 
+  async function getEntryMetas(searchContent: string) {
+    setShowLoading(true);
+    try {
+      const data = await entryMetaService.entryMetaSearch('cf7', searchContent);
+      console.log(data);
+      if (data && data.length > 0) {
+        setEntryMetas([...data]);
+      } else {
+        setEntryMetas([]);
+      }
+    } catch (error) {
+    } finally {
+      setShowLoading(false);
+    }
+  }
+
   function resetForms() {
     setForms([]);
     setEntries([]);
-    setEntrieMetas([]);
+    setEntryMetas([]);
   }
 
   useEffect(() => {
@@ -83,13 +100,17 @@ export function SearchScreen() {
     if (search === SEARCH.USER) {
       getEntries(searchContent);
     }
+
+    if (search === SEARCH.ANSWER) {
+      getEntryMetas(searchContent);
+    }
   };
 
   function notFound() {
     if (
       forms.length == 0 &&
       entries.length == 0 &&
-      entrieMetas.length == 0 &&
+      entryMetas.length == 0 &&
       searchContent.length > 0 &&
       !showLoading
     ) {
@@ -118,7 +139,11 @@ export function SearchScreen() {
             {!showLoading ? (
               <Box mt="5" flex={1}>
                 {notFound() && <SearchNotFound searchContent={searchContent} />}
-                <ListResult forms={forms} entries={entries} />
+                <ListResult
+                  forms={forms}
+                  entries={entries}
+                  entryMetas={entryMetas}
+                />
               </Box>
             ) : (
               <CenterSpinner />

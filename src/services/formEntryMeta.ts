@@ -6,3 +6,8 @@ export const entryMeta = async (form_type: string, entry_id: number) => {
   );
   return res.data;
 };
+
+export const entryMetaSearch = async (form_type: string, answer: string) => {
+  let res = await makeApiRequest(`/${form_type}/entrymeta/search/${answer}`);
+  return res.data;
+};
