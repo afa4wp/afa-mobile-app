@@ -20,7 +20,7 @@ function RenderCardFormEntry({ item }: { item: EntryType }) {
   return <CardFormEntry entry={item} />;
 }
 function RenderCardFormEntryMeta({ item }: { item: EntryMetaType }) {
-  return <CardFormEntryMeta entryMeta={item} />;
+  return <CardFormEntryMeta entryMeta={item} onPressProp={true} />;
 }
 export function ListResult({ forms, entries, entryMetas }: ListProps) {
   return (

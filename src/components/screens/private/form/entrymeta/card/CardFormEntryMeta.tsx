@@ -3,7 +3,12 @@ import { EntryMetaTypeText } from './EntryMetaTypeText';
 import { EntryMetaTypeFile } from './EntryMetaTypeFile';
 import { EntryMetaTypeSelect } from './EntryMetaTypeSelect';
 import { EntryMetaTypeEmail } from './EntryMetaTypeEmail';
-export function CardFormEntryMeta({ entryMeta }: { entryMeta: EntryMetaType }) {
+import { EntryMeta } from './EntryMeta';
+export function SwitchCardFormEntryMeta({
+  entryMeta,
+}: {
+  entryMeta: EntryMetaType;
+}) {
   switch (entryMeta.type) {
     case 'text':
       return <EntryMetaTypeText entryMeta={entryMeta} />;
@@ -16,4 +21,19 @@ export function CardFormEntryMeta({ entryMeta }: { entryMeta: EntryMetaType }) {
     default:
       return <EntryMetaTypeText entryMeta={entryMeta} />;
   }
+}
+
+export function CardFormEntryMeta({
+  entryMeta,
+  onPressProp,
+}: {
+  entryMeta: EntryMetaType;
+  onPressProp?: boolean;
+}) {
+  const cardFormEntryMeta = SwitchCardFormEntryMeta({ entryMeta });
+  return (
+    <EntryMeta entryMeta={entryMeta} onPressProp={onPressProp}>
+      {cardFormEntryMeta}
+    </EntryMeta>
+  );
 }
