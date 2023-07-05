@@ -10,7 +10,7 @@ import {
 } from 'native-base';
 import { SkeletonItem as SkeletonItemForm } from './SkeletonForm';
 
-const SkeletonItem = () => {
+export const SkeletonItem = ({ showDivider = true }) => {
   return (
     <Pressable
       _pressed={{
@@ -37,7 +37,7 @@ const SkeletonItem = () => {
           <Skeleton height="5" width="70%" />
         </Box>
       </HStack>
-      <Divider bg="rgba(124, 131, 219, 0.1)" />
+      {showDivider && <Divider bg="rgba(124, 131, 219, 0.1)" />}
     </Pressable>
   );
 };

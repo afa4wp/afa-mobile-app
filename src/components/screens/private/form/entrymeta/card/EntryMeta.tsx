@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
-import { Box, Text, VStack, HStack, Divider, Pressable } from 'native-base';
+import React, { ReactNode, useContext } from 'react';
+import { Text, VStack, HStack, Divider, Pressable } from 'native-base';
 import { EntryMetaType } from '../../../../../../@types/EntryMetaType';
 import { useNavigation } from '@react-navigation/native';
+import FormContext from '../../../../../../context/FormContext';
 export function EntryMeta({
   entryMeta,
   children,
@@ -11,10 +12,16 @@ export function EntryMeta({
   children: ReactNode;
   onPressProp?: boolean;
 }) {
+  const { state, setEntry } = useContext(FormContext) || {};
+
   const navigation = useNavigation();
   const goToFormEntryScreen = () => {
-    navigation.navigate('EntryMeta', {
-      entryId: entryMeta.entry_id,
+    setEntry({});
+    navigation.navigate('FormStack', {
+      screen: 'EntryMeta',
+      params: {
+        entryId: entryMeta.entry_id,
+      },
     });
   };
   return (
