@@ -53,7 +53,7 @@ export function FormEntryMetaScreen({ route }) {
       <Box flex={1}>
         <Box px="5" flex={1}>
           <VStack>
-            <CardFormEntryMetaHeader />
+            <CardFormEntryMetaHeader entry_id={entryId} />
             <Heading color="mark.800" mt="2" mb="5">
               {i18n.t('screen.form.allAnswers')}
             </Heading>

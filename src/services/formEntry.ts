@@ -11,6 +11,11 @@ export const entries = async (
   return res.data;
 };
 
+export const entry_by_id = async (form_type: string, entry_id: number) => {
+  let res = await makeApiRequest(`/${form_type}/entries/${entry_id}`);
+  return res.data;
+};
+
 export const entriesSearch = async (form_type: string, user_info: string) => {
   let res = await makeApiRequest(
     `/${form_type}/entries/user/search/${user_info}`

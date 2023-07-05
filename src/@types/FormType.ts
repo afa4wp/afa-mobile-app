@@ -28,7 +28,7 @@ type State = {
 interface FormContextProps {
   state: State;
   setForm: (form: FormType) => void;
-  setEntry: (entry: EntryType) => void;
+  setEntry: (entry: EntryType | {}) => void;
   fetchEntry: (entryId: number | string) => void;
 }
 

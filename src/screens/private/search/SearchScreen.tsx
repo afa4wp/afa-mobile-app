@@ -56,7 +56,6 @@ export function SearchScreen() {
     setShowLoading(true);
     try {
       const data = await entryMetaService.entryMetaSearch('cf7', searchContent);
-      console.log(data);
       if (data && data.length > 0) {
         setEntryMetas([...data]);
       } else {
