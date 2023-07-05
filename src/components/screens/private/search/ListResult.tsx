@@ -7,10 +7,12 @@ import { EntryMetaType } from '../../../../@types/EntryMetaType';
 import { CardFormEntry } from '../form/CardFormEntry';
 import { SeparatorItem } from '../form/SeparatorItem';
 import { CardFormEntryMeta } from '../form/entrymeta/card/CardFormEntryMeta';
+import { SEARCH } from '../../../../constants/form';
 type ListProps = {
   forms: FormType[];
   entries: EntryType[];
   entryMetas: EntryMetaType[];
+  searchType: string;
 };
 
 function RenderCardForm({ item }: { item: FormType }) {
@@ -22,31 +24,42 @@ function RenderCardFormEntry({ item }: { item: EntryType }) {
 function RenderCardFormEntryMeta({ item }: { item: EntryMetaType }) {
   return <CardFormEntryMeta entryMeta={item} onPressProp={true} />;
 }
-export function ListResult({ forms, entries, entryMetas }: ListProps) {
+export function ListResult({
+  forms,
+  entries,
+  entryMetas,
+  searchType,
+}: ListProps) {
   return (
     <>
-      <FlatList
-        removeClippedSubviews={true}
-        data={forms}
-        renderItem={({ item }) => <RenderCardForm item={item} />}
-        keyExtractor={(item, index) => String(index)}
-        showsVerticalScrollIndicator={false}
-        onEndReachedThreshold={0.2}
-      />
-      <FlatList
-        ItemSeparatorComponent={SeparatorItem}
-        removeClippedSubviews={true}
-        data={entries}
-        renderItem={({ item }) => <RenderCardFormEntry item={item} />}
-        keyExtractor={(item, index) => String(index)}
-        showsVerticalScrollIndicator={false}
-        onEndReachedThreshold={0.2}
-      />
-      <VStack>
-        {entryMetas.map((item, index) => {
-          return <RenderCardFormEntryMeta key={index} item={item} />;
-        })}
-      </VStack>
+      {searchType === SEARCH.FORM && (
+        <FlatList
+          removeClippedSubviews={true}
+          data={forms}
+          renderItem={({ item }) => <RenderCardForm item={item} />}
+          keyExtractor={(item, index) => String(index)}
+          showsVerticalScrollIndicator={false}
+          onEndReachedThreshold={0.2}
+        />
+      )}
+      {searchType === SEARCH.USER && (
+        <FlatList
+          ItemSeparatorComponent={SeparatorItem}
+          removeClippedSubviews={true}
+          data={entries}
+          renderItem={({ item }) => <RenderCardFormEntry item={item} />}
+          keyExtractor={(item, index) => String(index)}
+          showsVerticalScrollIndicator={false}
+          onEndReachedThreshold={0.2}
+        />
+      )}
+      {searchType === SEARCH.ANSWER && (
+        <VStack>
+          {entryMetas.map((item, index) => {
+            return <RenderCardFormEntryMeta key={index} item={item} />;
+          })}
+        </VStack>
+      )}
     </>
   );
 }

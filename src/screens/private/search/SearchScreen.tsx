@@ -142,6 +142,7 @@ export function SearchScreen() {
                   forms={forms}
                   entries={entries}
                   entryMetas={entryMetas}
+                  searchType={search}
                 />
               </Box>
             ) : (
