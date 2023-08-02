@@ -18,6 +18,7 @@ import { API_NAMESPACE } from '../../../constants/endpoint';
 import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import LanguageContext from '../../../context/LanguageContext';
+import { sanitizeEndpoint } from '../../../helpers/manipulateString';
 
 export function SignInQRCodeScreen() {
   const { i18n } = useContext(LanguageContext)!;
@@ -38,13 +39,11 @@ export function SignInQRCodeScreen() {
   const signIn = async (url: string, secrect: string) => {
     setShowModal(true);
     try {
-      const result = await authService.signInQRCode(
-        url + API_NAMESPACE,
-        secrect
-      );
+      const endPoint = sanitizeEndpoint(url + API_NAMESPACE);
+      const result = await authService.signInQRCode(endPoint, secrect);
       const { access_token, refresh_token, user_email } = result;
       setShowModal(false);
-      handleLogin(access_token, refresh_token, url + API_NAMESPACE, user_email);
+      handleLogin(access_token, refresh_token, endPoint, user_email);
     } catch (error) {
       setShowModal(false);
       if (axios.isAxiosError(error)) {

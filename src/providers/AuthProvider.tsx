@@ -80,7 +80,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const handleUser = async () => {
     const user = await formTypeMe('cf7');
-    console.log(user);
     dispatch({
       type: 'FETCH_USER',
       payload: user,

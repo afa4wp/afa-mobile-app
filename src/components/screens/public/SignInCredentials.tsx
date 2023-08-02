@@ -26,6 +26,7 @@ import { LoginData } from '../../../@types/AuthTypes';
 import axios from 'axios';
 import { API_NAMESPACE } from '../../../constants/endpoint';
 import LanguageContext from '../../../context/LanguageContext';
+import { sanitizeEndpoint } from '../../../helpers/manipulateString';
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),
   password: yup.string().required('Password is required'),
@@ -53,9 +54,10 @@ export function SignInCredentials({ url }: { url: string }) {
     try {
       setShowModal(true);
       setShowAlert(false);
-      const result = await authService.signIn(url + API_NAMESPACE, values);
+      const endPoint = sanitizeEndpoint(url + API_NAMESPACE);
+      const result = await authService.signIn(endPoint, values);
       const { access_token, refresh_token, user_email } = result;
-      handleLogin(access_token, refresh_token, url + API_NAMESPACE, user_email);
+      handleLogin(access_token, refresh_token, endPoint, user_email);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const response = error.response;
