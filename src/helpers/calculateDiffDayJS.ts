@@ -2,13 +2,15 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import toObject from 'dayjs/plugin/toObject';
 import duration from 'dayjs/plugin/duration';
+import utc from 'dayjs/plugin/utc';
 dayjs.extend(relativeTime);
 dayjs.extend(toObject);
 dayjs.extend(duration);
+dayjs.extend(utc);
 
 export const calculateDiffDayJS = (date: string) => {
-  const startDate = dayjs(date);
-  const endDate = dayjs();
+  const startDate = dayjs.utc(date);
+  const endDate = dayjs.utc();
 
   const years = endDate.diff(startDate, 'year');
   const months = endDate.diff(startDate, 'month');

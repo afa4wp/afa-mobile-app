@@ -20,8 +20,8 @@ interface Notification {
   created_at: string;
   type: string;
   title: string;
-  user_created?: UserCreated | null;
+  user_created: UserCreated | [];
   message: string;
 }
 
-export type { Notification };
+export type { Notification, UserCreated };

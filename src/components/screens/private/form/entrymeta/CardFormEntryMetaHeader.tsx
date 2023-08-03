@@ -9,9 +9,7 @@ export function CardFormEntryMetaHeader({ entry_id }: { entry_id: number }) {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
-    if (Object.keys(state.entry).length === 0) {
-      getEntry();
-    }
+    getEntry();
   }, [entry_id]);
 
   async function getEntry() {
