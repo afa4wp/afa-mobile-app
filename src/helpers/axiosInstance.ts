@@ -143,7 +143,7 @@ const handleRequestWithTokenRefresh = async (
 export const makeApiRequest = async function (
   url: string,
   method = 'GET',
-  data = null
+  data: any = null
 ) {
   try {
     return await handleRequestWithTokenRefresh(url, method, data);
