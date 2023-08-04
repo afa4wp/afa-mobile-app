@@ -86,14 +86,16 @@ const refreshAccessToken = async (): Promise<string> => {
 const handleRequestWithTokenRefresh = async (
   url: string,
   method: string,
-  data: any
+  data: any,
+  headers: { [key: string]: string } = {}
 ): Promise<any> => {
   try {
     const apiInstance: AxiosInstance = await getPrivateApiInstance();
     const response = await apiInstance.request({
       url,
       method,
-      data,
+      params: data,
+      headers: headers,
     });
     // Handle successful response
     return response;
@@ -114,6 +116,7 @@ const handleRequestWithTokenRefresh = async (
           data,
           headers: {
             Authorization: `Bearer ${accessToken}`,
+            ...headers,
           },
         });
         // Handle successful response
@@ -143,10 +146,11 @@ const handleRequestWithTokenRefresh = async (
 export const makeApiRequest = async function (
   url: string,
   method = 'GET',
-  data: any = null
+  data: any = null,
+  headers: { [key: string]: string } = {}
 ) {
   try {
-    return await handleRequestWithTokenRefresh(url, method, data);
+    return await handleRequestWithTokenRefresh(url, method, data, headers);
   } catch (error) {
     // Handle error
     console.log('Error making API request:', error);
