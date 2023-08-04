@@ -1,8 +1,10 @@
-import { Box, ScrollView, VStack, Heading, useToast, Text } from 'native-base';
+import { VStack, Heading } from 'native-base';
 import { NotificationConfigItem } from './NotificationConfigItem';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import LanguageContext from '../../../../../context/LanguageContext';
 import { NotificationSubscriptionType } from '../../../../../@types/NotificationSubscriptionType';
+import * as notificationService from '../../../../../services/notificationSubscription';
+import { updateSingleStateInServer } from '../../../../../helpers/notificationSubscription';
 
 export function FormSubmission({
   notificationSubscription,
@@ -10,6 +12,9 @@ export function FormSubmission({
   notificationSubscription: NotificationSubscriptionType;
 }) {
   const { i18n } = useContext(LanguageContext)!;
+  const [isChecked, setIsChecked] = useState(
+    notificationSubscription.enabled == 1
+  );
 
   return (
     <VStack mb="5">
@@ -18,7 +23,14 @@ export function FormSubmission({
       </Heading>
       <NotificationConfigItem
         label={i18n.t('screen.notificationConfiguration.byPush')}
-        isChecked={false}
+        isChecked={isChecked}
+        onToggle={() => {
+          updateSingleStateInServer(
+            notificationSubscription.id,
+            isChecked,
+            setIsChecked
+          );
+        }}
       />
     </VStack>
   );
