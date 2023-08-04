@@ -9,7 +9,6 @@ export const notifications = async (
     supported_plugin,
     device_language,
   };
-  const params = new URLSearchParams(data).toString();
-  let res = await makeApiRequest(`/notification/page/${page}?${params}`, 'GET');
+  let res = await makeApiRequest(`/notification/page/${page}`, 'GET', data);
   return res.data;
 };
