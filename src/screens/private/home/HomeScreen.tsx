@@ -7,13 +7,12 @@ import { SkeletonUserWelcome } from '../../../components/skeleton/homescreen/Use
 import { GraphWeek } from '../../../components/screens/private/homescreen/GraphWeek';
 
 export function HomeScreen() {
-  const [userLogged, setUserLogged] = useState(null)
+  const [userLogged, setUserLogged] = useState(null);
 
   async function getUserInfo() {
     try {
       const data = await userService.me();
       setUserLogged(data);
-      console.log('logado', data);
     } catch (error) {
       console.log('erro', error);
     }
@@ -23,41 +22,36 @@ export function HomeScreen() {
     getUserInfo();
   }, []);
 
-  
-
   return (
     <Box safeAreaTop flex={1}>
-
       <ScrollView flex={1} px={5} py={5} showsVerticalScrollIndicator={false}>
         <SafeAreaView>
           <Box flex={1} mb="8">
-            {
-              userLogged === null ? 
-                (
-                  <SkeletonUserWelcome />
-                ) 
-                : 
-                (
-                  <HStack flex={1} justifyContent={"space-between"} alignItems={"center"}>
-                    <VStack mr="3">
-                      <Text fontSize="sm">
-                        {"Bem-vindo, %s".replace("%s", userLogged?.display_name)}
-                      </Text>
-                      <Text fontSize="24" fontWeight={600}>
-                        {"Seu relatório para hoje!"}
-                      </Text>
-                    </VStack>
-                    <VStack>
-                      <Avatar
-                        title={userLogged?.display_name.charAt(0)}
-                        source={{ uri: userLogged?.avatar_url }}
-                        size="lg"
-                      >
-                      </Avatar>
-                    </VStack>
-                  </HStack>
-                )
-            }
+            {userLogged === null ? (
+              <SkeletonUserWelcome />
+            ) : (
+              <HStack
+                flex={1}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+              >
+                <VStack mr="3">
+                  <Text fontSize="sm">
+                    {'Bem-vindo, %s'.replace('%s', userLogged?.display_name)}
+                  </Text>
+                  <Text fontSize="24" fontWeight={600}>
+                    {'Seu relatório para hoje!'}
+                  </Text>
+                </VStack>
+                <VStack>
+                  <Avatar
+                    title={userLogged?.display_name.charAt(0)}
+                    source={{ uri: userLogged?.avatar_url }}
+                    size="lg"
+                  ></Avatar>
+                </VStack>
+              </HStack>
+            )}
           </Box>
           <Box flex={1}>
             <GraphWeek />

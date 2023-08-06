@@ -1,5 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 import { LoggedData } from '../@types/AuthTypes';
+import { generateUniqueUUID } from './randomString';
+import { DEVICE_ID } from '../constants/auth';
 
 export const addItem = async (key: string, item: LoggedData) => {
   // Retrieve the stored string representation
@@ -126,4 +128,25 @@ export const updateItemById = async (
   }
 
   return false; // Item not found or storage value not set
+};
+
+export const saveDeviceIdToDeviceStorage = async () => {
+  try {
+    const deviceId = await generateUniqueUUID();
+    await SecureStore.setItemAsync(DEVICE_ID, deviceId);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getOrCreateDeviceId = async () => {
+  try {
+    const deviceId = await SecureStore.getItemAsync(DEVICE_ID);
+    if (!deviceId) {
+      saveDeviceIdToDeviceStorage();
+    }
+    return deviceId;
+  } catch (error) {
+    throw error;
+  }
 };
