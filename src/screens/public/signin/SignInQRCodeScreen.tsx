@@ -19,13 +19,17 @@ import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import LanguageContext from '../../../context/LanguageContext';
 import { sanitizeEndpoint } from '../../../helpers/manipulateString';
+import NotificationContext from '../../../context/notification';
+import * as deviceService from '../../../services/device';
+import { getOrCreateDeviceId } from '../../../helpers/secureStore';
 
 export function SignInQRCodeScreen() {
-  const { i18n } = useContext(LanguageContext)!;
+  const { i18n, locale } = useContext(LanguageContext)!;
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const { handleLogin } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
+  const { registerForPushNotificationsAsync } = useContext(NotificationContext);
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
@@ -42,6 +46,18 @@ export function SignInQRCodeScreen() {
       const endPoint = sanitizeEndpoint(url + API_NAMESPACE);
       const result = await authService.signInQRCode(endPoint, secrect);
       const { access_token, refresh_token, user_email } = result;
+
+      const expoPushToken = await registerForPushNotificationsAsync();
+      if (expoPushToken) {
+        const device_id = await getOrCreateDeviceId();
+
+        const data = {
+          expo_token: expoPushToken,
+          device_id: device_id,
+          device_language: locale,
+        };
+        await deviceService.register(endPoint, data, access_token);
+      }
       setShowModal(false);
       handleLogin(access_token, refresh_token, endPoint, user_email);
     } catch (error) {

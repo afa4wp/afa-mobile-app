@@ -27,6 +27,9 @@ import axios from 'axios';
 import { API_NAMESPACE } from '../../../constants/endpoint';
 import LanguageContext from '../../../context/LanguageContext';
 import { sanitizeEndpoint } from '../../../helpers/manipulateString';
+import * as deviceService from '../../../services/device';
+import NotificationContext from '../../../context/notification';
+
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),
   password: yup.string().required('Password is required'),
@@ -34,10 +37,11 @@ const validationSchema = yup.object().shape({
 
 export function SignInCredentials({ url }: { url: string }) {
   const { handleLogin } = useContext(AuthContext);
-  const { i18n } = useContext(LanguageContext)!;
+  const { i18n, locale } = useContext(LanguageContext)!;
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const { registerForPushNotificationsAsync } = useContext(NotificationContext);
 
   const formik = useFormik({
     initialValues: {
@@ -57,6 +61,19 @@ export function SignInCredentials({ url }: { url: string }) {
       const endPoint = sanitizeEndpoint(url + API_NAMESPACE);
       const result = await authService.signIn(endPoint, values);
       const { access_token, refresh_token, user_email } = result;
+
+      const expoPushToken = await registerForPushNotificationsAsync();
+      if (expoPushToken) {
+        const device_id = await getOrCreateDeviceId();
+
+        const data = {
+          expo_token: expoPushToken,
+          device_id: device_id,
+          device_language: locale,
+        };
+        await deviceService.register(endPoint, data, access_token);
+      }
+
       handleLogin(access_token, refresh_token, endPoint, user_email);
     } catch (error) {
       if (axios.isAxiosError(error)) {

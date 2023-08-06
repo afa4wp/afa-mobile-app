@@ -1,4 +1,4 @@
-import { makeApiRequest } from '../helpers/axiosInstance';
+import axios from 'axios';
 
 type DeviceData = {
   expo_token: string;
@@ -6,7 +6,15 @@ type DeviceData = {
   device_language: string;
 };
 
-export const register = async (data: DeviceData) => {
-  let res = await makeApiRequest('/user/device', 'POST', data);
+export const register = async (
+  end_point: string,
+  data: DeviceData,
+  access_token: string
+) => {
+  let res = await axios.post(end_point + '/user/device', data, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
   return res.data;
 };
