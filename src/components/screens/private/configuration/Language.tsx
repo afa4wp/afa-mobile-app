@@ -1,23 +1,45 @@
-import { Box, Modal, Spinner, Center } from 'native-base';
+import { Box, Modal, Spinner, Text, useToast } from 'native-base';
 import React, { useContext, useState } from 'react';
 import { ConfigurationItem } from './ConfigurationItem';
 import { LanguageItem } from './LanguageItem';
 import LanguageContext from '../../../../context/LanguageContext';
 import { TRANSLATIONS_OBJECT } from '../../../../constants/locales';
+import * as deviceService from '../../../../services/device';
+import { getOrCreateDeviceId } from '../../../../helpers/secureStore';
+
 export function Language() {
   const [showModal, setShowModal] = useState(false);
   const { i18n, changeLanguage } = useContext(LanguageContext)!;
   const [load, setLoad] = useState(false);
+  const toast = useToast();
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
   const handleLanguageChange = async (language: string) => {
-    setLoad(true);
-    await changeLanguage(language);
-    handleCloseModal();
-    setLoad(false);
+    try {
+      setLoad(true);
+      const device_id = await getOrCreateDeviceId();
+      await deviceService.language(device_id, language);
+      await changeLanguage(language);
+      handleCloseModal();
+      setLoad(false);
+    } catch (error) {
+      toast.show({
+        render: () => {
+          return (
+            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
+              <Text color="mark.700" fontSize="md">
+                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
+              </Text>
+            </Box>
+          );
+        },
+      });
+    } finally {
+      setLoad(false);
+    }
   };
 
   return (
