@@ -13,9 +13,19 @@ import { useNavigation } from '@react-navigation/native';
 import Welcome from '../../../assets/welcome.svg';
 import { Ionicons } from '@expo/vector-icons';
 import LanguageContext from '../../../context/LanguageContext';
+import NotificationContext from '../../../context/notification';
+
 export function SignInScreen() {
   const navigation = useNavigation();
   const { i18n } = useContext(LanguageContext)!;
+  const { registerForPushNotificationsAsync } = useContext(NotificationContext);
+
+  const permition = async (screen: string) => {
+    const expoPushToken = await registerForPushNotificationsAsync();
+    if (expoPushToken) {
+      navigation.navigate(screen);
+    }
+  };
 
   return (
     <Box flex={1} bg="mark.700">
@@ -44,8 +54,8 @@ export function SignInScreen() {
             <Button
               size="lg"
               bg="mark.900"
-              onPress={() => {
-                navigation.navigate('SignInQRCode');
+              onPress={async () => {
+                await permition('SignInQRCode');
               }}
               leftIcon={<Icon as={Ionicons} name="qr-code" size="md" />}
             >
@@ -56,8 +66,8 @@ export function SignInScreen() {
             <Button
               size="lg"
               variant="outline"
-              onPress={() => {
-                navigation.navigate('SignInUserInfo');
+              onPress={async () => {
+                await permition('SignInUserInfo');
               }}
             >
               {i18n.t('screen.sigin.loginPromptCredentials')}
