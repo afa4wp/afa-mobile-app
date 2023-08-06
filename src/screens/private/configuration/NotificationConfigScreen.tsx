@@ -5,9 +5,11 @@ import { CenterSpinner } from '../../../components/skeleton/CenterSpinner';
 import * as notificationService from '../../../services/notificationSubscription';
 import { NotificationSubscriptionType } from '../../../@types/NotificationSubscriptionType';
 import { NotificationConfigItemMain } from '../../../components/screens/private/configuration/notification_config/NotificationConfigItemMain';
+import NotificationContext from '../../../context/notification';
 
 export function NotificationConfigScreen() {
   const { i18n } = useContext(LanguageContext)!;
+  const { registerForPushNotificationsAsync } = useContext(NotificationContext);
   const [showSpinner, setShowSpinner] = useState(true);
   const [subscriptions, setSubscriptions] = useState<
     NotificationSubscriptionType[]
@@ -17,9 +19,8 @@ export function NotificationConfigScreen() {
   async function getSubscriptions() {
     setShowSpinner(true);
     try {
-      const results = await notificationService.getSubscription(
-        'ExponentPushToken[2xxxxxxxxxxxxxxxxxxxxx]'
-      );
+      const expoPushToken = await registerForPushNotificationsAsync();
+      const results = await notificationService.getSubscription(expoPushToken);
       setSubscriptions(results);
     } catch (error) {
       toast.show({

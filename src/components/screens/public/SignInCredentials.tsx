@@ -29,6 +29,7 @@ import LanguageContext from '../../../context/LanguageContext';
 import { sanitizeEndpoint } from '../../../helpers/manipulateString';
 import * as deviceService from '../../../services/device';
 import NotificationContext from '../../../context/notification';
+import { getOrCreateDeviceId } from '../../../helpers/secureStore';
 
 const validationSchema = yup.object().shape({
   username: yup.string().required('Username is required'),

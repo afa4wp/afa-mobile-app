@@ -1,21 +1,41 @@
-import { Box, Modal, Text, Button, Spinner } from 'native-base';
+import { Box, Modal, Text, Button, Spinner, useToast } from 'native-base';
 import React, { useContext, useState } from 'react';
 import { ConfigurationItem } from './ConfigurationItem';
 import AuthContext from '../../../../context/AuthContext';
 import LanguageContext from '../../../../context/LanguageContext';
+import * as authService from '../../../../services/auth';
+import { getOrCreateDeviceId } from '../../../../helpers/secureStore';
 
 export function Logout() {
   const { i18n } = useContext(LanguageContext)!;
   const [showModal, setShowModal] = useState(false);
   const [load, setLoad] = useState(false);
+  const toast = useToast();
 
   const { handleLogout } = useContext(AuthContext);
 
   const deleteExpoToken = async () => {
-    setLoad(true);
-
-    handleLogout();
-    setLoad(false);
+    try {
+      setLoad(true);
+      const device_id = await getOrCreateDeviceId();
+      await authService.logout(device_id);
+      handleLogout();
+      setLoad(false);
+    } catch (error) {
+      toast.show({
+        render: () => {
+          return (
+            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
+              <Text color="mark.700" fontSize="md">
+                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
+              </Text>
+            </Box>
+          );
+        },
+      });
+    } finally {
+      setLoad(false);
+    }
   };
 
   return (
