@@ -4,8 +4,10 @@ import FormContext from '../../../../../context/FormContext';
 import * as entryService from '../../../../../services/formEntry';
 import { CardFormEntry } from '../CardFormEntry';
 import { SkeletonItem } from '../../../../skeleton/form/SkeletonFormEntry';
+import AuthContext from '../../../../../context/AuthContext';
 export function CardFormEntryMetaHeader({ entry_id }: { entry_id: number }) {
   const { state, setEntry } = useContext(FormContext) || {};
+  const { state: authState } = useContext(AuthContext);
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
@@ -15,7 +17,10 @@ export function CardFormEntryMetaHeader({ entry_id }: { entry_id: number }) {
   async function getEntry() {
     setShowLoading(true);
     try {
-      const data = await entryService.entry_by_id('cf7', entry_id);
+      const data = await entryService.entry_by_id(
+        authState.formType as string,
+        entry_id
+      );
       if (data) {
         setEntry(data);
       }

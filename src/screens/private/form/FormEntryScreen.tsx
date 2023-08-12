@@ -8,9 +8,11 @@ import * as entryService from '../../../services/formEntry';
 import LanguageContext from '../../../context/LanguageContext';
 import { SkeletonFormEntry } from '../../../components/skeleton/form/SkeletonFormEntry';
 import { SeparatorItem } from '../../../components/screens/private/form/SeparatorItem';
+import AuthContext from '../../../context/AuthContext';
 export function FormEntryScreen({ route }) {
   const { state, setForm } = useContext(FormContext) || {};
   const { i18n } = useContext(LanguageContext)!;
+  const { state: authState } = useContext(AuthContext);
   const { formId } = route.params;
 
   const [hasMoreData, setHasMoreData] = useState(true);
@@ -27,7 +29,11 @@ export function FormEntryScreen({ route }) {
     }
     setIsLoading(true);
     try {
-      const data = await entryService.entries('cf7', formId, page);
+      const data = await entryService.entries(
+        authState.formType as string,
+        formId,
+        page
+      );
       if (data.results && data.results.length > 0) {
         const currentEntries = data.results;
         setEntries([...entries, ...currentEntries]);

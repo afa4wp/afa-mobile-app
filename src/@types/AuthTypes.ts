@@ -3,6 +3,7 @@ interface State {
   activeUser: string | null;
   isLoading: boolean;
   user: User;
+  formType: string | null;
 }
 
 interface AuthContextProps {
@@ -16,7 +17,8 @@ interface AuthContextProps {
   ) => void;
   handleToken: () => void;
   handleLogout: () => void;
-  handleUser: () => void;
+  handleUser: (formType: string) => void;
+  updateFormType: (formType: string) => void;
 }
 
 interface User {
@@ -37,9 +39,14 @@ type Action =
   | { type: 'LOGGED_OUT'; payload: null }
   | {
       type: 'RESTORE_TOKEN';
-      payload: { isLoggedIn: boolean; activeUser: string | null };
+      payload: {
+        isLoggedIn: boolean;
+        activeUser: string | null;
+        formType: string | null;
+      };
     }
-  | { type: 'FETCH_USER'; payload: User };
+  | { type: 'FETCH_USER'; payload: User }
+  | { type: 'UPDATE_FORM_TYPE'; payload: string };
 
 interface LoginData {
   username: string;

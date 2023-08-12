@@ -12,10 +12,13 @@ import { CenterSpinner } from '../../../components/skeleton/CenterSpinner';
 import { SearchNotFound } from '../../../components/skeleton/SearchNotFound';
 import { SearchInput } from '../../../components/screens/private/search/SearchInput';
 import { ListResult } from '../../../components/screens/private/search/ListResult';
+import AuthContext from '../../../context/AuthContext';
+
 export function SearchScreen() {
   const { i18n } = useContext(LanguageContext)!;
   const [search, setSearch] = useState(SEARCH.FORM);
   const [showLoading, setShowLoading] = useState(false);
+  const { state: authState } = useContext(AuthContext);
 
   const [forms, setForms] = useState<FormType[]>([]);
   const [entries, setEntries] = useState<EntryType[]>([]);
@@ -25,7 +28,10 @@ export function SearchScreen() {
   async function getForms(searchContent: string) {
     setShowLoading(true);
     try {
-      const data = await formService.formsSearch('cf7', searchContent);
+      const data = await formService.formsSearch(
+        authState.formType as string,
+        searchContent
+      );
       if (data.results && data.results.length > 0) {
         setForms([...data.results]);
       } else {
@@ -40,7 +46,10 @@ export function SearchScreen() {
   async function getEntries(searchContent: string) {
     setShowLoading(true);
     try {
-      const data = await entryService.entriesSearch('cf7', searchContent);
+      const data = await entryService.entriesSearch(
+        authState.formType as string,
+        searchContent
+      );
       if (data.results && data.results.length > 0) {
         setEntries([...data.results]);
       } else {
@@ -55,7 +64,10 @@ export function SearchScreen() {
   async function getEntryMetas(searchContent: string) {
     setShowLoading(true);
     try {
-      const data = await entryMetaService.entryMetaSearch('cf7', searchContent);
+      const data = await entryMetaService.entryMetaSearch(
+        authState.formType as string,
+        searchContent
+      );
       if (data && data.length > 0) {
         setEntryMetas([...data]);
       } else {

@@ -8,14 +8,14 @@ export function ProfileScreen() {
   const { i18n } = useContext(LanguageContext)!;
   const [showSpinner, setShowSpinner] = useState(true);
   const {
-    state: { user },
+    state: { user, formType },
     handleUser,
   } = useContext(AuthContext);
 
   const getUserData = async () => {
     setShowSpinner(true);
     try {
-      await handleUser();
+      await handleUser(formType as string);
     } catch (error) {
       toast.show({
         render: () => {

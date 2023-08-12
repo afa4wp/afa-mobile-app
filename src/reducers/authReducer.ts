@@ -14,6 +14,7 @@ const authReducer: Reducer<State, Action> = (state, action) => {
       return {
         ...state,
         isLoggedIn: false,
+        formType: null,
         activeUser: action.payload,
       };
     }
@@ -22,6 +23,7 @@ const authReducer: Reducer<State, Action> = (state, action) => {
         ...state,
         activeUser: action.payload.activeUser,
         isLoggedIn: action.payload.isLoggedIn,
+        formType: action.payload.formType,
         isLoading: false,
       };
     }
@@ -29,6 +31,12 @@ const authReducer: Reducer<State, Action> = (state, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    }
+    case 'UPDATE_FORM_TYPE': {
+      return {
+        ...state,
+        formType: action.payload,
       };
     }
     default:

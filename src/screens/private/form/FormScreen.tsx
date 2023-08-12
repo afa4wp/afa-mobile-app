@@ -6,10 +6,12 @@ import { CardFormHeader } from '../../../components/screens/private/form/CardFor
 import * as formService from '../../../services/form';
 import { SkeletonForm } from '../../../components/skeleton/form/SkeletonForm';
 import LanguageContext from '../../../context/LanguageContext';
+import AuthContext from '../../../context/AuthContext';
 
 export function FormScreen() {
   const { i18n } = useContext(LanguageContext)!;
   const [hasMoreData, setHasMoreData] = useState(true);
+  const { state: authState } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [forms, setForms] = useState([] as FormType[]);
@@ -23,7 +25,7 @@ export function FormScreen() {
     }
     setIsLoading(true);
     try {
-      const data = await formService.forms('cf7', page);
+      const data = await formService.forms(authState.formType as string, page);
       if (data.results && data.results.length > 0) {
         const currentForm = data.results;
         setForms([...forms, ...currentForm]);

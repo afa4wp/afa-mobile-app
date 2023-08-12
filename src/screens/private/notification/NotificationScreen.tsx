@@ -6,9 +6,11 @@ import { CardNotification } from '../../../components/screens/private/notificati
 import { SeparatorItem } from '../../../components/general/SeparatorItem';
 import { CenterSpinner } from '../../../components/skeleton/CenterSpinner';
 import { Notification } from '../../../@types/NotificationType';
+import AuthContext from '../../../context/AuthContext';
 
 export function NotificationScreen() {
   const { i18n } = useContext(LanguageContext)!;
+  const { state: authState } = useContext(AuthContext);
   const [hasMoreData, setHasMoreData] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -23,7 +25,7 @@ export function NotificationScreen() {
     }
     setIsLoading(true);
     try {
-      const supported_plugin = 'cf7';
+      const supported_plugin = authState.formType as string;
       const device_language = 'pt';
 
       const data = await notificationService.notifications(

@@ -13,11 +13,12 @@ import { EntryMetaType } from '../../../@types/EntryMetaType';
 import { useEffect, useState, useContext } from 'react';
 import * as entryMetaService from '../../../services/formEntryMeta';
 import LanguageContext from '../../../context/LanguageContext';
-
+import AuthContext from '../../../context/AuthContext';
 export function FormEntryMetaScreen({ route }) {
   const { entryId } = route.params;
   const [entryMetas, setEntryMetas] = useState([] as EntryMetaType[]);
   const { i18n } = useContext(LanguageContext)!;
+  const { state: authState } = useContext(AuthContext);
   const [showLoading, setShowLoading] = useState(false);
   const toast = useToast();
 
@@ -25,7 +26,10 @@ export function FormEntryMetaScreen({ route }) {
     try {
       setShowLoading(true);
       setEntryMetas([]);
-      const data = await entryMetaService.entryMeta('cf7', entryId);
+      const data = await entryMetaService.entryMeta(
+        authState.formType as string,
+        entryId
+      );
       setEntryMetas([...data]);
     } catch (error) {
       toast.show({

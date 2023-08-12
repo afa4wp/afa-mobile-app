@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext';
 import authReducer from '../reducers/authReducer';
 import * as SecureStore from 'expo-secure-store';
 import * as helperSecureStore from '../helpers/secureStore';
-import { LOGGEDINFO, ACTIVEUSER } from '../constants/auth';
+import { LOGGEDINFO, ACTIVEUSER, FORM_TYPE } from '../constants/auth';
 import { formTypeMe } from '../services/user';
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ const initialState: State = {
   activeUser: null,
   isLoading: true,
   user: {} as User,
+  formType: null,
 };
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
@@ -42,7 +43,9 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const handleToken = async () => {
     let activeUser;
+    let formType;
     try {
+      formType = await SecureStore.getItemAsync(FORM_TYPE);
       activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
       if (activeUser) {
         const loggedInInfo = await helperSecureStore.findItemById(
@@ -61,12 +64,14 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         payload: {
           isLoggedIn: activeUser ? true : false,
           activeUser: activeUser ? activeUser : null,
+          formType: formType ? formType : null,
         },
       });
     }
   };
 
   const handleLogout = async () => {
+    await SecureStore.deleteItemAsync(FORM_TYPE);
     let activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
     await SecureStore.deleteItemAsync(ACTIVEUSER);
     if (activeUser) {
@@ -78,11 +83,19 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     });
   };
 
-  const handleUser = async () => {
-    const user = await formTypeMe('cf7');
+  const handleUser = async (formType: string) => {
+    const user = await formTypeMe(formType);
     dispatch({
       type: 'FETCH_USER',
       payload: user,
+    });
+  };
+
+  const updateFormType = async (formType: string) => {
+    await SecureStore.setItemAsync(FORM_TYPE, formType);
+    dispatch({
+      type: 'UPDATE_FORM_TYPE',
+      payload: formType,
     });
   };
 
@@ -95,7 +108,14 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
   return (
     <AuthContext.Provider
-      value={{ state, handleLogin, handleToken, handleLogout, handleUser }}
+      value={{
+        state,
+        handleLogin,
+        handleToken,
+        handleLogout,
+        handleUser,
+        updateFormType,
+      }}
     >
       {children}
     </AuthContext.Provider>
