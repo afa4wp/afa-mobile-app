@@ -9,7 +9,7 @@ import { Notification } from '../../../@types/NotificationType';
 import AuthContext from '../../../context/AuthContext';
 
 export function NotificationScreen() {
-  const { i18n } = useContext(LanguageContext)!;
+  const { i18n, locale } = useContext(LanguageContext)!;
   const { state: authState } = useContext(AuthContext);
   const [hasMoreData, setHasMoreData] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,7 @@ export function NotificationScreen() {
     setIsLoading(true);
     try {
       const supported_plugin = authState.formType as string;
-      const device_language = 'pt';
+      const device_language = locale;
 
       const data = await notificationService.notifications(
         page,

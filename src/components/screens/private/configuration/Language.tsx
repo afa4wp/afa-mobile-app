@@ -21,7 +21,7 @@ export function Language() {
     try {
       setLoad(true);
       const device_id = await getOrCreateDeviceId();
-      await deviceService.language(device_id, language);
+      await deviceService.language(device_id as string, language);
       await changeLanguage(language);
       handleCloseModal();
       setLoad(false);
