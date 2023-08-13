@@ -7,6 +7,7 @@ import { SeparatorItem } from '../../../components/general/SeparatorItem';
 import { CenterSpinner } from '../../../components/skeleton/CenterSpinner';
 import { Notification } from '../../../@types/NotificationType';
 import AuthContext from '../../../context/AuthContext';
+import ErrorMessageToast from '../../../components/general/ErrorMessageToast';
 
 export function NotificationScreen() {
   const { i18n, locale } = useContext(LanguageContext)!;
@@ -48,11 +49,7 @@ export function NotificationScreen() {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });

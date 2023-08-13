@@ -108,6 +108,13 @@
       "createdBy": "Created by",
       "submissions": "Submissions",
       "noSubmissions": "No submissions."
+    },
+    "home": {
+      "noFormbuilders": "No supported form builders were found for this account. We recommend installing a supported form builder such as WP Form, Gravity Form, Contact Form 7, or others from our list.",
+      "availableFormBuilders": "Available Form Builders"
     }
+  },
+  "general": {
+    "errorOccurred": "An error occurred. Please try again later."
   }
 }

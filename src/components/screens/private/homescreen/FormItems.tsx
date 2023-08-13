@@ -1,10 +1,11 @@
-import { Box, Spinner, useToast, Text, Modal } from 'native-base';
+import { Box, Spinner, useToast, Text, Modal, Heading } from 'native-base';
 import { useEffect, useState, useContext } from 'react';
 import { FormItem } from './FormItem';
 import * as configService from '../../../../services/config';
 import AuthContext from '../../../../context/AuthContext';
 import LanguageContext from '../../../../context/LanguageContext';
 import { getSingleKey } from '../../../../helpers/manipulateObject';
+import ErrorMessageToast from '../../../general/ErrorMessageToast';
 interface FormData {
   [key: string]: string;
 }
@@ -32,11 +33,7 @@ export function FormItems() {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });
@@ -60,7 +57,7 @@ export function FormItems() {
       >
         <Modal.Content height="100%" borderBottomRadius={0}>
           <Modal.Header color="mark.800" style={{ flexDirection: 'row' }}>
-            Plugins no sistema
+            {i18n.t('screen.home.availableFormBuilders')}
           </Modal.Header>
           <Modal.Body padding={0}>
             {!load ? (
@@ -74,6 +71,13 @@ export function FormItems() {
                     }}
                   ></FormItem>
                 ))}
+                {Object.keys(data).length === 0 && (
+                  <Box px="4" py="4">
+                    <Text color="mark.800" fontSize="lg">
+                      {i18n.t('screen.home.noFormbuilders')}
+                    </Text>
+                  </Box>
+                )}
               </Box>
             ) : (
               <Box flex={1} mt="5">

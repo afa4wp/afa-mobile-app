@@ -6,6 +6,7 @@ import * as notificationService from '../../../services/notificationSubscription
 import { NotificationSubscriptionType } from '../../../@types/NotificationSubscriptionType';
 import { NotificationConfigItemMain } from '../../../components/screens/private/configuration/notification_config/NotificationConfigItemMain';
 import NotificationContext from '../../../context/notification';
+import ErrorMessageToast from '../../../components/general/ErrorMessageToast';
 
 export function NotificationConfigScreen() {
   const { i18n } = useContext(LanguageContext)!;
@@ -26,11 +27,7 @@ export function NotificationConfigScreen() {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });

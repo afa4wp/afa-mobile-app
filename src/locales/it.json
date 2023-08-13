@@ -108,6 +108,13 @@
       "createdBy": "Creato da",
       "submissions": "Invii",
       "noSubmissions": "Nessuna invio."
+    },
+    "home": {
+      "noFormbuilders": "Nessun costruttore di moduli supportato è stato trovato per questo account. Ti consigliamo di installare un costruttore di moduli supportato, come WP Form, Gravity Form, Contact Form 7 o altri dalla nostra lista.",
+      "availableFormBuilders": "Costruttori di Moduli Disponibili"
     }
+  },
+  "general": {
+    "errorOccurred": "Si è verificato un errore. Riprova più tardi."
   }
 }

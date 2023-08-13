@@ -7,6 +7,7 @@ import * as formService from '../../../services/form';
 import { SkeletonForm } from '../../../components/skeleton/form/SkeletonForm';
 import LanguageContext from '../../../context/LanguageContext';
 import AuthContext from '../../../context/AuthContext';
+import ErrorMessageToast from '../../../components/general/ErrorMessageToast';
 
 export function FormScreen() {
   const { i18n } = useContext(LanguageContext)!;
@@ -41,11 +42,7 @@ export function FormScreen() {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });

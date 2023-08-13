@@ -5,6 +5,7 @@ import AuthContext from '../../../../context/AuthContext';
 import LanguageContext from '../../../../context/LanguageContext';
 import * as authService from '../../../../services/auth';
 import { getOrCreateDeviceId } from '../../../../helpers/secureStore';
+import ErrorMessageToast from '../../../general/ErrorMessageToast';
 
 export function Logout() {
   const { i18n } = useContext(LanguageContext)!;
@@ -18,18 +19,14 @@ export function Logout() {
     try {
       setLoad(true);
       const device_id = await getOrCreateDeviceId();
-      await authService.logout(device_id);
+      await authService.logout(device_id as string);
       handleLogout();
       setLoad(false);
     } catch (error) {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });

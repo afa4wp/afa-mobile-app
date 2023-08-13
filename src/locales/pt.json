@@ -108,6 +108,13 @@
       "createdBy": "Criado por",
       "submissions": "Envios",
       "noSubmissions": "Nenhum envio."
+    },
+    "home": {
+      "noFormbuilders": "Nenhum construtor de formulários suportado foi encontrado para esta conta. Recomendamos a instalação de um construtor de formulários suportado, como WP Form, Gravity Form, Contact Form 7 ou outros da nossa lista.",
+      "availableFormBuilders": "Construtores de Formulários Disponíveis"
     }
+  },
+  "general": {
+    "errorOccurred": "Ocorreu um erro. Por favor, tente novamente mais tarde."
   }
 }

@@ -6,6 +6,7 @@ import LanguageContext from '../../../../context/LanguageContext';
 import { TRANSLATIONS_OBJECT } from '../../../../constants/locales';
 import * as deviceService from '../../../../services/device';
 import { getOrCreateDeviceId } from '../../../../helpers/secureStore';
+import ErrorMessageToast from '../../../general/ErrorMessageToast';
 
 export function Language() {
   const [showModal, setShowModal] = useState(false);
@@ -29,11 +30,7 @@ export function Language() {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });

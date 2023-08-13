@@ -14,6 +14,8 @@ import { useEffect, useState, useContext } from 'react';
 import * as entryMetaService from '../../../services/formEntryMeta';
 import LanguageContext from '../../../context/LanguageContext';
 import AuthContext from '../../../context/AuthContext';
+import ErrorMessageToast from '../../../components/general/ErrorMessageToast';
+
 export function FormEntryMetaScreen({ route }) {
   const { entryId } = route.params;
   const [entryMetas, setEntryMetas] = useState([] as EntryMetaType[]);
@@ -35,11 +37,7 @@ export function FormEntryMetaScreen({ route }) {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });

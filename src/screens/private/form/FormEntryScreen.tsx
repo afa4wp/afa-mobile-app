@@ -9,6 +9,8 @@ import LanguageContext from '../../../context/LanguageContext';
 import { SkeletonFormEntry } from '../../../components/skeleton/form/SkeletonFormEntry';
 import { SeparatorItem } from '../../../components/screens/private/form/SeparatorItem';
 import AuthContext from '../../../context/AuthContext';
+import ErrorMessageToast from '../../../components/general/ErrorMessageToast';
+
 export function FormEntryScreen({ route }) {
   const { state, setForm } = useContext(FormContext) || {};
   const { i18n } = useContext(LanguageContext)!;
@@ -49,11 +51,7 @@ export function FormEntryScreen({ route }) {
       toast.show({
         render: () => {
           return (
-            <Box bg="mark.900" px="2" py="1" rounded="sm" mb={5}>
-              <Text color="mark.700" fontSize="md">
-                {i18n.t('screen.siginCredentials.credentials.errorOccurred')}
-              </Text>
-            </Box>
+            <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
       });
