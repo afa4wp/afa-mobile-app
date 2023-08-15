@@ -51,6 +51,9 @@
       "roles": "Roles",
       "failedLoadInformation": "No se pudieron cargar la información."
     },
+    "notification": {
+      "noNotification": "No se encontraron notificaciones."
+    },
     "notificationConfiguration": {
       "formCreationNotifications": "Notificaciones de creación de formularios",
       "formSubmissionNotifications": "Notificaciones de envío de formularios",
@@ -112,6 +115,12 @@
     "home": {
       "noFormbuilders": "No se encontró ningún constructor de formularios admitido para esta cuenta. Te recomendamos instalar un constructor de formularios admitido, como WP Form, Gravity Form, Contact Form 7 u otros de nuestra lista.",
       "availableFormBuilders": "Constructores de Formularios Disponibles"
+    },
+    "about": {
+      "title": "Simplifica la Revisión de Formularios con Nuestra Aplicación Móvil",
+      "introduction": "Bienvenido a nuestra aplicación móvil, donde la experiencia de gestionar las entradas de formularios se lleva a un nuevo nivel. Nuestra aplicación está diseñada cuidadosamente para elevar la gestión de entradas de formularios, haciéndola más fluida y eficiente que nunca.",
+      "development": "Diseñada para satisfacer tus necesidades, nuestra aplicación ofrece un soporte perfecto para los populares constructores de formularios de WordPress como WP Forms, Gravity Forms, Contact Form 7, WeForm y otros más. Esto significa que tienes el poder de supervisar y administrar los envíos de formularios sin esfuerzo, desde cualquier lugar y en cualquier momento. Ya sea en movimiento o en la oficina, nuestra aplicación pone el control en tus manos.",
+      "conclusion": "Imagina mantener la organización, obtener valiosos conocimientos y hacer un seguimiento de las interacciones de los usuarios, todo desde la comodidad de tu dispositivo móvil. Nuestra aplicación intuitiva y amigable es la respuesta para simplificar la gestión de entradas de formularios. ¿Listo para explorar un mundo donde la gestión de envíos de formularios es fácil? Explora las posibilidades hoy mismo y transforma tu enfoque en la gestión de entradas de formularios."
     }
   },
   "general": {

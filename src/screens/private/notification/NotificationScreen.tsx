@@ -92,9 +92,9 @@ export function NotificationScreen() {
               }
             />
           ) : (
-            <Box mt="5">
+            <Box mt="4" px="4">
               <Heading color="mark.800">
-                {i18n.t('screen.form.noFormsMessage')}
+                {i18n.t('screen.notification.noNotification')}
               </Heading>
             </Box>
           )

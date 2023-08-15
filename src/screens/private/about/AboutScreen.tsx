@@ -8,33 +8,27 @@ import {
   Center,
 } from 'native-base';
 import Constants from 'expo-constants';
+import LanguageContext from '../../../context/LanguageContext';
+import { useContext } from 'react';
 
 export function AboutScreen() {
+  const { i18n } = useContext(LanguageContext)!;
   const appVersion = Constants.manifest?.version ?? 'Unknown';
   return (
     <Box safeArea flex={1} bg="mark.700" px="5">
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <VStack>
-          <Heading color="mark.900">
-            Queremos te ajudar a ficar por dentro de todos os seus formulários
-          </Heading>
+          <Heading color="mark.900">{i18n.t('screen.about.title')}</Heading>
         </VStack>
         <VStack mt="4">
           <Text fontSize="md" color="mark.800">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-            doloribus, et sed voluptate minus itaque fugit eveniet corrupti in.
-            Quo ratione corrupti iusto hic corporis recusandae quas repellat
-            explicabo distinctio?
+            {i18n.t('screen.about.introduction')}
           </Text>
           <Text fontSize="md" color="mark.800" mt="4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. A saepe
-            voluptatum, error ab doloribus debitis voluptas ratione tenetur
-            fugiat id rem, veritatis magnam.
+            {i18n.t('screen.about.development')}
           </Text>
           <Text fontSize="md" color="mark.800" mt="4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
-            similique officiis eos deserunt sequi aspernatur ad nemo
-            reprehenderit.
+            {i18n.t('screen.about.conclusion')}
           </Text>
         </VStack>
         <Flex flex={1} direction="column-reverse" mt="4">

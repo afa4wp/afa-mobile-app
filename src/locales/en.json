@@ -51,6 +51,9 @@
       "roles": "Roles",
       "failedLoadInformation": "Failed to load the information."
     },
+    "notification": {
+      "noNotification": "No notifications found."
+    },
     "notificationConfiguration": {
       "formCreationNotifications": "Form Creation Notifications",
       "formSubmissionNotifications": "Submission Notifications",
@@ -112,6 +115,12 @@
     "home": {
       "noFormbuilders": "No supported form builders were found for this account. We recommend installing a supported form builder such as WP Form, Gravity Form, Contact Form 7, or others from our list.",
       "availableFormBuilders": "Available Form Builders"
+    },
+    "about": {
+      "title": "Simplify Form Review with Our Mobile App",
+      "introduction": "Welcome to our mobile app, where the experience of managing form entries is taken to a whole new level. Our application is thoughtfully designed to elevate your form entry management, making it smoother and more efficient than ever before.",
+      "development": "Designed to cater to your needs, our app seamlessly supports popular WordPress form builders including WP Forms, Gravity Forms, Contact Form 7, WeForm and more. This means you have the power to effortlessly oversee and oversee form submissions from anywhere, at any time. Whether you're on the move or in the office, our app puts the control in your hands.",
+      "conclusion": "Imagine staying organized, gaining valuable insights, and keeping track of user interactions, all from the convenience of your hand-held device. Our intuitive and user-friendly app is your answer to simplified form entry management. Ready to explore a world where managing form submissions is a breeze? Dive into the possibilities today and transform your approach to form entry management."
     }
   },
   "general": {

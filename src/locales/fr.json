@@ -51,6 +51,9 @@
       "roles": "Rôles",
       "failedLoadInformation": "Échec du chargement des informations."
     },
+    "notification": {
+      "noNotification": "Aucune notification trouvée."
+    },
     "notificationConfiguration": {
       "formCreationNotifications": "Notifications de création de formulaires",
       "formSubmissionNotifications": "Notifications d'envoi de formulaires",
@@ -112,6 +115,12 @@
     "home": {
       "noFormbuilders": "Aucun constructeur de formulaires pris en charge n'a été trouvé pour ce compte. Nous vous recommandons d'installer un constructeur de formulaires pris en charge, tel que WP Form, Gravity Form, Contact Form 7 ou d'autres de notre liste.",
       "availableFormBuilders": "Constructeurs de Formulaires Disponibles"
+    },
+    "about": {
+      "title": "Simplifiez la Révision des Formulaires avec Notre Application Mobile",
+      "introduction": "Bienvenue dans notre application mobile, où l'expérience de gestion des entrées de formulaires est élevée à un tout nouveau niveau. Notre application est soigneusement conçue pour améliorer votre gestion des entrées de formulaires, la rendant plus fluide et plus efficace que jamais.",
+      "development": "Conçue pour répondre à vos besoins, notre application prend en charge de manière transparente les constructeurs de formulaires WordPress populaires tels que WP Forms, Gravity Forms, Contact Form 7, WeForm et plus encore. Cela signifie que vous avez le pouvoir de surveiller et de gérer sans effort les soumissions de formulaires de n'importe où, à tout moment. Que vous soyez en déplacement ou au bureau, notre application met le contrôle entre vos mains.",
+      "conclusion": "Imaginez rester organisé, obtenir des informations précieuses et suivre les interactions des utilisateurs, le tout depuis la commodité de votre appareil mobile. Notre application intuitive et conviviale est la réponse pour simplifier la gestion des entrées de formulaires. Prêt à explorer un monde où la gestion des soumissions de formulaires est un jeu d'enfant ? Plongez dans les possibilités dès aujourd'hui et transformez votre approche de la gestion des entrées de formulaires."
     }
   },
   "general": {
