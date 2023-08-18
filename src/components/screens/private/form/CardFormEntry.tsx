@@ -26,8 +26,11 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
 
   const goToFormEntryScreen = () => {
     setEntry(entry);
-    navigation.navigate('EntryMeta', {
-      entryId: entry.id,
+    navigation.navigate('FormStack', {
+      screen: 'EntryMeta',
+      params: {
+        entryId: entry.id,
+      },
     });
   };
 
@@ -40,7 +43,7 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
     >
       <HStack py="4">
         <Box mr={2}>
-          <Avatar>SN</Avatar>
+          <Avatar bg="mark.900">SN</Avatar>
         </Box>
         <Box flex={1}>
           <VStack>
@@ -54,7 +57,7 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
           </VStack>
         </Box>
         <Box ml="5">
-          <Text bold color="mark.800">
+          <Text fontSize="sm" color="mark.800">
             {getDate(entry.date_created)}
           </Text>
         </Box>
