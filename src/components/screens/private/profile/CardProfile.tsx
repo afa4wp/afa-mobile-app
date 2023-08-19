@@ -18,10 +18,19 @@ export function CardProfile({ user }: { user: User }) {
   const [showModal, setShowModal] = useState(false);
 
   const getFullName = () => {
-    if (user.first_name && user.last_name)
-      return user.first_name + ' ' + user.last_name;
+    if (user.first_name && user.last_name) {
+      const fullName = user.first_name + ' ' + user.last_name;
+      const capitalizedFullName = fullName
+        .split(' ')
+        .map((namePart) => namePart.charAt(0).toUpperCase() + namePart.slice(1))
+        .join(' ');
 
-    if (user.first_name) return user.first_name;
+      return capitalizedFullName;
+    }
+
+    if (user.first_name) {
+      return user.first_name.charAt(0).toUpperCase() + user.first_name.slice(1);
+    }
 
     return user.display_name;
   };

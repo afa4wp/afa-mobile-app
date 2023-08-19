@@ -37,8 +37,10 @@ export function HomeScreen() {
   }
 
   useEffect(() => {
-    getHome();
-  }, []);
+    if (state.formType) {
+      getHome();
+    }
+  }, [state.formType]);
 
   if (!state.formType) {
     return <FormItems />;

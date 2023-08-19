@@ -5,11 +5,9 @@ import axios, {
   isAxiosError,
 } from 'axios';
 import * as helperSecureStore from '../helpers/secureStore';
-import { LOGGEDINFO, ACTIVEUSER } from '../constants/auth';
+import { LOGGEDINFO, ACTIVEUSER, FORM_TYPE } from '../constants/auth';
 import * as SecureStore from 'expo-secure-store';
 import { LoggedData } from '../@types/AuthTypes';
-import React, { useContext, useState } from 'react';
-import AuthContext from '../context/AuthContext';
 
 // Public API instance
 export const publicApi = (baseURL: string): AxiosInstance => {
@@ -76,7 +74,21 @@ const refreshAccessToken = async (): Promise<string> => {
 
     return access_token;
   } catch (error) {
-    // handleLogout();
+    if (
+      isAxiosError(error) &&
+      (error.response?.status === 403 || error.response?.status === 401) &&
+      (error.response?.data?.code === 'jwt_auth_invalid_token' ||
+        error.response?.data?.code === 'invalid_role')
+    ) {
+      // handleLogout();
+      await SecureStore.deleteItemAsync(FORM_TYPE);
+      let activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
+      await SecureStore.deleteItemAsync(ACTIVEUSER);
+      if (activeUser) {
+        await helperSecureStore.deleteItemById(LOGGEDINFO, activeUser);
+      }
+    }
+
     console.log('Failed to refresh access token:', error.response?.data);
     throw new Error('Failed to refresh access token');
   }
