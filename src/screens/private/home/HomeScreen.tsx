@@ -71,7 +71,7 @@ export function HomeScreen() {
                 </Box>
               </VStack>
             )}
-            {home.last_entries && home.last_entries.length > 0 && (
+            {home.last_entries && (
               <VStack>
                 <Heading color="mark.800" fontSize="xl">
                   {i18n.t('screen.form.submissions')}, {home.plugin_name}

@@ -49,11 +49,11 @@ export function CardNotification({
       <VStack mb="5" px="5" mt="5">
         <HStack>
           <NotificationAvatar UserCreated={notification.user_created} />
-          <Box flex={1} mr="2">
+          <Box flex={1} mr="3">
             <NotificationText message={notification.message} />
           </Box>
           <Box>
-            <Text>{getDate(notification.created_at)}</Text>
+            <Text fontSize="xs">{getDate(notification.created_at)}</Text>
           </Box>
         </HStack>
       </VStack>

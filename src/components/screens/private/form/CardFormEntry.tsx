@@ -57,7 +57,7 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
           </VStack>
         </Box>
         <Box ml="5">
-          <Text fontSize="sm" color="mark.800">
+          <Text fontSize="xs" color="mark.800">
             {getDate(entry.date_created)}
           </Text>
         </Box>

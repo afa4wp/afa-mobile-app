@@ -18,7 +18,7 @@ import { Platform } from 'react-native';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { API_NAMESPACE } from '../../../constants/endpoint';
+import { API_NAMESPACE, WP_REST } from '../../../constants/endpoint';
 import * as authService from '../../../services/auth';
 import LanguageContext from '../../../context/LanguageContext';
 import { sanitizeEndpoint } from '../../../helpers/manipulateString';
@@ -63,7 +63,7 @@ export function ValidateURL({
   }
 
   async function checkPingRoute(url: string) {
-    const pingEndpoint = sanitizeEndpoint(url + API_NAMESPACE);
+    const pingEndpoint = sanitizeEndpoint(url + WP_REST + API_NAMESPACE);
     try {
       const data = await authService.pingRoute(pingEndpoint);
       if (data && typeof data === 'object' && data.ping === 'pong') {

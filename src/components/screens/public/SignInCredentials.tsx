@@ -24,7 +24,7 @@ import AuthContext from '../../../context/AuthContext';
 import * as authService from '../../../services/auth';
 import { LoginData } from '../../../@types/AuthTypes';
 import axios from 'axios';
-import { API_NAMESPACE } from '../../../constants/endpoint';
+import { API_NAMESPACE, WP_REST } from '../../../constants/endpoint';
 import LanguageContext from '../../../context/LanguageContext';
 import { sanitizeEndpoint } from '../../../helpers/manipulateString';
 import * as deviceService from '../../../services/device';
@@ -59,7 +59,7 @@ export function SignInCredentials({ url }: { url: string }) {
     try {
       setShowModal(true);
       setShowAlert(false);
-      const endPoint = sanitizeEndpoint(url + API_NAMESPACE);
+      const endPoint = sanitizeEndpoint(url + WP_REST + API_NAMESPACE);
       const result = await authService.signIn(endPoint, values);
       const { access_token, refresh_token, user_email } = result;
 
