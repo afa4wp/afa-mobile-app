@@ -114,7 +114,8 @@
     },
     "home": {
       "noFormbuilders": "Nenhum construtor de formulários suportado foi encontrado para esta conta. Recomendamos a instalação de um construtor de formulários suportado, como WP Form, Gravity Form, Contact Form 7 ou outros da nossa lista.",
-      "availableFormBuilders": "Construtores de Formulários Disponíveis"
+      "availableFormBuilders": "Construtores de Formulários Disponíveis",
+      "recentSubmissions": "Envios Recentes"
     },
     "about": {
       "title": "Simplifique a Revisão de Formulários com o Nosso Aplicativo Móvel",

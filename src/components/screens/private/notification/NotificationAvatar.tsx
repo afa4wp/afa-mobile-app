@@ -22,6 +22,10 @@ export function NotificationAvatar({
       </Avatar>
     );
   } else {
-    return <Avatar mr="2">S</Avatar>;
+    return (
+      <Avatar mr="2" bg="mark.900">
+        S
+      </Avatar>
+    );
   }
 }

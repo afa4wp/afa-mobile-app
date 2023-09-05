@@ -75,8 +75,8 @@ export function HomeScreen() {
             )}
             {home.last_entries && (
               <VStack>
-                <Heading color="mark.800" fontSize="xl">
-                  {i18n.t('screen.form.submissions')}, {home.plugin_name}
+                <Heading color="mark.800" fontSize="lg">
+                  {i18n.t('screen.home.recentSubmissions')}
                 </Heading>
               </VStack>
             )}
@@ -86,7 +86,9 @@ export function HomeScreen() {
                 home.last_entries.map((item: EntryType, index: number) => (
                   <Box key={index}>
                     <CardFormEntry entry={item} />
-                    <SeparatorItem />
+                    {index !== home.last_entries.length - 1 && (
+                      <SeparatorItem />
+                    )}
                   </Box>
                 ))}
             </Box>

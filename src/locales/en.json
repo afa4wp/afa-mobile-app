@@ -114,7 +114,8 @@
     },
     "home": {
       "noFormbuilders": "No supported form builders were found for this account. We recommend installing a supported form builder such as WP Form, Gravity Form, Contact Form 7, or others from our list.",
-      "availableFormBuilders": "Available Form Builders"
+      "availableFormBuilders": "Available Form Builders",
+      "recentSubmissions": "Recent Submissions"
     },
     "about": {
       "title": "Simplify Form Review with Our Mobile App",
