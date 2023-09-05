@@ -1,7 +1,12 @@
 import { Text } from 'native-base';
 import { EntryMetaType } from '../../../../../../@types/EntryMetaType';
 import { useEffect, useState } from 'react';
-export function EntryMetaTypeText({ entryMeta }: { entryMeta: EntryMetaType }) {
+import { WhatsappButton } from './item/WhatsappButton';
+export function EntryMetaTypePhoneNumber({
+  entryMeta,
+}: {
+  entryMeta: EntryMetaType;
+}) {
   const [metaValueString, setMetaValueString] = useState<string | null>(null);
 
   useEffect(() => {
@@ -21,9 +26,5 @@ export function EntryMetaTypeText({ entryMeta }: { entryMeta: EntryMetaType }) {
     }
   }, [entryMeta.meta_value]);
 
-  return (
-    <Text fontSize="md" color="mark.800">
-      {metaValueString}
-    </Text>
-  );
+  return <WhatsappButton label={metaValueString} />;
 }

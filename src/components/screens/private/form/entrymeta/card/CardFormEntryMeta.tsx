@@ -3,6 +3,8 @@ import { EntryMetaTypeText } from './EntryMetaTypeText';
 import { EntryMetaTypeFile } from './EntryMetaTypeFile';
 import { EntryMetaTypeSelect } from './EntryMetaTypeSelect';
 import { EntryMetaTypeEmail } from './EntryMetaTypeEmail';
+import { EntryMetaTypePhoneNumber } from './EntryMetaTypePhoneNumber';
+
 import { EntryMeta } from './EntryMeta';
 export function SwitchCardFormEntryMeta({
   entryMeta,
@@ -18,6 +20,8 @@ export function SwitchCardFormEntryMeta({
       return <EntryMetaTypeFile entryMeta={entryMeta} />;
     case 'select':
       return <EntryMetaTypeSelect entryMeta={entryMeta} />;
+    case 'phone_number':
+      return <EntryMetaTypePhoneNumber entryMeta={entryMeta} />;
     default:
       return <EntryMetaTypeText entryMeta={entryMeta} />;
   }
