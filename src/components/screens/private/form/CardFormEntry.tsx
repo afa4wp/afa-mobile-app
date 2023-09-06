@@ -28,6 +28,7 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
     setEntry(entry);
     navigation.navigate('FormStack', {
       screen: 'EntryMeta',
+      initial: false,
       params: {
         entryId: entry.id,
       },

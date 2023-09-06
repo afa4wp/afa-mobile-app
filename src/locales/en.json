@@ -112,6 +112,15 @@
       "submissions": "Submissions",
       "noSubmissions": "No submissions."
     },
+    "entryMeta": {
+      "whatsappButtonLabel": "Send Message",
+      "openContactHeader": "Open Contact in WhatsApp",
+      "phoneNumberPlaceholder": "WhatsApp number",
+      "phoneNumberValidation": "Please enter a valid phone number with digits only",
+      "phoneNumberRequired": "Phone number is required",
+      "whatsappNotInstalled": "WhatsApp is not installed on your device",
+      "phoneNumberFormatNote": "Sometimes the number may not be well-formatted; you can edit it before opening in WhatsApp"
+    },
     "home": {
       "noFormbuilders": "No supported form builders were found for this account. We recommend installing a supported form builder such as WP Form, Gravity Form, Contact Form 7, or others from our list.",
       "availableFormBuilders": "Available Form Builders",
