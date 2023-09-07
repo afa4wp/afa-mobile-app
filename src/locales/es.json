@@ -112,6 +112,10 @@
       "submissions": "Envíos",
       "noSubmissions": "Sin envíos."
     },
+    "entry": {
+      "anonymous": "Anónimo",
+      "emailNotFound": "Correo electrónico no proporcionado o información de contacto alternativa no proporcionada"
+    },
     "entryMeta": {
       "whatsappButtonLabel": "Enviar Mensaje",
       "openContactHeader": "Abrir Contacto en WhatsApp",

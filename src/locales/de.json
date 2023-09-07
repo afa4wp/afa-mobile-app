@@ -112,6 +112,10 @@
       "submissions": "Einsendungen",
       "noSubmissions": "Keine Einreichungen."
     },
+    "entry": {
+      "anonymous": "Anonym",
+      "emailNotFound": "E-Mail nicht angegeben oder alternative Kontaktinformation nicht angegeben"
+    },
     "entryMeta": {
       "whatsappButtonLabel": "Nachricht senden",
       "openContactHeader": "Kontakt in WhatsApp öffnen",

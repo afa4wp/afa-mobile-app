@@ -7,7 +7,7 @@ import {
   Avatar,
   Text,
 } from 'native-base';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import LanguageContext from '../../../../context/LanguageContext';
 import FormContext from '../../../../context/FormContext';
 import { EntryType } from '../../../../@types/EntryType';
@@ -18,6 +18,9 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
   const { state, setEntry } = useContext(FormContext) || {};
   const { i18n } = useContext(LanguageContext)!;
   const navigation = useNavigation();
+  const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState('');
+  const [showAvatar, setShowAvatar] = useState(false);
 
   const getDate = (date: string) => {
     const result = calculateDiffDayJS(date);
@@ -34,6 +37,20 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
       },
     });
   };
+  useEffect(() => {
+    if (
+      entry.author_info &&
+      entry.author_info.user_name &&
+      entry.author_info.user_email
+    ) {
+      setTitle(entry.author_info.user_name);
+      setSubtitle(entry.author_info.user_email);
+      setShowAvatar(true);
+    } else if (entry.custom_title && entry.custom_subtitle) {
+      setTitle(entry.custom_title);
+      setSubtitle(entry.custom_subtitle);
+    }
+  }, [entry]);
 
   return (
     <Pressable
@@ -44,14 +61,30 @@ export function CardFormEntry({ entry }: { entry: EntryType }) {
     >
       <HStack py="4">
         <Box mr={2}>
-          <Avatar bg="mark.900">SN</Avatar>
+          {showAvatar && entry.author_info ? (
+            <Avatar
+              mr="2"
+              source={{
+                uri: entry.author_info.avatar_url,
+              }}
+            >
+              {entry.author_info.user_name.charAt(0).toUpperCase()}
+              {entry.author_info.user_name.charAt(1).toUpperCase()}
+            </Avatar>
+          ) : (
+            <Avatar bg="mark.900">
+              {i18n.t('screen.entry.anonymous').charAt(0).toUpperCase()}
+            </Avatar>
+          )}
         </Box>
         <Box flex={1}>
           <VStack>
             <Text bold mb="1" color="mark.800">
-              cliente
+              {title || i18n.t('screen.entry.anonymous')}
             </Text>
-            <Text color="mark.800">preenchido sem fazer login</Text>
+            <Text color="mark.800">
+              {subtitle || i18n.t('screen.entry.emailNotFound')}
+            </Text>
             <HStack mt="2">
               <Text color="mark.800">{entry.form_info.title}</Text>
             </HStack>

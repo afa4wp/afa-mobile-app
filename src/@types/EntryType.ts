@@ -21,6 +21,8 @@ interface EntryType {
   created_by: number;
   author_info: AuthorInfo | null;
   form_info: FormInfo;
+  custom_title?: string;
+  custom_subtitle?: string;
 }
 
 export type { EntryType };
