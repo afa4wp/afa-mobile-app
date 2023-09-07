@@ -118,9 +118,10 @@ export function ValidateURL({
         </VStack>
         <VStack mt="5" flex={1} justifyContent="flex-end">
           <Center>
-            <Text color="mark.800" textAlign="center">
-              Wordpress Admin {'>'} WP ALL Forms API {'>'} Settings {'>'}{' '}
-              Generate QRCode
+            <Text color="mark.800" fontSize="md" bold textAlign="center">
+              {i18n.t('screen.sigin.wordpressAdmin')} {'>'} WPAFA {'>'}{' '}
+              {i18n.t('screen.sigin.settings')} {'>'}{' '}
+              {i18n.t('screen.profile.login')}
             </Text>
           </Center>
         </VStack>

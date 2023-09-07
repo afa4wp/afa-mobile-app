@@ -156,8 +156,9 @@ export function SignInQRCodeScreen() {
         <VStack my="5">
           <Center>
             <Text color="mark.800" fontSize="md" bold textAlign="center">
-              Wordpress Admin {'>'} WP ALL Forms API {'>'} Settings {'>'}{' '}
-              Generate QRCode
+              {i18n.t('screen.sigin.wordpressAdmin')} {'>'} WPAFA {'>'}{' '}
+              {i18n.t('screen.sigin.settings')} {'>'}{' '}
+              {i18n.t('screen.profile.login')}
             </Text>
           </Center>
         </VStack>

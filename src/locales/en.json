@@ -60,6 +60,8 @@
       "byPush": "By Push"
     },
     "sigin": {
+      "settings": "settings",
+      "wordpressAdmin": "Wordpress Admin",
       "loginPrompt": "Please log in to continue!",
       "loginPromptQRCode": "Login with QRCode",
       "loginPromptCredentials": "Login with credentials",

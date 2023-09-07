@@ -60,6 +60,8 @@
       "byPush": "Per Push"
     },
     "sigin": {
+      "settings": "Einstellungen",
+      "wordpressAdmin": "Wordpress Administrator",
       "loginPrompt": "Bitte melden Sie sich an, um fortzufahren!",
       "loginPromptQRCode": "Anmelden mit QRCode",
       "loginPromptCredentials": "Anmelden mit Anmeldedaten",

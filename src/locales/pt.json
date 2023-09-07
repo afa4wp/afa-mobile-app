@@ -60,6 +60,8 @@
       "byPush": "Por Push"
     },
     "sigin": {
+      "settings": "configurações",
+      "wordpressAdmin": "Administrador do Wordpress",
       "loginPrompt": "Faça login para continuar!",
       "loginPromptQRCode": "Login com QRCode",
       "loginPromptCredentials": "Login com credenciais",
