@@ -62,8 +62,15 @@ export const calculateDiffDayJS = (date: string) => {
     };
   }
 
-  return {
-    value: seconds,
-    unit: 'dayJS.seconds',
-  };
+  if (seconds >= 0) {
+    return {
+      value: seconds,
+      unit: 'dayJS.seconds',
+    };
+  } else {
+    return {
+      value: 1,
+      unit: 'dayJS.hours',
+    };
+  }
 };

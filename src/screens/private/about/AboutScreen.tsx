@@ -34,7 +34,7 @@ export function AboutScreen() {
         <Flex flex={1} direction="column-reverse" mt="4">
           <Center pb="4">
             <Text color="mark.800" fontSize="sm">
-              App Version: {appVersion}
+              {i18n.t('screen.about.appVersion')}: {appVersion}
             </Text>
           </Center>
         </Flex>

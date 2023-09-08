@@ -8,11 +8,12 @@ import { FormStackScreen } from './FormStackScreen';
 import { HomeScreen } from '../../screens/private/home/HomeScreen';
 import LanguageContext from '../../context/LanguageContext';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import NotificationContext from '../../context/notification';
 const Tab = createBottomTabNavigator();
 
 export function HomeTabs() {
   const { i18n } = useContext(LanguageContext)!;
+  const { state } = useContext(NotificationContext);
 
   return (
     <Tab.Navigator
@@ -66,6 +67,7 @@ export function HomeTabs() {
           tabBarIcon: ({ size, color }) => (
             <FontAwesome name={'bell'} color={color} size={size} />
           ),
+          tabBarBadge: state.Badge_number ? state.Badge_number : undefined,
           tabBarLabel: 'Notificação',
           title: i18n.t('screen.headTitle.notifications'),
         }}
