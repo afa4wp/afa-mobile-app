@@ -12,6 +12,7 @@ import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'native-base';
+import Constants from 'expo-constants';
 
 type NotificationContextProps = {
   children: ReactNode;
@@ -148,7 +149,9 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     // to do Calling getExpoPushTokenAsync without specifying a projectId is deprecated and will no longer be supported in SDK 49+
-    token = (await Notifications.getExpoPushTokenAsync()).data;
+    token = (await Notifications.getExpoPushTokenAsync({
+      projectId: Constants.expoConfig.extra.eas.projectId,
+    })).data;
     //console.log(token);
   } else {
     alert('Must use physical device for Push Notifications');

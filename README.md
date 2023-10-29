@@ -40,6 +40,8 @@ To get started with the Expo app, follow these steps:
    ```
 4. **Testing:** You can now run the app on your local machine or on a physical or virtual mobile device using the Expo Go app.
 
+Is it necessary to run `eas build` to generate an Expo project ID. This step is essential for enabling Expo push notifications to function correctly.
+
 ## Usage
 
 - **Dashboard:** After logging in, users can access the dashboard, where they can view and manage form submissions.
