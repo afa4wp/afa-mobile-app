@@ -130,7 +130,8 @@
     "home": {
       "noFormbuilders": "Es wurde kein unterstützter Formularkonstrukteur für dieses Konto gefunden. Wir empfehlen die Installation eines unterstützten Formularkonstrukteurs wie WP Form, Gravity Form, Contact Form 7 oder andere aus unserer Liste.",
       "availableFormBuilders": "Verfügbare Formularkonstrukteure",
-      "recentSubmissions": "Letzte Einreichungen"
+      "recentSubmissions": "Letzte Einreichungen",
+      "seeMore": "Mehr anzeigen"
     },
     "about": {
       "title": "Vereinfachen Sie die Formularüberprüfung mit unserer mobilen App",

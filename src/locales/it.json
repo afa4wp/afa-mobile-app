@@ -130,7 +130,8 @@
     "home": {
       "noFormbuilders": "Nessun costruttore di moduli supportato è stato trovato per questo account. Ti consigliamo di installare un costruttore di moduli supportato, come WP Form, Gravity Form, Contact Form 7 o altri dalla nostra lista.",
       "availableFormBuilders": "Costruttori di Moduli Disponibili",
-      "recentSubmissions": "Ultime Sottomissioni"
+      "recentSubmissions": "Ultime Sottomissioni",
+      "seeMore": "Vedi di più"
     },
     "about": {
       "title": "Semplifica la Revisione dei Moduli con la Nostra App Mobile",

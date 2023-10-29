@@ -130,7 +130,8 @@
     "home": {
       "noFormbuilders": "Aucun constructeur de formulaires pris en charge n'a été trouvé pour ce compte. Nous vous recommandons d'installer un constructeur de formulaires pris en charge, tel que WP Form, Gravity Form, Contact Form 7 ou d'autres de notre liste.",
       "availableFormBuilders": "Constructeurs de Formulaires Disponibles",
-      "recentSubmissions": "Dernières Soumissions"
+      "recentSubmissions": "Dernières Soumissions",
+      "seeMore": "Voir plus"
     },
     "about": {
       "title": "Simplifiez la Révision des Formulaires avec Notre Application Mobile",
