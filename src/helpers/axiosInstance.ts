@@ -40,58 +40,66 @@ const getPrivateApiInstance = async (): Promise<AxiosInstance> => {
   return apiInstance;
 };
 
+let isRefreshing = false;
+let refreshPromise: Promise<string> | null = null;
+
 // Function to refresh the access token using the refresh token
 const refreshAccessToken = async (): Promise<string> => {
   // const { handleLogout } = useContext(AuthContext);
+  if (!isRefreshing) {
+    isRefreshing = true;
+    refreshPromise = new Promise<string>(async (resolve, reject) => {
+      try {
+        const activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
+        let loggedInInfo = {} as LoggedData;
 
-  try {
-    const activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
-    let loggedInInfo = {} as LoggedData;
+        if (activeUser) {
+          loggedInInfo = await helperSecureStore.findItemById(
+            LOGGEDINFO,
+            activeUser
+          );
+        }
 
-    if (activeUser) {
-      loggedInInfo = await helperSecureStore.findItemById(
-        LOGGEDINFO,
-        activeUser
-      );
-    }
+        const { userRefreshToken, url } = loggedInInfo;
+        const response = await axios.post(url + '/user/tokens/refresh', {
+          refresh_token: userRefreshToken,
+        });
 
-    const { userRefreshToken, url } = loggedInInfo;
+        const { access_token, refresh_token } = response.data;
 
-    const response = await axios.post(url + '/user/tokens/refresh', {
-      refresh_token: userRefreshToken,
-    });
+        if (activeUser) {
+          await helperSecureStore.updateItemById(LOGGEDINFO, loggedInInfo.id, {
+            id: activeUser,
+            url: loggedInInfo.url,
+            userToken: access_token,
+            userRefreshToken: refresh_token,
+          });
+        }
 
-    const { access_token, refresh_token } = response.data;
-
-    if (activeUser) {
-      await helperSecureStore.updateItemById(LOGGEDINFO, loggedInInfo.id, {
-        id: activeUser,
-        url: loggedInInfo.url,
-        userToken: access_token,
-        userRefreshToken: refresh_token,
-      });
-    }
-
-    return access_token;
-  } catch (error) {
-    if (
-      isAxiosError(error) &&
-      (error.response?.status === 403 || error.response?.status === 401) &&
-      (error.response?.data?.code === 'jwt_auth_invalid_token' ||
-        error.response?.data?.code === 'invalid_role' ||  error.response?.data?.code === 'jwt_auth_token_not_found')
-    ) {
-      // handleLogout();
-      await SecureStore.deleteItemAsync(FORM_TYPE);
-      let activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
-      await SecureStore.deleteItemAsync(ACTIVEUSER);
-      if (activeUser) {
-        await helperSecureStore.deleteItemById(LOGGEDINFO, activeUser);
+        resolve(access_token);
+      } catch (error) {
+        if (
+          isAxiosError(error) &&
+          (error.response?.status === 403 || error.response?.status === 401) &&
+          (error.response?.data?.code === 'jwt_auth_invalid_token' ||
+            error.response?.data?.code === 'invalid_role' || error.response?.data?.code === 'jwt_auth_token_not_found')
+        ) {
+          // handleLogout();
+          await SecureStore.deleteItemAsync(FORM_TYPE);
+          let activeUser = await SecureStore.getItemAsync(ACTIVEUSER);
+          await SecureStore.deleteItemAsync(ACTIVEUSER);
+          if (activeUser) {
+            await helperSecureStore.deleteItemById(LOGGEDINFO, activeUser);
+          }
+        }    
+        reject(error);
+      } finally {
+        isRefreshing = false;
       }
-    }
-
-    console.log('Failed to refresh access token:', error.response?.data);
-    throw new Error('Failed to refresh access token');
+    });
   }
+  
+  return refreshPromise || Promise.reject(new Error("Refresh promise is null"));
 };
 
 // Function to handle token refresh and retry API requests
@@ -125,7 +133,7 @@ const handleRequestWithTokenRefresh = async (
         const response = await apiInstance.request({
           url,
           method,
-          data,
+          params: data,
           headers: {
             Authorization: `Bearer ${accessToken}`,
             ...headers,
@@ -143,13 +151,12 @@ const handleRequestWithTokenRefresh = async (
           throw refreshError;
         } else {
           // Handle other refresh token errors
-          console.log('Failed to refresh access token:', refreshError);
+          //console.log('Failed to refresh access token:', refreshError);
           throw new Error('Failed to refresh access token');
         }
       }
     } else {
       // Handle other API request errors
-      console.log('API request error:', error);
       throw new Error('API request error');
     }
   }
@@ -165,7 +172,6 @@ export const makeApiRequest = async function (
     return await handleRequestWithTokenRefresh(url, method, data, headers);
   } catch (error) {
     // Handle error
-    console.log('Error making API request:', error);
     throw error;
   }
 };
