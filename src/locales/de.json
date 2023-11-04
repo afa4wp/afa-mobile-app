@@ -57,7 +57,8 @@
     "notificationConfiguration": {
       "formCreationNotifications": "Formularerstellungsbenachrichtigungen",
       "formSubmissionNotifications": "Formularübermittlungsbenachrichtigungen",
-      "byPush": "Per Push"
+      "byPush": "Per Push",
+      "errorLoading": "Fehler beim Laden der Benachrichtigungseinstellungen."
     },
     "sigin": {
       "settings": "Einstellungen",

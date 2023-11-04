@@ -57,7 +57,8 @@
     "notificationConfiguration": {
       "formCreationNotifications": "Form Creation Notifications",
       "formSubmissionNotifications": "Submission Notifications",
-      "byPush": "By Push"
+      "byPush": "By Push",
+      "errorLoading": "Error loading notification settings."
     },
     "sigin": {
       "settings": "settings",

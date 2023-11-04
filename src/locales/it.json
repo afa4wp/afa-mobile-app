@@ -57,7 +57,8 @@
     "notificationConfiguration": {
       "formCreationNotifications": "Notifiche di creazione modulo",
       "formSubmissionNotifications": "Notifiche di invio modulo",
-      "byPush": "Per Push"
+      "byPush": "Per Push",
+      "errorLoading": "Errore durante il caricamento delle impostazioni di notifica."
     },
     "sigin": {
       "settings": "impostazioni",
