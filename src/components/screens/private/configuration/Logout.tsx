@@ -23,13 +23,14 @@ export function Logout() {
       handleLogout();
       setLoad(false);
     } catch (error) {
-      toast.show({
+      /*toast.show({
         render: () => {
           return (
             <ErrorMessageToast message={i18n.t('general.errorOccurred')} />
           );
         },
-      });
+      });*/
+      handleLogout();
     } finally {
       setLoad(false);
     }
