@@ -78,7 +78,7 @@ const refreshAccessToken = async (): Promise<string> => {
       isAxiosError(error) &&
       (error.response?.status === 403 || error.response?.status === 401) &&
       (error.response?.data?.code === 'jwt_auth_invalid_token' ||
-        error.response?.data?.code === 'invalid_role')
+        error.response?.data?.code === 'invalid_role' ||  error.response?.data?.code === 'jwt_auth_token_not_found')
     ) {
       // handleLogout();
       await SecureStore.deleteItemAsync(FORM_TYPE);
