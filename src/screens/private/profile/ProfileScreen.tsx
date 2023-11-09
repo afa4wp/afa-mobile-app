@@ -45,7 +45,7 @@ export function ProfileScreen() {
         alignItems={'center'}
         bg="mark.700"
       >
-        <Spinner size="lg" color="mark.800" />
+        <Spinner size="lg" color="mark.900" />
       </Box>
     );
   } else {

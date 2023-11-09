@@ -70,7 +70,7 @@ export function FormEntryMetaScreen({ route }) {
                 <Spinner
                   accessibilityLabel="Loading"
                   size="lg"
-                  color="mark.800"
+                  color="mark.900"
                 />
               </Box>
             )}

@@ -261,7 +261,7 @@ export function SignInCredentials({ url }: { url: string }) {
               <Spinner
                 size="lg"
                 accessibilityLabel="Check plugin"
-                color="mark.800"
+                color="mark.900"
               />
               <Text>
                 {i18n.t('screen.siginCredentials.credentials.loggingIn')}
