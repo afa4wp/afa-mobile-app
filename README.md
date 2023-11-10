@@ -2,6 +2,8 @@
 
 Welcome to the WPAFA - Mobile-Ready Submission Manager App, a powerful mobile application designed to enhance your form management experience. This app seamlessly integrates with the WordPress Form Manager plugin, allowing you to manage form submissions on the go.
 
+![Mobile Screens](src/assets/screenshot-2.png)
+
 ## Description
 
 Our Expo app takes form management to the next level by providing you with the following features:
