@@ -27,7 +27,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     url: string,
     email: string
   ) => {
-    const id = url + '@' + email;
+    try {
+      const id = url + '@' + email;
     await SecureStore.setItemAsync(ACTIVEUSER, id);
     await helperSecureStore.addItem(LOGGEDINFO, {
       id,
@@ -39,6 +40,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       type: 'LOGGED_IN',
       payload: id,
     });
+    } catch (error) {
+      await SecureStore.deleteItemAsync(ACTIVEUSER);
+      throw error;
+    }
+    
   };
 
   const handleToken = async () => {

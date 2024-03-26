@@ -4,7 +4,8 @@ import { generateUniqueUUID } from './randomString';
 import { DEVICE_ID } from '../constants/auth';
 
 export const addItem = async (key: string, item: LoggedData) => {
-  // Retrieve the stored string representation
+  try {
+    // Retrieve the stored string representation
   const jsonString = await SecureStore.getItemAsync(key);
 
   if (jsonString) {
@@ -34,6 +35,11 @@ export const addItem = async (key: string, item: LoggedData) => {
     // Store the new array
     await SecureStore.setItemAsync(key, jsonString);
   }
+  } catch (error) {
+    SecureStore.deleteItemAsync(key);
+    throw error;
+  }
+  
 };
 
 export const findItemById = async (key: string, id: string) => {
@@ -134,19 +140,22 @@ export const saveDeviceIdToDeviceStorage = async () => {
   try {
     const deviceId = await generateUniqueUUID();
     await SecureStore.setItemAsync(DEVICE_ID, deviceId);
+    return deviceId;
   } catch (error) {
+    await SecureStore.deleteItemAsync(DEVICE_ID);
     throw error;
   }
 };
 
 export const getOrCreateDeviceId = async () => {
   try {
-    const deviceId = await SecureStore.getItemAsync(DEVICE_ID);
+    let deviceId = await SecureStore.getItemAsync(DEVICE_ID);
     if (!deviceId) {
-      saveDeviceIdToDeviceStorage();
+     deviceId = await saveDeviceIdToDeviceStorage();
     }
     return deviceId;
   } catch (error) {
+    await SecureStore.deleteItemAsync(DEVICE_ID);
     throw error;
   }
 };
