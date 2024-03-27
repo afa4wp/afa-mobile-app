@@ -8,9 +8,8 @@ import React, {
 } from 'react';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
-import * as SecureStore from 'expo-secure-store';
-import axios from 'axios';
-import { NavigationContainer } from '@react-navigation/native';
+import { Platform } from 'react-native';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { StatusBar } from 'native-base';
 import Constants from 'expo-constants';
 
@@ -83,9 +82,9 @@ export const NotificationProvider = ({
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
-  const nav = useRef();
+  const nav = useNavigationContainerRef();
 
-  useEffect(() => {
+  /*useEffect(() => {
     // This listener is fired whenever a notification is received while the app is foregrounded
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
@@ -106,7 +105,7 @@ export const NotificationProvider = ({
       );
       Notifications.removeNotificationSubscription(responseListener.current);
     };
-  }, []);
+  }, []); */
 
   const AddBadgeNumber = () => {
     dispatch({

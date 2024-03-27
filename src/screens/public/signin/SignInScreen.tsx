@@ -21,10 +21,8 @@ export function SignInScreen() {
   const { registerForPushNotificationsAsync } = useContext(NotificationContext);
 
   const permition = async (screen: string) => {
-    const expoPushToken = await registerForPushNotificationsAsync();
-    if (expoPushToken) {
-      navigation.navigate(screen);
-    }
+    await registerForPushNotificationsAsync();
+    navigation.navigate(screen);
   };
 
   return (
