@@ -9,11 +9,14 @@ import { HomeScreen } from '../../screens/private/home/HomeScreen';
 import LanguageContext from '../../context/LanguageContext';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import NotificationContext from '../../context/notification';
+import { useNavigation } from '@react-navigation/native';
+
 const Tab = createBottomTabNavigator();
 
 export function HomeTabs() {
   const { i18n } = useContext(LanguageContext)!;
   const { state } = useContext(NotificationContext);
+  const navigation = useNavigation();
 
   return (
     <Tab.Navigator
@@ -37,6 +40,14 @@ export function HomeTabs() {
       <Tab.Screen
         name="FormStack"
         component={FormStackScreen}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate('FormStack', {
+              screen: 'Form',
+            });
+          },
+        }}
         options={{
           headerShown: false,
           tabBarIcon: ({ size, color }) => (

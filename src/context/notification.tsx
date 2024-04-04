@@ -84,7 +84,7 @@ export const NotificationProvider = ({
   const responseListener = useRef();
   const nav = useNavigationContainerRef();
 
-  /*useEffect(() => {
+  useEffect(() => {
     // This listener is fired whenever a notification is received while the app is foregrounded
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
@@ -105,7 +105,7 @@ export const NotificationProvider = ({
       );
       Notifications.removeNotificationSubscription(responseListener.current);
     };
-  }, []); */
+  }, []); 
 
   const AddBadgeNumber = () => {
     dispatch({
